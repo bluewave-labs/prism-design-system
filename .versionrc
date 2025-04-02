@@ -1,0 +1,32 @@
+{
+  "types": [
+    {
+      "type": "feat",
+      "section": "✨ Features"
+    },
+    {
+      "type": "fix",
+      "section": "🐛 Bug Fixes"
+    },
+    {
+      "type": "docs",
+      "hidden": false,
+      "section": "📝 Documentation"
+    },
+    {
+      "type": "style",
+      "hidden": false,
+      "section": "💄 Styling"
+    },
+    {
+      "type": "perf",
+      "hidden": false,
+      "section": "⚡️ Performance Improvements"
+    },
+    {
+      "type": "test",
+      "hidden": false,
+      "section": "✅ Testing"
+    }
+  ]
+}
