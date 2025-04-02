@@ -9,7 +9,7 @@
     "lint": "next lint",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "build:colors": "style-dictionary build --config ./sd.config.js",
+    "build:tokens": "npx style-dictionary build --config ./sd.config.json",
     "prepare": "husky",
     "release": "standard-version"
   },
