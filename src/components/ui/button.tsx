@@ -7,14 +7,14 @@ import { cn } from '@/lib/utils';
 const buttonVariants = cva("inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-[100px] font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-gray-60 focus-visible:ring-gray-60/50 focus-visible:ring-[3px] aria-invalid:ring-red-800/20 dark:aria-invalid:ring-red-800/40 aria-invalid:border-red-800", {
   variants: {
     variant: {
-      default: 'bg-blue-300 text-blue-600 shadow-xs cursor-pointer hover:bg-blue-400',
+      default: 'bg-blue-30 text-blue-60 shadow-xs cursor-pointer hover:bg-blue-40',
       action: 'bg-purple-700 text-purple-200 shadow-xs cursor-pointer hover:bg-purple-800 focus-visible:ring-purple-700/20',
       destructive: 'bg-red-800 text-rose-100 shadow-xs cursor-pointer hover:bg-red-900 focus-visible:ring-red-800/20',
       outline: 'border border-gray-60 text-gray-10 shadow-xs cursor-pointer hover:bg-gray-60/20',
       outline_active: 'border border-gray-20 bg-gray-20 text-gray-80 shadow-xs',
       secondary: 'bg-gray-60 text-gray-10 shadow-xs cursor-pointer hover:bg-gray-70',
       ghost: 'bg-transparent text-gray-10 shadow-xs cursor-pointer hover:bg-gray-10/8',
-      link: 'text-blue-300 underline-offset-4 hover:underline',
+      link: 'text-blue-30 underline-offset-4 hover:underline',
     },
     size: {
       default: 'px-6 py-2.5 has-[>svg]:px-3 text-sm',

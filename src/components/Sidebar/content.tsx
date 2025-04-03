@@ -20,7 +20,7 @@ const Content = ({ nav }: { nav?: ItemsNav }) => {
     <SidebarContent>
       {nav?.map((group, index) => (
         <SidebarGroup key={group.label ?? index}>
-          {group.label && <SidebarGroupLabel>{group.label}</SidebarGroupLabel>}
+          {group.label && <SidebarGroupLabel className='uppercase'>{group.label}</SidebarGroupLabel>}
           <SidebarGroupContent>
             <SidebarMenu>
               {group.items.map(({ title, url, icon, children }) =>

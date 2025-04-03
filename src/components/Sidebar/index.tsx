@@ -1,5 +1,5 @@
 'use client';
-import { ReactElement } from 'react';
+import { ReactNode } from 'react';
 import { Sidebar, SidebarFooter, SidebarProvider } from '../ui/sidebar';
 import Content from './content';
 import Header from './header';
@@ -8,7 +8,7 @@ import NavRail from './navRail';
 type ItemNav = {
   title: string;
   url?: string;
-  icon: ReactElement;
+  icon: ReactNode;
   children?: ItemNav[];
 };
 
@@ -20,14 +20,15 @@ export type ItemsNav = {
 export type SidebarProps = {
   product?: string;
   nav: ItemsNav;
-  footer?: ReactElement;
+  footer?: ReactNode;
+  notifications?: ReactNode[];
 };
 
-const AppSidebar = ({ product = 'Example', nav, footer }: SidebarProps) => {
+const AppSidebar = ({ product = 'Example', nav, footer, notifications }: SidebarProps) => {
   return (
     <SidebarProvider>
       <div className="flex">
-        <NavRail />
+        <NavRail notifications={notifications} />
         <Sidebar collapsible="icon">
           <Header product={product} />
           <Content nav={nav} />

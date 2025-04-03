@@ -1,7 +1,8 @@
 'use client';
+import { cn } from '@/lib/utils';
 import { Bell, Globe, Home, MonitorUp } from 'lucide-react';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '../ui/dropdown-menu';
 import {
@@ -31,13 +32,15 @@ const products = [
   },
 ];
 
-const NavRail = () => {
+const NavRail = ({ notifications }: { notifications?: ReactNode[] }) => {
   const [url, setUrl] = useState<string | null>(null);
   const { isMobile } = useSidebar();
 
   useEffect(() => {
     setUrl(window.location.href);
   }, []);
+
+  const hasNotifications = notifications?.length && notifications.length > 0;
 
   return (
     <SidebarRail>
@@ -78,9 +81,32 @@ const NavRail = () => {
           <SidebarMenuItem>
             <DropdownMenu>
               <DropdownMenuTrigger className="flex items-center justify-center w-8 h-8 md:w-10 md:h-10">
-                <Bell className="text-gray-10" />
+                <span
+                  className={cn(
+                    'relative',
+                    hasNotifications
+                      ? 'before:w-1.5 before:h-1.5 before:bg-[#FFB4AB] before:rounded-full before:-top-0.5 before:-right-0.5 before:absolute'
+                      : ''
+                  )}
+                >
+                  <Bell className="text-gray-10" />
+                </span>
               </DropdownMenuTrigger>
-              <DropdownMenuContent>Hi</DropdownMenuContent>
+              <DropdownMenuContent
+                className={`w-[--radix-popper-anchor-width] bg-gray-80 text-gray-20 border-transparent`}
+              >
+                {hasNotifications ? (
+                  notifications.map((notification, index) => (
+                    <DropdownMenuItem asChild key={index} className="max-w-64 flex flex-col gap-1 items-start">
+                      {notification}
+                    </DropdownMenuItem>
+                  ))
+                ) : (
+                  <DropdownMenuItem className="max-w-64">
+                    <span className="text-gray-40">No notifications</span>
+                  </DropdownMenuItem>
+                )}
+              </DropdownMenuContent>
             </DropdownMenu>
           </SidebarMenuItem>
           <SidebarMenuItem>
