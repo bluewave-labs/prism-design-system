@@ -1,7 +1,6 @@
 'use client';
 import { Bell, Globe, Home, MonitorUp } from 'lucide-react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '../ui/dropdown-menu';
@@ -35,7 +34,6 @@ const products = [
 const NavRail = () => {
   const [url, setUrl] = useState<string | null>(null);
   const { isMobile } = useSidebar();
-  const pathname = usePathname();
 
   useEffect(() => {
     setUrl(window.location.href);
@@ -49,10 +47,10 @@ const NavRail = () => {
         ) : (
           <SidebarMenuButton
             asChild
-            isActive={pathname === DASHBOARD_URL}
+            isActive={url?.includes(DASHBOARD_URL)}
             className="flex items-center justify-center h-10"
           >
-            <Link href={'#'}>
+            <Link href={`https://${DASHBOARD_URL}`} title="Dashboard">
               <Home className=" [&>svg]:size-6" />
             </Link>
           </SidebarMenuButton>
@@ -76,7 +74,7 @@ const NavRail = () => {
         </SidebarMenu>
       </SidebarContent>
       <SidebarFooter className="p-0 self-end">
-        <SidebarMenu className='flex flex-col items-center justify-center gap-1'>
+        <SidebarMenu className="flex flex-col items-center justify-center gap-1">
           <SidebarMenuItem>
             <DropdownMenu>
               <DropdownMenuTrigger className="flex items-center justify-center w-8 h-8 md:w-10 md:h-10">
