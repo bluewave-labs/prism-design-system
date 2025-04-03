@@ -3,6 +3,7 @@ import { ReactElement } from 'react';
 import { Sidebar, SidebarProvider } from '../ui/sidebar';
 import Content from './content';
 import Header from './header';
+import NavRail from './navRail';
 
 type ItemNav = {
   title: string;
@@ -27,7 +28,8 @@ const AppSidebar = ({
 }) => {
   return (
     <SidebarProvider>
-      <div className="px-4 py-2 flex flex-col">
+      <div className="flex">
+        <NavRail />
         <Sidebar collapsible="icon">
           <Header product={product} />
           <Content nav={nav} />

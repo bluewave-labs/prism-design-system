@@ -125,7 +125,7 @@ function SidebarProvider({
             } as React.CSSProperties
           }
           className={cn(
-            'group/sidebar-wrapper has-data-[variant=inset]:bg-gray-95 flex min-h-svh w-full',
+            'group/sidebar-wrapper flex min-h-svh w-full',
             !open ? 'max-w-[48px]' : 'max-w-[256px]',
             className
           )}
@@ -183,29 +183,11 @@ function Sidebar({
         data-side={side}
         data-slot="sidebar"
       >
-        {/* This is what handles the sidebar gap on desktop */}
-        <div
-          data-slot="sidebar-gap"
-          className={cn(
-            'relative w-(--sidebar-width) bg-transparent transition-[width] duration-200 ease-linear',
-            'group-data-[collapsible=offcanvas]:w-0',
-            'group-data-[side=right]:rotate-180',
-            variant === 'floating' || variant === 'inset'
-              ? 'group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)+(--spacing(4)))]'
-              : 'group-data-[collapsible=icon]:w-(--sidebar-width-icon)'
-          )}
-        />
         <div
           data-slot="sidebar-container"
           className={cn(
             'menu-shadow backdrop-blur-xl fixed inset-y-0 z-10 flex h-svh w-(--sidebar-width-icon) transition-[left,right,width] duration-200 ease-linear',
-            side === 'left'
-              ? 'left-0 group-data-[collapsible=offcanvas]:left-[calc(var(--sidebar-width)*-1)]'
-              : 'right-0 group-data-[collapsible=offcanvas]:right-[calc(var(--sidebar-width)*-1)]',
-            // Adjust the padding for floating and inset variants.
-            variant === 'floating' || variant === 'inset'
-              ? 'p-2 group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)+(--spacing(4))+2px)]'
-              : 'group-data-[collapsible=icon]:w-(--sidebar-width-icon) group-data-[side=right]:border-l',
+            'group-data-[collapsible=icon]:w-(--sidebar-width-icon) group-data-[side=right]:border-l',
             className
           )}
           {...props}
@@ -213,7 +195,7 @@ function Sidebar({
           <div
             data-sidebar="sidebar"
             data-slot="sidebar-inner"
-            className="bg-linear-[180deg] from-blue-105 to-blue-115 group-data-[variant=floating]:border-gray-0/10 flex h-full w-full flex-col group-data-[variant=floating]:rounded-lg group-data-[variant=floating]:border group-data-[variant=floating]:shadow-sm border-r-[0.5px] border-gray-0/20"
+            className="bg-linear-[180deg] from-blue-105 to-blue-115 flex h-full w-full flex-col border-r-[0.5px] border-gray-0/20"
           >
             {children}
             <Sheet open={openMobile} onOpenChange={setOpenMobile} {...props}>
@@ -267,13 +249,8 @@ function Sidebar({
         data-slot="sidebar-container"
         className={cn(
           'fixed inset-y-0 z-10 hidden h-svh w-(--sidebar-width) transition-[left,right,width] duration-200 ease-linear md:flex',
-          side === 'left'
-            ? 'left-0 group-data-[collapsible=offcanvas]:left-[calc(var(--sidebar-width)*-1)] group-data-[collapsible=icon]:w-(--sidebar-width-icon)'
-            : 'right-0 group-data-[collapsible=offcanvas]:right-[calc(var(--sidebar-width)*-1)]',
-          // Adjust the padding for floating and inset variants.
-          variant === 'floating' || variant === 'inset'
-            ? 'p-2 group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)+(--spacing(4))+2px)]'
-            : 'group-data-[collapsible=icon]:w-(--sidebar-width-icon) group-data-[side=right]:border-l',
+          'group-data-[collapsible=icon]:w-(--sidebar-width-icon)',
+          'group-data-[collapsible=icon]:w-(--sidebar-width-icon)',
           className
         )}
         {...props}
@@ -281,7 +258,7 @@ function Sidebar({
         <div
           data-sidebar="sidebar"
           data-slot="sidebar-inner"
-          className="bg-linear-[180deg] from-blue-105 to-blue-115 group-data-[variant=floating]:border-gray-0/10 flex h-full w-full flex-col group-data-[variant=floating]:rounded-lg group-data-[variant=floating]:border group-data-[variant=floating]:shadow-sm border-r-[0.5px] border-gray-0/20"
+          className="bg-linear-[180deg] from-blue-105 to-blue-115 flex h-full w-full flex-col border-r-[0.5px] border-gray-0/20"
         >
           {children}
         </div>
@@ -312,28 +289,19 @@ function SidebarTrigger({ className, onClick, ...props }: React.ComponentProps<t
   );
 }
 
-function SidebarRail({ className, ...props }: React.ComponentProps<'button'>) {
-  const { toggleSidebar } = useSidebar();
-
+function SidebarRail({ className, children, ...props }: React.ComponentProps<'div'>) {
   return (
-    <button
+    <div
       data-sidebar="rail"
       data-slot="sidebar-rail"
-      aria-label="Toggle Sidebar"
-      tabIndex={-1}
-      onClick={toggleSidebar}
-      title="Toggle Sidebar"
       className={cn(
-        'hover:after:bg-gray-0/10 absolute inset-y-0 z-20 hidden w-4 -translate-x-1/2 transition-all ease-linear group-data-[side=left]:-right-4 group-data-[side=right]:left-0 after:absolute after:inset-y-0 after:left-1/2 after:w-[2px] sm:flex',
-        'in-data-[side=left]:cursor-w-resize in-data-[side=right]:cursor-e-resize',
-        '[[data-side=left][data-state=collapsed]_&]:cursor-e-resize [[data-side=right][data-state=collapsed]_&]:cursor-w-resize',
-        'hover:group-data-[collapsible=offcanvas]:bg-gray-95 group-data-[collapsible=offcanvas]:translate-x-0 group-data-[collapsible=offcanvas]:after:left-full',
-        '[[data-side=left][data-collapsible=offcanvas]_&]:-right-2',
-        '[[data-side=right][data-collapsible=offcanvas]_&]:-left-2',
+        'bg-linear-[180deg] from-blue-100 to-blue-110 px-1.5 md:px-5 py-3 border-r-[0.5px] border-gray-0/20 flex flex-col gap-2',
         className
       )}
       {...props}
-    />
+    >
+      {children}
+    </div>
   );
 }
 

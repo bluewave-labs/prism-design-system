@@ -13,7 +13,7 @@ const buttonVariants = cva("inline-flex items-center justify-center gap-2 whites
       outline: 'border border-gray-60 text-gray-10 shadow-xs cursor-pointer hover:bg-gray-60/20',
       outline_active: 'border border-gray-20 bg-gray-20 text-gray-80 shadow-xs',
       secondary: 'bg-gray-60 text-gray-10 shadow-xs cursor-pointer hover:bg-gray-70',
-      ghost: 'hover:bg-gray-90 hover:text-gray-10 dark:hover:bg-gray-90/50',
+      ghost: 'bg-transparent text-gray-10 shadow-xs cursor-pointer hover:bg-gray-10/8',
       link: 'text-blue-300 underline-offset-4 hover:underline',
     },
     size: {

@@ -6,7 +6,7 @@ const Header = ({ product = 'Example' }: { product?: string }) => {
   return (
     <SidebarHeader>
       {open || (isMobile && openMobile) ? <h1 className="flex items-center">{product}</h1> : null}
-      <SidebarTrigger />
+      {!isMobile && <SidebarTrigger />}
     </SidebarHeader>
   );
 };

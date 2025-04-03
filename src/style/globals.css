@@ -2,6 +2,10 @@
 @import 'tw-animate-css';
 @import '../sd/build/css/_variables.css';
 
+* {
+  box-sizing: border-box;
+}
+
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
