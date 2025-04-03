@@ -1,13 +1,14 @@
 'use client';
+import { ReactElement } from 'react';
 import { Sidebar, SidebarProvider } from '../ui/sidebar';
 import Content from './content';
-import Footer from './footer';
 import Header from './header';
 
 type ItemNav = {
   title: string;
-  url: string;
-  icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+  url?: string;
+  icon: ReactElement;
+  children?: ItemNav[];
 };
 
 export type ItemsNav = {
@@ -15,14 +16,22 @@ export type ItemsNav = {
   items: ItemNav[];
 }[];
 
-const AppSidebar = ({ product = 'Example', nav }: { product?: string; nav: ItemsNav }) => {
+const AppSidebar = ({
+  product = 'Example',
+  nav,
+  footer,
+}: {
+  product?: string;
+  nav: ItemsNav;
+  footer?: ReactElement;
+}) => {
   return (
     <SidebarProvider>
       <div className="px-4 py-2 flex flex-col">
         <Sidebar collapsible="icon">
           <Header product={product} />
           <Content nav={nav} />
-          <Footer />
+          {footer ?? null}
         </Sidebar>
       </div>
     </SidebarProvider>

@@ -7,7 +7,6 @@ import * as React from 'react';
 
 import { useIsMobile } from '@/hooks/use-mobile';
 import { cn } from '@/lib/utils';
-import { colors } from '@/style/colors';
 import { Button } from './button';
 import { Input } from './input';
 import { Separator } from './separator';
@@ -128,7 +127,6 @@ function SidebarProvider({
           className={cn(
             'group/sidebar-wrapper has-data-[variant=inset]:bg-gray-95 flex min-h-svh w-full',
             !open ? 'max-w-[48px]' : 'max-w-[256px]',
-            // isMobile ? 'max-w-0' : '',
             className
           )}
           {...props}
@@ -165,7 +163,7 @@ function Sidebar({
       <div
         data-slot="sidebar"
         className={cn(
-          `bg-linear-[180deg] from-gray-0/12 to-gray-0/6 text-gray-10 flex h-full w-(--sidebar-width) flex-col`,
+          `bg-gradient-[180deg] from-gray-0/12 to-gray-0/6 text-gray-10 flex h-full w-(--sidebar-width) flex-col`,
           className
         )}
         {...props}
@@ -200,7 +198,7 @@ function Sidebar({
         <div
           data-slot="sidebar-container"
           className={cn(
-            'fixed inset-y-0 z-10 flex h-svh w-(--sidebar-width-icon) transition-[left,right,width] duration-200 ease-linear',
+            'menu-shadow backdrop-blur-xl fixed inset-y-0 z-10 flex h-svh w-(--sidebar-width-icon) transition-[left,right,width] duration-200 ease-linear',
             side === 'left'
               ? 'left-0 group-data-[collapsible=offcanvas]:left-[calc(var(--sidebar-width)*-1)]'
               : 'right-0 group-data-[collapsible=offcanvas]:right-[calc(var(--sidebar-width)*-1)]',
@@ -212,7 +210,11 @@ function Sidebar({
           )}
           {...props}
         >
-          <div data-sidebar="sidebar" data-slot="sidebar-inner" className="bg-linear-[180deg] from-gray-0/12 to-gray-0/6 group-data-[variant=floating]:border-gray-0/10 flex h-full w-full flex-col group-data-[variant=floating]:rounded-lg group-data-[variant=floating]:border group-data-[variant=floating]:shadow-sm border-r-[0.5px] border-gray-0/20">
+          <div
+            data-sidebar="sidebar"
+            data-slot="sidebar-inner"
+            className="bg-linear-[180deg] from-blue-105 to-blue-115 group-data-[variant=floating]:border-gray-0/10 flex h-full w-full flex-col group-data-[variant=floating]:rounded-lg group-data-[variant=floating]:border group-data-[variant=floating]:shadow-sm border-r-[0.5px] border-gray-0/20"
+          >
             {children}
             <Sheet open={openMobile} onOpenChange={setOpenMobile} {...props}>
               <SheetContent
@@ -276,7 +278,11 @@ function Sidebar({
         )}
         {...props}
       >
-        <div data-sidebar="sidebar" data-slot="sidebar-inner" className="bg-linear-[180deg] from-gray-0/12 to-gray-0/6 group-data-[variant=floating]:border-gray-0/10 flex h-full w-full flex-col group-data-[variant=floating]:rounded-lg group-data-[variant=floating]:border group-data-[variant=floating]:shadow-sm border-r-[0.5px] border-gray-0/20">
+        <div
+          data-sidebar="sidebar"
+          data-slot="sidebar-inner"
+          className="bg-linear-[180deg] from-blue-105 to-blue-115 group-data-[variant=floating]:border-gray-0/10 flex h-full w-full flex-col group-data-[variant=floating]:rounded-lg group-data-[variant=floating]:border group-data-[variant=floating]:shadow-sm border-r-[0.5px] border-gray-0/20"
+        >
           {children}
         </div>
       </div>
@@ -361,7 +367,7 @@ function SidebarHeader({ className, ...props }: React.ComponentProps<'div'>) {
     <div
       data-slot="sidebar-header"
       data-sidebar="header"
-      className={cn(`flex items-center justify-between gap-2 p-2 text-gray-30 font-semibold`, className)}
+      className={cn(`flex items-center justify-between gap-2 p-2 text-gray-10 font-medium`, className)}
       {...props}
     />
   );
@@ -426,7 +432,7 @@ function SidebarGroupLabel({
       data-slot="sidebar-group-label"
       data-sidebar="group-label"
       className={cn(
-        `text-[${colors.gray[10]}] ring-gray-60 flex h-8 shrink-0 items-center rounded-md px-2 text-sm font-medium outline-hidden transition-[margin,opacity] duration-200 ease-linear focus-visible:ring-2 [&>svg]:size-4 [&>svg]:shrink-0`,
+        `text-gray-10 ring-gray-60 flex h-8 shrink-0 items-center rounded-md px-2 text-sm font-medium outline-hidden transition-[margin,opacity] duration-200 ease-linear focus-visible:ring-2 [&>svg]:size-4 [&>svg]:shrink-0`,
         'group-data-[collapsible=icon]:-mt-8 group-data-[collapsible=icon]:opacity-0',
         className
       )}
@@ -492,12 +498,12 @@ function SidebarMenuItem({ className, ...props }: React.ComponentProps<'li'>) {
 }
 
 const sidebarMenuButtonVariants = cva(
-  `text-[${colors.gray[20]}] peer/menu-button flex w-full items-center gap-2 overflow-hidden rounded-sm p-2 text-left text-sm outline-hidden ring-gray-60 transition-[width,height,padding] hover:bg-gray-50 focus-visible:ring-2 active:bg-gray-50 active:text-[${colors.gray[20]}] disabled:pointer-events-none disabled:opacity-50 group-has-data-[sidebar=menu-action]/menu-item:pr-8 aria-disabled:pointer-events-none aria-disabled:opacity-50 data-[active=true]:bg-gray-50ata-[state=open]:hover:bg-gray-50 group-data-[collapsible=icon]:size-8! group-data-[collapsible=icon]:p-2! [&>span:last-child]:truncate [&>svg]:size-4 [&>svg]:shrink-0`,
+  `text-gray-0 peer/menu-button flex w-full items-center gap-2 overflow-hidden rounded-sm p-2 text-left text-sm outline-hidden ring-gray-60 transition-[width,height,padding] hover:bg-gray-0/8 focus-visible:ring-2 active:bg-gray-0/8 disabled:pointer-events-none disabled:opacity-50 group-has-data-[sidebar=menu-action]/menu-item:pr-8 aria-disabled:pointer-events-none aria-disabled:opacity-50 data-[active=true]:bg-gray-0/8 group-data-[collapsible=icon]:size-8! group-data-[collapsible=icon]:p-2! [&>span:last-child]:truncate [&>svg]:size-4 [&>svg]:shrink-0`,
   {
     variants: {
       variant: {
-        default: `hover:bg-gray-50 hover:text-[${colors.gray[20]}]`,
-        outline: `hover:bg-[${colors.gray[20]}] hover:text-gray-50`,
+        default: ``,
+        outline: `hover:text-gray-50`,
       },
       size: {
         default: 'text-sm px-2 py-3.5',

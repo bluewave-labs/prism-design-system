@@ -9,17 +9,21 @@
 import UIKit
 
 public class StyleDictionaryClass {
-    public static let colorBlue100 = #e3ebfc
-    public static let colorBlue200 = #cdd9f8
-    public static let colorBlue300 = #b5c6f4
-    public static let colorBlue400 = #8d9fec
-    public static let colorBlue50 = #f0f4fd
-    public static let colorBlue500 = #727fe2
-    public static let colorBlue600 = #575cd4
-    public static let colorBlue700 = #4749bb
-    public static let colorBlue800 = #3c4097
-    public static let colorBlue900 = #373b78
-    public static let colorBlue950 = #202246
+    public static let colorBlue10 = #e3ebfc
+    public static let colorBlue100 = #1F2130
+    public static let colorBlue105 = #151727
+    public static let colorBlue110 = #101222
+    public static let colorBlue115 = #060819
+    public static let colorBlue20 = #cdd9f8
+    public static let colorBlue30 = #b5c6f4
+    public static let colorBlue40 = #8d9fec
+    public static let colorBlue5 = #f0f4fd
+    public static let colorBlue50 = #727fe2
+    public static let colorBlue60 = #575cd4
+    public static let colorBlue70 = #4749bb
+    public static let colorBlue80 = #3c4097
+    public static let colorBlue90 = #373b78
+    public static let colorBlue95 = #202246
     public static let colorGray0 = #ffffff
     public static let colorGray10 = #f4f4ff
     public static let colorGray100 = #010314
