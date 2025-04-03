@@ -1,6 +1,6 @@
 'use client';
 import { ReactElement } from 'react';
-import { Sidebar, SidebarProvider } from '../ui/sidebar';
+import { Sidebar, SidebarFooter, SidebarProvider } from '../ui/sidebar';
 import Content from './content';
 import Header from './header';
 import NavRail from './navRail';
@@ -17,15 +17,13 @@ export type ItemsNav = {
   items: ItemNav[];
 }[];
 
-const AppSidebar = ({
-  product = 'Example',
-  nav,
-  footer,
-}: {
+export type SidebarProps = {
   product?: string;
   nav: ItemsNav;
   footer?: ReactElement;
-}) => {
+};
+
+const AppSidebar = ({ product = 'Example', nav, footer }: SidebarProps) => {
   return (
     <SidebarProvider>
       <div className="flex">
@@ -33,7 +31,7 @@ const AppSidebar = ({
         <Sidebar collapsible="icon">
           <Header product={product} />
           <Content nav={nav} />
-          {footer ?? null}
+          <SidebarFooter>{footer ?? null}</SidebarFooter>
         </Sidebar>
       </div>
     </SidebarProvider>

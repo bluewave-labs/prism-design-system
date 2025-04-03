@@ -186,7 +186,7 @@ function Sidebar({
         <div
           data-slot="sidebar-container"
           className={cn(
-            'menu-shadow backdrop-blur-xl fixed inset-y-0 z-10 flex h-svh w-(--sidebar-width-icon) transition-[left,right,width] duration-200 ease-linear',
+            'menu-shadow backdrop-blur-xl fixed left-[45px] md:left-[80px] inset-y-0 z-10 flex h-svh w-(--sidebar-width-icon) transition-[left,right,width] duration-200 ease-linear',
             'group-data-[collapsible=icon]:w-(--sidebar-width-icon) group-data-[side=right]:border-l',
             className
           )}
@@ -238,17 +238,13 @@ function Sidebar({
         data-slot="sidebar-gap"
         className={cn(
           'relative w-(--sidebar-width) bg-transparent transition-[width] duration-200 ease-linear',
-          'group-data-[collapsible=offcanvas]:w-0',
-          'group-data-[side=right]:rotate-180',
-          variant === 'floating' || variant === 'inset'
-            ? 'group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)+(--spacing(4)))]'
-            : 'group-data-[collapsible=icon]:w-(--sidebar-width-icon)'
+          'group-data-[collapsible=icon]:w-(--sidebar-width-icon)'
         )}
       />
       <div
         data-slot="sidebar-container"
         className={cn(
-          'fixed inset-y-0 z-10 hidden h-svh w-(--sidebar-width) transition-[left,right,width] duration-200 ease-linear md:flex',
+          'menu-shadow backdrop-blur-xl fixed left-[45px] md:left-[80px] inset-y-0 z-10 hidden h-svh w-(--sidebar-width) transition-[left,right,width] duration-200 ease-linear md:flex',
           'group-data-[collapsible=icon]:w-(--sidebar-width-icon)',
           'group-data-[collapsible=icon]:w-(--sidebar-width-icon)',
           className
@@ -295,7 +291,7 @@ function SidebarRail({ className, children, ...props }: React.ComponentProps<'di
       data-sidebar="rail"
       data-slot="sidebar-rail"
       className={cn(
-        'bg-linear-[180deg] from-blue-100 to-blue-110 px-1.5 md:px-5 py-3 border-r-[0.5px] border-gray-0/20 flex flex-col gap-2',
+        'fixed h-svh top-0 left-0 w-[45px] md:w-[80px] bg-linear-[180deg] from-blue-100 to-blue-110 px-1.5 md:px-5 py-3 border-r-[0.5px] border-gray-0/20 flex flex-col gap-2',
         className
       )}
       {...props}

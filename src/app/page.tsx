@@ -1,46 +1,27 @@
-'use client';
-import AppSidebar from '@/components/Sidebar';
-import { BookOpen, Bot, Settings2, SquareTerminal } from 'lucide-react';
+import Link from 'next/link';
 
-const items_nav = [
+const components = [
   {
-    title: 'Dashboard',
-    url: '/',
-    icon: <SquareTerminal />,
-  },
-  {
-    title: 'Playground',
-    url: '/playground',
-    icon: <Bot />,
-  },
-  {
-    title: 'Settings',
-    icon: <Settings2 />,
-    children: [
-      {
-        title: 'General',
-        url: '/settings/general',
-        icon: <Settings2 />,
-      },
-      {
-        title: 'Advanced',
-        url: '/settings/advanced',
-        icon: <Settings2 />,
-      },
-      {
-        title: 'API',
-        url: '/settings/api',
-        icon: <Settings2 />,
-      },
-    ],
-  },
-  {
-    title: 'Logs & data',
-    url: '/logs-data',
-    icon: <BookOpen />,
-  },
-];
+    href: '/sidebar',
+    title: 'Sidebar',
+    description: 'Sidebar with collapsible menu',
+  }
+]
 
 export default function Home() {
-  return <AppSidebar product="RockScraper" nav={[{ items: items_nav }]} />;
+  return (
+    <div className="p-4">
+      <h1 className="text-2xl font-bold text-center mb-10">Available components</h1>
+      <ul>
+        {components.map((component) => (
+          <li key={component.href} className="mb-4">
+          <Link href={component.href} className="block p-4 text-gray-20 rounded-lg hover:underline">
+            <h2 className="text-xl font-semibold">{component.title}</h2>
+            <p className="text-gray-40">{component.description}</p>
+          </Link>
+        </li>
+        ))}
+      </ul>
+    </div>
+  );
 }
