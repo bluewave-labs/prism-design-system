@@ -9,17 +9,21 @@
 import UIKit
 
 internal struct StyleDictionaryStruct {
-    internal static let colorBlue100 = #e3ebfc
-    internal static let colorBlue200 = #cdd9f8
-    internal static let colorBlue300 = #b5c6f4
-    internal static let colorBlue400 = #8d9fec
-    internal static let colorBlue50 = #f0f4fd
-    internal static let colorBlue500 = #727fe2
-    internal static let colorBlue600 = #575cd4
-    internal static let colorBlue700 = #4749bb
-    internal static let colorBlue800 = #3c4097
-    internal static let colorBlue900 = #373b78
-    internal static let colorBlue950 = #202246
+    internal static let colorBlue10 = #e3ebfc
+    internal static let colorBlue100 = #1F2130
+    internal static let colorBlue105 = #151727
+    internal static let colorBlue110 = #101222
+    internal static let colorBlue115 = #060819
+    internal static let colorBlue20 = #cdd9f8
+    internal static let colorBlue30 = #b5c6f4
+    internal static let colorBlue40 = #8d9fec
+    internal static let colorBlue5 = #f0f4fd
+    internal static let colorBlue50 = #727fe2
+    internal static let colorBlue60 = #575cd4
+    internal static let colorBlue70 = #4749bb
+    internal static let colorBlue80 = #3c4097
+    internal static let colorBlue90 = #373b78
+    internal static let colorBlue95 = #202246
     internal static let colorGray0 = #ffffff
     internal static let colorGray10 = #f4f4ff
     internal static let colorGray100 = #010314

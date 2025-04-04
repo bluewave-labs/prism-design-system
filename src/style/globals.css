@@ -1,6 +1,28 @@
-@import "tailwindcss";
-@import "tw-animate-css";
-@import "../sd/build/css/_variables.css";
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import '../sd/build/css/_variables.css';
+
+* {
+  box-sizing: border-box;
+}
+
+*::-webkit-scrollbar {
+  width: 0.3rem;
+  height: 0.3rem;
+}
+*::-webkit-scrollbar-thumb {
+  background-color: theme('colors.gray.85');
+  border-radius: 0.5rem;
+}
+*::-webkit-scrollbar-thumb:hover {
+  background-color: theme('colors.gray.80');
+}
+*::-webkit-scrollbar-track {
+  background-color: theme('colors.gray.95');
+}
+*::-webkit-scrollbar-corner {
+  background-color: theme('colors.gray.95');
+}
 
 @custom-variant dark (&:is(.dark *));
 
@@ -120,4 +142,45 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+@theme {
+  --color-blue-5: #f0f4fd;
+  --color-blue-10: #e3ebfc;
+  --color-blue-20: #cdd9f8;
+  --color-blue-30: #b5c6f4;
+  --color-blue-40: #8d9fec;
+  --color-blue-50: #727fe2;
+  --color-blue-60: #575cd4;
+  --color-blue-70: #4749bb;
+  --color-blue-80: #3c4097;
+  --color-blue-90: #373b78;
+  --color-blue-95: #202246;
+  --color-blue-100: #1F2130;
+  --color-blue-105: #151727;
+  --color-blue-110: #101222;
+  --color-blue-115: #060819;
+  --color-gray-0: #ffffff;
+  --color-gray-10: #f4f4ff;
+  --color-gray-20: #ececfb;
+  --color-gray-30: #dfe1f4;
+  --color-gray-40: #babcd2;
+  --color-gray-50: #9fa2b9;
+  --color-gray-60: #5e6077;
+  --color-gray-70: #383a4d;
+  --color-gray-80: #2a2b3a;
+  --color-gray-85: #212230;
+  --color-gray-90: #171825;
+  --color-gray-95: #0b0d1c;
+  --color-gray-100: #010314;
+  --font-body: Inter, sans-serif;
+  --font-mono: Menlo, monospace;
+}
+
+.menu-shadow {
+  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.12), 16px 0px 60px rgba(0, 0, 0, 0.06), 8px 0px 48px rgba(31, 47, 71, 0.2); 
+}
+
+body {
+  @apply font-sans text-gray-10 bg-linear-[180deg] from-gray-0/10 to-gray-0/4;
 }
