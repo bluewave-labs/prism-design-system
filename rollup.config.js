@@ -5,6 +5,7 @@ import svgr from '@svgr/rollup';
 import dts from 'rollup-plugin-dts';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 import postcss from 'rollup-plugin-postcss';
+import copy from 'rollup-plugin-copy';
 
 const config = [
   {
@@ -26,6 +27,11 @@ const config = [
         jsx: 'react-jsx', // 👈 Important
         tsconfig: './tsconfig.json',
       }),
+      copy({
+        targets: [
+          { src: 'src/style/globals.css', dest: 'dist' }
+        ]
+      })
     ],
   },
   {
