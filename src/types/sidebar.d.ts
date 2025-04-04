@@ -1,4 +1,4 @@
-type ItemNav = {
+export type ItemNav = {
   title: string;
   url?: string;
   icon: ReactNode;

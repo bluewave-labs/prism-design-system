@@ -11,7 +11,9 @@
     "build-storybook": "storybook build",
     "build:tokens": "npx style-dictionary build --config ./sd.config.json",
     "prepare": "husky",
-    "release": "standard-version"
+    "release": "standard-version",
+    "build:pkg": "rollup -c",
+    "prepare:pkg": "npm run build:pkg"
   },
   "dependencies": {
     "@radix-ui/react-avatar": "^1.1.3",
@@ -36,8 +38,10 @@
     "@commitlint/cli": "^19.8.0",
     "@commitlint/config-conventional": "^19.8.0",
     "@eslint/eslintrc": "^3.3.1",
+    "@rollup/plugin-commonjs": "^28.0.3",
     "@rollup/plugin-node-resolve": "^16.0.1",
     "@rollup/plugin-typescript": "^12.1.2",
+    "@svgr/rollup": "^8.1.0",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
@@ -55,6 +59,8 @@
     "lint-staged": "^15.5.0",
     "prettier": "^3.5.3",
     "rollup": "^4.39.0",
+    "rollup-plugin-dts": "^6.2.1",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
     "rollup-plugin-postcss": "^4.0.2",
     "standard-version": "^9.5.0",
     "tailwindcss": "^4",
