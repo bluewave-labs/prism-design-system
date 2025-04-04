@@ -2,7 +2,6 @@
 import { ChevronDown } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { ItemsNav } from '.';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '../ui/collapsible';
 import {
   SidebarContent,
@@ -13,6 +12,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from '../ui/sidebar';
+import { ItemsNav } from './Sidebar';
 
 const Content = ({ nav }: { nav?: ItemsNav }) => {
   const pathname = usePathname();
@@ -20,14 +20,14 @@ const Content = ({ nav }: { nav?: ItemsNav }) => {
     <SidebarContent>
       {nav?.map((group, index) => (
         <SidebarGroup key={group.label ?? index}>
-          {group.label && <SidebarGroupLabel className='uppercase'>{group.label}</SidebarGroupLabel>}
+          {group.label && <SidebarGroupLabel className="uppercase">{group.label}</SidebarGroupLabel>}
           <SidebarGroupContent>
             <SidebarMenu>
               {group.items.map(({ title, url, icon, children }) =>
                 children ? (
                   <Collapsible className="group/collapsible" key={title}>
                     <SidebarMenuButton asChild>
-                      <CollapsibleTrigger className='cursor-pointer'>
+                      <CollapsibleTrigger className="cursor-pointer">
                         {icon}
                         <span>{title}</span>
                         <ChevronDown className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180" />

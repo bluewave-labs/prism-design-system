@@ -1,6 +1,7 @@
 'use client';
-import { Button } from '@/components/ui/button';
+import { Button } from '@/components';
 import { cn } from '@/lib/utils';
+import { ButtonProps } from '@/types';
 import codeToHtml from '@/utils/codeToHtml';
 import { Copy } from 'lucide-react';
 import { useEffect, useState } from 'react';
@@ -27,11 +28,11 @@ type OptionsType =
   | 'rounded-full'
   | 'asChild';
 
-const baseProps: ButtonPropsType = {
+const baseProps: ButtonProps = {
   children: 'Button',
 };
 
-const options: { option: OptionsType; text: string; prop: (val: ButtonPropsType) => ButtonPropsType }[] = [
+const options: { option: OptionsType; text: string; prop: (val: ButtonProps) => ButtonProps }[] = [
   {
     option: 'default',
     text: 'Default',
@@ -187,13 +188,6 @@ const propTypes = `React.ComponentProps<'button'> & {
   rounded?: 'default' | 'sm' | 'md' | 'lg' | 'full';
 }`;
 
-type ButtonPropsType = React.ComponentProps<'button'> & {
-  asChild?: boolean;
-  variant?: 'default' | 'action' | 'destructive' | 'outline' | 'outline_active' | 'secondary' | 'ghost' | 'link';
-  size?: 'default' | 'xs' | 'sm' | 'md' | 'lg' | 'icon';
-  rounded?: 'default' | 'sm' | 'md' | 'lg' | 'full';
-};
-
 const variants = [
   'default',
   'action',
@@ -211,7 +205,7 @@ type SizesType = (typeof sizes)[number];
 type RoundedType = (typeof rounded)[number];
 
 export default function Home() {
-  const [props, setProps] = useState<ButtonPropsType>(baseProps);
+  const [props, setProps] = useState<ButtonProps>(baseProps);
   const [htmlProps, setHtmlProps] = useState<string>('');
   const [selected, setSelected] = useState<OptionsType[]>([options[0].option]);
   const [propType, setPropType] = useState<string>('');
