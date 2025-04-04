@@ -1,7 +1,29 @@
 {
-  "name": "prism-design-system",
-  "version": "0.1.0",
-  "private": true,
+  "name": "@debserra/prism-design-system",
+  "version": "0.1.1",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "keywords": [
+    "design-system",
+    "ui",
+    "components"
+  ],
+  "author": "Débora Serra",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
@@ -59,6 +81,7 @@
     "lint-staged": "^15.5.0",
     "prettier": "^3.5.3",
     "rollup": "^4.39.0",
+    "rollup-plugin-copy": "^3.5.0",
     "rollup-plugin-dts": "^6.2.1",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "rollup-plugin-postcss": "^4.0.2",
