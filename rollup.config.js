@@ -22,7 +22,7 @@ const config = [
       resolve(),
       commonjs(),
       svgr(),
-      postcss({ extract: true }),
+      postcss({ extract: 'globals.css' }),
       typescript({
         jsx: 'react-jsx', // 👈 Important
         tsconfig: './tsconfig.json',
