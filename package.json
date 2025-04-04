@@ -1,6 +1,6 @@
 {
   "name": "@debserra/prism-design-system",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -12,6 +12,9 @@
       "import": "./dist/index.js",
       "require": "./dist/index.js",
       "types": "./dist/index.d.ts"
+    },
+    "./global.css": {
+      "default": "./dist/global.css"
     }
   },
   "keywords": [
