@@ -30,8 +30,8 @@ const config = [
       copy({
         targets: [
           { src: 'src/style/globals.css', dest: 'dist' },
-          { src: 'src/sd/css/_variables.css', dest: 'dist' },
-          { src: 'src/sd/scss/_variables.scss', dest: 'dist' },
+          { src: 'src/sd/build/css/_variables.css', dest: 'dist' },
+          { src: 'src/sd/build/scss/_variables.scss', dest: 'dist' },
         ],
       }),
     ],
