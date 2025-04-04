@@ -5,6 +5,7 @@ import { cn } from '@/lib/utils';
 import codeToHtml from '@/utils/codeToHtml';
 import { BookOpen, Bot, Copy, Settings2, SquareTerminal } from 'lucide-react';
 import { useEffect, useState } from 'react';
+import ReactDOMServer from 'react-dom/server';
 import sanitizeHtml from 'sanitize-html';
 
 const items_nav = [
@@ -204,18 +205,18 @@ export default function Home() {
         ...nav,
         items: nav.items.map((item) => ({
           ...item,
-          icon: item.icon ? item.icon.toString() : undefined,
+          icon: item.icon ? ReactDOMServer.renderToString(item.icon) : undefined,
           children: item.children
             ? item.children.map((child) => ({
                 ...child,
-                icon: child.icon ? child.icon.toString() : undefined,
+                icon: child.icon ? ReactDOMServer.renderToString(child.icon) : undefined,
               }))
             : undefined,
         })),
       })),
-      footer: props.footer ? props.footer.toString() : undefined,
+      footer: props.footer ? ReactDOMServer.renderToString(props.footer) : undefined,
       notifications: props.notifications
-        ? props.notifications.map((notification) => notification?.toString())
+        ? props.notifications.map((notification) => ReactDOMServer.renderToString(notification))
         : undefined,
     };
     const html = await codeToHtml(JSON.stringify(sanitizedProps, null, 2));

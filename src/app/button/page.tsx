@@ -4,6 +4,7 @@ import { cn } from '@/lib/utils';
 import codeToHtml from '@/utils/codeToHtml';
 import { Copy } from 'lucide-react';
 import { useEffect, useState } from 'react';
+import ReactDOMServer from 'react-dom/server';
 import sanitizeHtml from 'sanitize-html';
 
 type OptionsType =
@@ -176,7 +177,7 @@ const options: { option: OptionsType; text: string; prop: (val: ButtonPropsType)
         <a href="https://www.radix-ui.com/docs/primitives/components/button">Button</a>
       ),
     }),
-  },  
+  },
 ];
 
 const propTypes = `React.ComponentProps<'button'> & {
@@ -219,7 +220,7 @@ export default function Home() {
   const buildHtmlProps = async () => {
     const sanitizedProps = {
       ...props,
-      children: props.asChild ? props.children?.toString() : props.children,
+      children: props.asChild ? ReactDOMServer.renderToString(props.children) : props.children,
     };
     const html = await codeToHtml(JSON.stringify(sanitizedProps, null, 2));
     setHtmlProps(html);
