@@ -15,6 +15,12 @@
     },
     "./global.css": {
       "default": "./dist/globals.css"
+    },
+    "./_variables.css": {
+      "default": "./dist/_variables.css"
+    },
+    "./_variables.scss":{
+      "default": "./dist/_variables.scss"
     }
   },
   "keywords": [
