@@ -1,6 +1,7 @@
 {
   "name": "@debserra/prism-design-system",
-  "version": "0.1.16",
+  "version": "0.1.17",
+  "type": "module",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -12,6 +13,10 @@
       "import": "./dist/index.js",
       "require": "./dist/index.js",
       "types": "./dist/index.d.ts"
+    },
+    "./style": {
+      "import": "./dist/style/globals.css",
+      "require": "./dist/style/globals.css"
     },
     "./global.css": {
       "default": "./dist/style/globals.css"
@@ -73,7 +78,7 @@
     "@rollup/plugin-node-resolve": "^16.0.1",
     "@rollup/plugin-typescript": "^12.1.2",
     "@svgr/rollup": "^8.1.0",
-    "@tailwindcss/postcss": "^4",
+    "@tailwindcss/postcss": "^4.1.3",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
