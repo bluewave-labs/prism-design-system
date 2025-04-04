@@ -1,9 +1,9 @@
 'use client';
-import AppSidebar from '@/components/Sidebar/Sidebar';
-import Footer from '@/components/Sidebar/footer';
-import { cn } from '@/lib/utils';
-import { SidebarProps } from '@/types';
-import codeToHtml from '@/utils/codeToHtml';
+import AppSidebar from '../../components/Sidebar/Sidebar';
+import Footer from '../../components/Sidebar/footer';
+import { cn } from '../../lib/utils';
+import { SidebarProps } from '../../types';
+import codeToHtml from '../../utils/codeToHtml';
 import { BookOpen, Bot, Copy, Settings2, SquareTerminal } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import ReactDOMServer from 'react-dom/server';

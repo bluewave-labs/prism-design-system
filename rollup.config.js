@@ -1,6 +1,7 @@
 import commonjs from '@rollup/plugin-commonjs';
 import resolve from '@rollup/plugin-node-resolve';
-import typescript from '@rollup/plugin-typescript';
+import esbuild from 'rollup-plugin-esbuild';
+
 import svgr from '@svgr/rollup';
 import copy from 'rollup-plugin-copy';
 import dts from 'rollup-plugin-dts';
@@ -22,9 +23,21 @@ const config = [
       resolve(),
       commonjs(),
       svgr(),
-      postcss({ extract: 'globals.css' }),
-      typescript({
-        jsx: 'react-jsx', // 👈 Important
+      postcss({
+        inject: true,
+        extract: false,
+        modules: false,
+        include: ['**/*.css'],
+        use: ['css'],
+        minimize: true,
+        config: {
+          path: './postcss.config.mjs',
+        },
+      }),
+      esbuild({
+        sourceMap: true,
+        target: 'esnext',
+        jsx: 'automatic', // React 17+ JSX
         tsconfig: './tsconfig.json',
       }),
       copy({
@@ -32,6 +45,7 @@ const config = [
           { src: 'src/style/globals.css', dest: 'dist/style' },
           { src: 'src/sd/build/css/_variables.css', dest: 'dist/style' },
           { src: 'src/sd/build/scss/_variables.scss', dest: 'dist/style' },
+          { src: 'src/style/theme.css', dest: 'dist/style' },
         ],
       }),
     ],

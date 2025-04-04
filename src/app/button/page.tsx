@@ -1,8 +1,8 @@
 'use client';
-import { Button } from '@/components';
-import { cn } from '@/lib/utils';
-import { ButtonProps } from '@/types';
-import codeToHtml from '@/utils/codeToHtml';
+import { Button } from '../../components';
+import { cn } from '../../lib/utils';
+import { ButtonProps } from '../../types';
+import codeToHtml from '../../utils/codeToHtml';
 import { Copy } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import ReactDOMServer from 'react-dom/server';

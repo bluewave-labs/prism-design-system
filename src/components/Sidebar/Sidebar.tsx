@@ -1,5 +1,5 @@
 'use client';
-import { SidebarProps } from '@/types';
+import { SidebarProps } from '../../types';
 import { Sidebar, SidebarFooter, SidebarProvider } from '../ui/sidebar';
 import Content from './content';
 import Header from './header';

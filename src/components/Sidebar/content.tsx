@@ -1,5 +1,5 @@
 'use client';
-import { ItemNav, ItemsNav } from '@/types';
+import { ItemNav, ItemsNav } from '../../types';
 import { ChevronDown } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
