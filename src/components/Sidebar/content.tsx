@@ -1,8 +1,8 @@
 'use client';
+import { ItemNav, ItemsNav } from '../../types';
 import { ChevronDown } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { ItemsNav } from '.';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '../ui/collapsible';
 import {
   SidebarContent,
@@ -18,16 +18,16 @@ const Content = ({ nav }: { nav?: ItemsNav }) => {
   const pathname = usePathname();
   return (
     <SidebarContent>
-      {nav?.map((group, index) => (
+      {nav?.map((group, index: number) => (
         <SidebarGroup key={group.label ?? index}>
-          {group.label && <SidebarGroupLabel className='uppercase'>{group.label}</SidebarGroupLabel>}
+          {group.label && <SidebarGroupLabel className="uppercase">{group.label}</SidebarGroupLabel>}
           <SidebarGroupContent>
             <SidebarMenu>
-              {group.items.map(({ title, url, icon, children }) =>
+              {(group.items as ItemNav[]).map(({ title, url, icon, children }) =>
                 children ? (
                   <Collapsible className="group/collapsible" key={title}>
                     <SidebarMenuButton asChild>
-                      <CollapsibleTrigger className='cursor-pointer'>
+                      <CollapsibleTrigger className="cursor-pointer">
                         {icon}
                         <span>{title}</span>
                         <ChevronDown className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180" />
@@ -35,7 +35,7 @@ const Content = ({ nav }: { nav?: ItemsNav }) => {
                     </SidebarMenuButton>
                     <CollapsibleContent>
                       <SidebarGroupContent>
-                        {children.map(({ title, url, icon }) => (
+                        {(children as ItemNav[]).map(({ title, url, icon }) => (
                           <SidebarMenuItem key={title}>
                             <SidebarMenuButton asChild isActive={pathname === url}>
                               <Link href={url ?? '#'}>
