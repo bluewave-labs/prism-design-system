@@ -36,6 +36,8 @@
     "@commitlint/cli": "^19.8.0",
     "@commitlint/config-conventional": "^19.8.0",
     "@eslint/eslintrc": "^3.3.1",
+    "@rollup/plugin-node-resolve": "^16.0.1",
+    "@rollup/plugin-typescript": "^12.1.2",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
@@ -52,9 +54,11 @@
     "husky": "^9.1.7",
     "lint-staged": "^15.5.0",
     "prettier": "^3.5.3",
+    "rollup": "^4.39.0",
+    "rollup-plugin-postcss": "^4.0.2",
     "standard-version": "^9.5.0",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "typescript": "^5.8.2"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
@@ -68,5 +72,6 @@
       "src/sd/**",
       "src/components/ui/**"
     ]
-  }
+  },
+  "style": "src/styles/globals.css"
 }

@@ -34,7 +34,7 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "tailwind.config.js"
-  ],
+, "rollup.config.js"  ],
   "exclude": [
     "node_modules"
   ]
