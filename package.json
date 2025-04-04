@@ -14,7 +14,7 @@
       "types": "./dist/index.d.ts"
     },
     "./global.css": {
-      "default": "./dist/global.css"
+      "default": "./dist/globals.css"
     }
   },
   "keywords": [
