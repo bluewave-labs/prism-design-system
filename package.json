@@ -14,13 +14,13 @@
       "types": "./dist/index.d.ts"
     },
     "./global.css": {
-      "default": "./dist/globals.css"
+      "default": "./dist/style/globals.css"
     },
     "./_variables.css": {
-      "default": "./dist/_variables.css"
+      "default": "./dist/style/_variables.css"
     },
     "./_variables.scss": {
-      "default": "./dist/_variables.scss"
+      "default": "./dist/style/_variables.scss"
     }
   },
   "keywords": [
