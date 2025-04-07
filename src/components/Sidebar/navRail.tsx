@@ -1,5 +1,5 @@
 'use client';
-import { cn } from '@/lib/utils';
+import { cn } from '../../lib/utils';
 import { Bell, Globe, Home, MonitorUp } from 'lucide-react';
 import Link from 'next/link';
 import { ReactNode, useEffect, useState } from 'react';

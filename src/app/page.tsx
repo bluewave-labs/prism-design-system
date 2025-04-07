@@ -5,6 +5,11 @@ const components = [
     href: '/sidebar',
     title: 'Sidebar',
     description: 'Sidebar with collapsible menu',
+  },
+  {
+    href: '/button',
+    title: 'Button',
+    description: 'Button with different styles',
   }
 ]
 
