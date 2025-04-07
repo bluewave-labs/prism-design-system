@@ -42,10 +42,10 @@ const config = [
       }),
       copy({
         targets: [
-          { src: 'src/style/globals.css', dest: 'dist/style' },
-          { src: 'src/sd/build/css/_variables.css', dest: 'dist/style' },
-          { src: 'src/sd/build/scss/_variables.scss', dest: 'dist/style' },
-          { src: 'src/style/theme.css', dest: 'dist/style' },
+          { src: 'src/style/globals.css', dest: 'dist/src/style' },
+          { src: 'src/sd/build/css/_variables.css', dest: 'dist/src/style' },
+          { src: 'src/sd/build/scss/_variables.scss', dest: 'dist/src/style' },
+          { src: 'src/style/theme.css', dest: 'dist/src/style' },
         ],
       }),
     ],

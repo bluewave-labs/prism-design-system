@@ -15,20 +15,20 @@
       "types": "./dist/index.d.ts"
     },
     "./style": {
-      "import": "./dist/style/globals.css",
-      "require": "./dist/style/globals.css"
+      "import": "./dist/src/style/globals.css",
+      "require": "./dist/src/style/globals.css"
     },
     "./global.css": {
-      "default": "./dist/style/globals.css"
+      "default": "./dist/src/style/globals.css"
     },
     "./_variables.css": {
-      "default": "./dist/style/_variables.css"
+      "default": "./dist/src/style/_variables.css"
     },
     "./_variables.scss": {
-      "default": "./dist/style/_variables.scss"
+      "default": "./dist/src/style/_variables.scss"
     },
     "./theme.css": {
-      "default": "./dist/style/theme.css"
+      "default": "./dist/src/style/theme.css"
     }
   },
   "sideEffects": [
