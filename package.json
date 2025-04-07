@@ -1,6 +1,6 @@
 {
   "name": "@debserra/prism-design-system",
-  "version": "0.1.29",
+  "version": "0.1.30",
   "type": "module",
   "main": "dist/index.cjs",
   "module": "dist/index.cjs",
@@ -43,6 +43,10 @@
   "license": "MIT",
   "publishConfig": {
     "access": "public"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
   },
   "scripts": {
     "dev": "next dev --turbopack",
