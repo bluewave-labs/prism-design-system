@@ -6,20 +6,54 @@ import { useEffect, useState } from 'react';
 import ReactDOMServer from 'react-dom/server';
 import sanitizeHtml from 'sanitize-html';
 import { Button, Card, CardContent, CardFooter, CardProps, CardTitle } from '../../components';
+import { ConsoleButton } from '../../components/ui/card';
 import { cn } from '../../lib/utils';
 import codeToHtml from '../../utils/codeToHtml';
-import { ConsoleButton } from '../../components/ui/card';
 
 type OptionsType = 'default' | 'clickable' | 'console' | 'asChild';
 
+const defaultChild = (
+  <>
+    <CardTitle>Title</CardTitle>
+    <CardContent>Content</CardContent>
+    <CardFooter>Footer</CardFooter>
+  </>
+);
+
+const childClickable = (
+  <>
+    <CardTitle>Title</CardTitle>
+    <CardContent>Content</CardContent>
+    <CardFooter>
+      <Button asChild>
+        <a href="#">Link</a>
+      </Button>
+    </CardFooter>
+  </>
+);
+
+const childConsole = (
+  <>
+    <CardTitle>Title</CardTitle>
+    <CardContent>Content</CardContent>
+    <CardFooter>
+      <ConsoleButton asChild>
+        <a href="#">Link</a>
+      </ConsoleButton>
+    </CardFooter>
+  </>
+);
+
+const childAsChild = (
+  <a href="#">
+    <CardTitle>Title</CardTitle>
+    <CardContent>Content</CardContent>
+    <CardFooter>Footer</CardFooter>
+  </a>
+);
+
 const baseProps: CardProps = {
-  children: (
-    <>
-      <CardTitle>Title</CardTitle>
-      <CardContent>Content</CardContent>
-      <CardFooter>Footer</CardFooter>
-    </>
-  ),
+  children: defaultChild,
 };
 
 const options: { option: OptionsType; text: string; prop: (val: CardProps) => CardProps }[] = [
@@ -34,24 +68,7 @@ const options: { option: OptionsType; text: string; prop: (val: CardProps) => Ca
     prop: (prev) => ({
       ...prev,
       variant: prev.variant === 'clickable' ? undefined : 'clickable',
-      children:
-        prev.variant !== 'clickable' ? (
-          <>
-            <CardTitle>Title</CardTitle>
-            <CardContent>Content</CardContent>
-            <CardFooter>
-              <Button asChild>
-                <a href="#">Link</a>
-              </Button>
-            </CardFooter>
-          </>
-        ) : (
-          <>
-            <CardTitle>Title</CardTitle>
-            <CardContent>Content</CardContent>
-            <CardFooter>Footer</CardFooter>
-          </>
-        ),
+      children: prev.variant !== 'clickable' ? childClickable : defaultChild,
     }),
   },
   {
@@ -60,24 +77,7 @@ const options: { option: OptionsType; text: string; prop: (val: CardProps) => Ca
     prop: (prev) => ({
       ...prev,
       variant: prev.variant === 'console' ? undefined : 'console',
-      children:
-        prev.variant !== 'console' ? (
-          <>
-            <CardTitle>Title</CardTitle>
-            <CardContent>Content</CardContent>
-            <CardFooter>
-              <ConsoleButton asChild>
-                <a href="#">Link</a>
-              </ConsoleButton>
-            </CardFooter>
-          </>
-        ) : (
-          <>
-            <CardTitle>Title</CardTitle>
-            <CardContent>Content</CardContent>
-            <CardFooter>Footer</CardFooter>
-          </>
-        ),
+      children: prev.variant !== 'console' ? childConsole : defaultChild,
     }),
   },
   {
@@ -86,19 +86,7 @@ const options: { option: OptionsType; text: string; prop: (val: CardProps) => Ca
     prop: (prev) => ({
       ...prev,
       asChild: !prev.asChild,
-      children: prev.asChild ? (
-        <>
-          <CardTitle>Title</CardTitle>
-          <CardContent>Content</CardContent>
-          <CardFooter>Footer</CardFooter>
-        </>
-      ) : (
-        <a href="https://www.radix-ui.com/docs/primitives/components/button">
-          <CardTitle>Title</CardTitle>
-          <CardContent>Content</CardContent>
-          <CardFooter>Footer</CardFooter>
-        </a>
-      ),
+      children: prev.asChild ? defaultChild : childAsChild,
     }),
   },
 ];
@@ -118,13 +106,17 @@ export default function Home() {
   const [propType, setPropType] = useState<string>('');
 
   const buildHtmlProps = async () => {
+    const mapChild = {
+      default: defaultChild,
+      clickable: childClickable,
+      console: childConsole,
+      asChild: childAsChild,
+    };
     const sanitizedProps = {
       ...props,
-      children: props.asChild
-        ? ReactDOMServer.renderToString(props.children)
-        : `<CardTitle>Title</CardTitle>
-      <CardContent>Content</CardContent>
-      <CardFooter>Footer</CardFooter>`,
+      children: props.variant
+        ? ReactDOMServer.renderToString(mapChild[props.variant as OptionsType])
+        : ReactDOMServer.renderToString(defaultChild),
     };
     const html = await codeToHtml(JSON.stringify(sanitizedProps, null, 2));
     setHtmlProps(html);

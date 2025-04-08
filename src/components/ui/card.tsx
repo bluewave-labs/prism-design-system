@@ -5,24 +5,6 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '../../lib/utils';
 import { Button, ButtonProps } from '../Button';
 
-const cardVariants = cva(
-  'bg-gray-0/8 text-gray-30 flex flex-col gap-6 rounded-xl p-6 shadow-sm w-full border-[0.5px] border-gray-0/20 bg-blur',
-  {
-    variants: {
-      variant: {
-        default: '',
-        clickable:
-          'cursor-pointer hover:bg-linear-[180deg] hover:from-gray-0/8 hover:to-gray-0/2 hover:bg-transparent hover:border-gray-0/30',
-        console:
-          'bg-linear-180 from-gray-0/8 to-gray-0/2 bg-blur border-[0.5px] border-gray-0/20 cursor-pointer hover:from-gray-0/16 hover:to-gray-0/4 hover:bg-transparent hover:border-gray-0/40',
-      },
-    },
-    defaultVariants: {
-      variant: 'default',
-    },
-  }
-);
-
 type CardContext = {
   isHovered: boolean;
   setIsHovered: React.Dispatch<React.SetStateAction<boolean>>;
@@ -39,12 +21,30 @@ function useCardContext() {
   return context;
 }
 
-function CardProvider({ children }: { children: React.ReactNode }) {
+function CardProvider({ children }: { readonly children: React.ReactNode }) {
   const [isHovered, setIsHovered] = React.useState(false);
 
   const value = React.useMemo(() => ({ isHovered, setIsHovered }), [isHovered]);
   return <CardContext.Provider value={value}>{children}</CardContext.Provider>;
 }
+
+const cardVariants = cva(
+  'text-gray-30 flex flex-col gap-6 rounded-xl p-6 shadow-sm w-full border-[0.5px] border-gray-0/20 bg-blur transition-colors duration-200 ease-in-out',
+  {
+    variants: {
+      variant: {
+        default: 'card',
+        clickable:
+          'card cursor-pointer hover:bg-linear-[180deg] hover:from-gray-0/8 hover:to-gray-0/2 hover:bg-transparent hover:border-gray-0/30',
+        console:
+          'bg-transparent bg-linear-180 from-gray-0/8 to-gray-0/2 bg-blur border-[0.5px] border-gray-0/20 cursor-pointer hover:from-gray-0/16 hover:to-gray-0/4 hover:bg-transparent hover:border-gray-0/40',
+      },
+    },
+    defaultVariants: {
+      variant: 'default',
+    },
+  }
+);
 
 function Card({
   className,
@@ -72,7 +72,7 @@ function Card({
   return (
     <Comp
       data-slot="card"
-      className={cn(cardVariants({ variant, className }))}
+      className={cn(cardVariants({ variant }), className)}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       {...props}
