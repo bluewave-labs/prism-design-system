@@ -15,8 +15,13 @@ const components = [
     href: '/card',
     title: 'Card',
     description: 'Card component with image and text',
-  }
-]
+  },
+  {
+    href: '/input',
+    title: 'Input',
+    description: 'Input component with label and icon',
+  },
+];
 
 export default function Home() {
   return (
@@ -25,11 +30,11 @@ export default function Home() {
       <ul>
         {components.map((component) => (
           <li key={component.href} className="mb-4">
-          <Link href={component.href} className="block p-4 text-gray-20 rounded-lg hover:underline">
-            <h2 className="text-xl font-semibold">{component.title}</h2>
-            <p className="text-gray-40">{component.description}</p>
-          </Link>
-        </li>
+            <Link href={component.href} className="block p-4 text-gray-20 rounded-lg hover:underline">
+              <h2 className="text-xl font-semibold">{component.title}</h2>
+              <p className="text-gray-40">{component.description}</p>
+            </Link>
+          </li>
         ))}
       </ul>
     </div>
