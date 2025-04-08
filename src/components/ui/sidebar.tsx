@@ -125,7 +125,7 @@ function SidebarProvider({
             } as React.CSSProperties
           }
           className={cn(
-            'group/sidebar-wrapper flex min-h-svh w-[calc(48px+45px)] md:w-full',
+            'group/sidebar-wrapper flex h-fit md:min-h-svh w-screen z-20',
             !open ? 'md:max-w-[calc(48px+80px)]' : 'md:max-w-[calc(256px+80px)]',
             className
           )}
@@ -144,11 +144,13 @@ function Sidebar({
   collapsible = 'offcanvas',
   className,
   children,
+  header,
   ...props
 }: React.ComponentProps<'div'> & {
   side?: 'left' | 'right';
   variant?: 'sidebar' | 'floating' | 'inset';
   collapsible?: 'offcanvas' | 'icon' | 'none';
+  header?: React.ReactNode;
 }) {
   const { isMobile, state, openMobile, setOpenMobile, setOpen } = useSidebar();
 
@@ -186,8 +188,7 @@ function Sidebar({
         <div
           data-slot="sidebar-container"
           className={cn(
-            'menu-shadow backdrop-blur-xl inset-y-0 flex h-svh w-(--sidebar-width-icon) transition-[left,right,width] duration-200 ease-linear',
-            'group-data-[collapsible=icon]:w-(--sidebar-width-icon) group-data-[side=right]:border-l',
+            'menu-shadow inset-y-0 flex w-screen transition-[left,right,width] duration-200 ease-linear',
             className
           )}
           {...props}
@@ -195,15 +196,15 @@ function Sidebar({
           <div
             data-sidebar="sidebar"
             data-slot="sidebar-inner"
-            className="bg-linear-[180deg] from-blue-105 to-blue-115 flex h-full w-full flex-col border-r-[0.5px] border-gray-0/20"
+            className="flex h-full w-full flex-col"
           >
-            {children}
+            {header}
             <Sheet open={openMobile} onOpenChange={setOpenMobile} {...props}>
               <SheetContent
                 data-sidebar="sidebar"
                 data-slot="sidebar"
                 data-mobile="true"
-                className="bg-gray-100 bg-linear-[180deg] from-gray-0/12 to-gray-0/6 w-(--sidebar-width) p-0 [&>button]:hidden"
+                className="w-(--sidebar-width) p-0 [&>button]:hidden border-gray-0/20"
                 style={
                   {
                     '--sidebar-width': SIDEBAR_WIDTH_MOBILE,
@@ -215,7 +216,7 @@ function Sidebar({
                   <SheetTitle>Sidebar</SheetTitle>
                   <SheetDescription>Displays the mobile sidebar.</SheetDescription>
                 </SheetHeader>
-                <div className="flex h-full w-full flex-col">{children}</div>
+                <div className="flex h-full w-full flex-col menu-shadow">{children}</div>
               </SheetContent>
             </Sheet>
           </div>
@@ -291,7 +292,7 @@ function SidebarRail({ className, children, ...props }: React.ComponentProps<'di
       data-sidebar="rail"
       data-slot="sidebar-rail"
       className={cn(
-        ' h-svh w-[45px] md:w-[80px] bg-linear-[180deg] from-blue-100 to-blue-110 px-1.5 md:px-5 py-3 border-r-[0.5px] border-gray-0/20 flex flex-col gap-2',
+        'bg-linear-180 from-blue-100/80 to-blue-110/80 h-svh w-[45px] md:w-[80px] bg-blur md:backdrop-blur-none px-1.5 md:px-5 py-3 border-r-[0.5px] border-gray-0/20 flex flex-col gap-2',
         className
       )}
       {...props}
@@ -331,7 +332,7 @@ function SidebarHeader({ className, ...props }: React.ComponentProps<'div'>) {
     <div
       data-slot="sidebar-header"
       data-sidebar="header"
-      className={cn(`flex items-center justify-between gap-2 p-2 text-gray-10 font-medium`, className)}
+      className={cn(`flex items-center justify-start bg-blur md:justify-between gap-2 p-2 text-gray-10 font-medium`, className)}
       {...props}
     />
   );

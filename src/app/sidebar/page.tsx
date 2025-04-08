@@ -1,13 +1,14 @@
 'use client';
-import AppSidebar from '../../components/Sidebar/Sidebar';
-import Footer from '../../components/Sidebar/footer';
-import { cn } from '../../lib/utils';
-import { SidebarProps } from '../../types';
-import codeToHtml from '../../utils/codeToHtml';
 import { BookOpen, Bot, Copy, Settings2, SquareTerminal } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import ReactDOMServer from 'react-dom/server';
+import { SidebarProvider } from '../../components';
+import AppSidebar from '../../components/Sidebar/Sidebar';
+import Footer from '../../components/Sidebar/footer';
+import { SidebarProps } from '../../types';
+import codeToHtml from '../../utils/codeToHtml';
 import sanitizeHtml from 'sanitize-html';
+import { cn } from '../../lib/utils';
 
 const items_nav = [
   {
@@ -46,8 +47,8 @@ const items_nav_collapsable = [
   },
 
   {
-    title: 'Logs & data',
-    url: '/logs-data',
+    title: 'Sidebar',
+    url: '/sidebar',
     icon: <BookOpen />,
   },
   {
@@ -245,9 +246,13 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="flex justify-end items-start gap-2 w-screen">
-      <AppSidebar {...props} />
-      <div className="flex flex-col items-center gap-2 p-4 text-gray-0 relative">
+    <div className="flex flex-col md:flex-row justify-end items-start gap-2 w-screen relative">
+      <div className="grow">
+        <SidebarProvider>
+          <AppSidebar {...props} />
+        </SidebarProvider>
+      </div>
+      <div className="flex flex-col items-center gap-2 p-4 text-gray-0 relative max-h-screen overflow-y-auto">
         <button
           className="text-gray-50 absolute top-82 right-8 cursor-pointer"
           onClick={() => {
@@ -261,7 +266,7 @@ export default function Home() {
           <button
             key={option.option}
             className={cn(
-              'border border-gray-10 text-gray-10 px-4 py-2 rounded-3xl cursor-pointer w-50',
+              'border border-gray-10 text-gray-10 px-4 py-2 rounded-3xl cursor-pointer md:w-50',
               selected.includes(option.option) ? 'bg-gray-20 text-gray-90' : 'hover:bg-gray-0/12 hover:text-gray-10'
             )}
             onClick={() => {
@@ -281,11 +286,11 @@ export default function Home() {
           </button>
         ))}
         <p
-          className="flex flex-col w-[95%] mx-auto bg-gray-100 h-[40%] overflow-auto p-2"
+          className="flex flex-col w-[95%] max-w-screen mx-auto bg-gray-100 h-[40%] overflow-auto p-2"
           dangerouslySetInnerHTML={{ __html: sanitizeHtml(propType) }}
         />
       </div>
-      <div className="w-[500px] h-screen p-4 relative">
+      <div className="max-w-screen md:w-[500px] h-screen p-4 relative">
         <button
           className="text-gray-50 absolute top-20 right-8 cursor-pointer"
           onClick={() => {
