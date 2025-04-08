@@ -57,10 +57,6 @@ export default defineConfig({
       'src/utils/codeToHtml.ts',
       'src/style/colors.ts',
     ],
-    compilerOptions: {
-      incremental: false,
-      jsx: 'react-jsx',
-    }
   },
   clean: true,
   sourcemap: true,
