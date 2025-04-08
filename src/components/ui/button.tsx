@@ -1,6 +1,5 @@
 import { Slot } from '@radix-ui/react-slot';
 import { cva } from 'class-variance-authority';
-import 'src/styles/globals.css';
 
 import { cn } from '../../lib/utils';
 import { ButtonProps } from '../../types';

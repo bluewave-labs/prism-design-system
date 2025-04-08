@@ -1,5 +1,4 @@
 'use client';
-import 'src/styles/globals.css';
 import { SidebarProps } from '../../types';
 import { Sidebar, SidebarFooter, SidebarProvider } from '../ui/sidebar';
 import Content from './content';
