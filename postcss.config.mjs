@@ -4,7 +4,7 @@ export default {
       path: ['node_modules', 'src/style'],
       root: process.cwd(),
     },
-    tailwindcss: {
+    '@tailwindcss/postcss': {
       config: './tailwind.config.js',
     },
     autoprefixer: {},

@@ -125,8 +125,8 @@ function SidebarProvider({
             } as React.CSSProperties
           }
           className={cn(
-            'group/sidebar-wrapper flex min-h-svh w-full',
-            !open ? 'max-w-[48px]' : 'max-w-[256px]',
+            'group/sidebar-wrapper flex min-h-svh w-[calc(48px+45px)] md:w-full',
+            !open ? 'md:max-w-[calc(48px+80px)]' : 'md:max-w-[calc(256px+80px)]',
             className
           )}
           {...props}
@@ -186,7 +186,7 @@ function Sidebar({
         <div
           data-slot="sidebar-container"
           className={cn(
-            'menu-shadow backdrop-blur-xl fixed left-[45px] md:left-[80px] inset-y-0 z-10 flex h-svh w-(--sidebar-width-icon) transition-[left,right,width] duration-200 ease-linear',
+            'menu-shadow backdrop-blur-xl inset-y-0 flex h-svh w-(--sidebar-width-icon) transition-[left,right,width] duration-200 ease-linear',
             'group-data-[collapsible=icon]:w-(--sidebar-width-icon) group-data-[side=right]:border-l',
             className
           )}
@@ -244,7 +244,7 @@ function Sidebar({
       <div
         data-slot="sidebar-container"
         className={cn(
-          'menu-shadow backdrop-blur-xl fixed left-[45px] md:left-[80px] inset-y-0 z-10 hidden h-svh w-(--sidebar-width) transition-[left,right,width] duration-200 ease-linear md:flex',
+          'menu-shadow backdrop-blur-xl inset-y-0 hidden h-svh w-(--sidebar-width) transition-[left,right,width] duration-200 ease-linear md:flex',
           'group-data-[collapsible=icon]:w-(--sidebar-width-icon)',
           'group-data-[collapsible=icon]:w-(--sidebar-width-icon)',
           className
@@ -291,7 +291,7 @@ function SidebarRail({ className, children, ...props }: React.ComponentProps<'di
       data-sidebar="rail"
       data-slot="sidebar-rail"
       className={cn(
-        'fixed h-svh top-0 left-0 w-[45px] md:w-[80px] bg-linear-[180deg] from-blue-100 to-blue-110 px-1.5 md:px-5 py-3 border-r-[0.5px] border-gray-0/20 flex flex-col gap-2',
+        ' h-svh w-[45px] md:w-[80px] bg-linear-[180deg] from-blue-100 to-blue-110 px-1.5 md:px-5 py-3 border-r-[0.5px] border-gray-0/20 flex flex-col gap-2',
         className
       )}
       {...props}

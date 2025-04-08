@@ -1,8 +1,8 @@
 'use client';
-import { ItemNav, ItemsNav } from '../../types';
 import { ChevronDown } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { ItemNav, ItemsNav } from '../../types';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '../ui/collapsible';
 import {
   SidebarContent,
