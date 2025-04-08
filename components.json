@@ -10,5 +10,12 @@
     "cssVariables": false,
     "prefix": ""
   },
-  "iconLibrary": "lucide"
+  "iconLibrary": "lucide",
+  "aliases": {
+    "utils": "src/utils",
+    "components": "src/components",
+    "hooks": "src/hooks",
+    "ui": "src/components/ui",
+    "lib": "src/lib"
+  }
 }

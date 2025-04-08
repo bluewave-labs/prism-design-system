@@ -10,6 +10,11 @@ const components = [
     href: '/button',
     title: 'Button',
     description: 'Button with different styles',
+  },
+  {
+    href: '/card',
+    title: 'Card',
+    description: 'Card component with image and text',
   }
 ]
 

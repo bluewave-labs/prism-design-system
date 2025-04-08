@@ -264,7 +264,6 @@ export default function Home() {
                   const isSize = sizes.includes(option.option as SizesType);
                   const isRounded = rounded.includes(option.option as RoundedType);
                   let newList: OptionsType[] = selected.filter((it) => it !== 'default');
-                  console.log({ isVariant, isSize, isRounded });
                   if (isVariant) {
                     newList = isSelected
                       ? newList.filter((it) => it !== option.option)
