@@ -184,6 +184,10 @@
     8px 0px 48px rgba(31, 47, 71, 0.2);
 }
 
+.bg-blur {
+  backdrop-filter: blur(24px);
+}
+
 body {
   @apply font-sans text-gray-10 bg-linear-[180deg] from-gray-0/10 to-gray-0/4;
 }
