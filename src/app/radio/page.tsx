@@ -46,7 +46,9 @@ const options: {
   },
 ];
 
-const propTypes = `React.ComponentPropsWithoutRef<'input'>`;
+const propTypes = `React.ComponentPropsWithoutRef<'input'> & {
+  label?: string;
+}`;
 
 export default function Home() {
   const [props, setProps] = useState<Omit<RadioProps, 'onChange'>>(baseProps);
@@ -112,7 +114,7 @@ export default function Home() {
                 selected.includes(option.option) ? 'bg-gray-20 text-gray-90' : 'hover:bg-gray-0/12 hover:text-gray-10'
               )}
               onClick={() => {
-                let newList = selected;
+                let newList = [...selected];
                 if (option.option === 'default') {
                   newList = selected.filter((item) => item !== 'selected');
                 } else if (option.option === 'selected') {
