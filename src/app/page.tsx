@@ -31,6 +31,11 @@ const components = [
     title: 'Radio',
     description: 'Radio component',
   },
+  {
+    href: '/switch',
+    title: 'Switch',
+    description: 'Switch component',
+  }
 ];
 
 export default function Home() {
