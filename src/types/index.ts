@@ -6,3 +6,4 @@ export type { RadioProps } from './radio';
 export type { SelectProps } from './select';
 export type { ItemNav, ItemsNav, SidebarProps } from './sidebar';
 export type { SwitchProps, SwitchRef } from './switch';
+export type { TableProps } from './table';
