@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import { cn } from '../../lib/utils';
 import { SelectProps } from '../../types';
 
-const Select = ({ selected, options, onSelect, disabled = false }: SelectProps) => {
+export const Select = ({ selected, options, onSelect, disabled = false }: SelectProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
   const [showAbove, setShowAbove] = useState(false);
@@ -43,7 +43,7 @@ const Select = ({ selected, options, onSelect, disabled = false }: SelectProps) 
         }
         setIsOpen(!isOpen);
       }}
-      className="relative w-[204px]"
+      className={cn('relative w-[204px]', disabled ? 'opacity-50 pointer-events-none' : 'cursor-pointer')}
     >
       <p className="flex items-center justify-between border-[0.5px] bg-gray-40/12 border-gray-0/20 py-2.5 px-3.5 rounded-md cursor-pointer">
         {selected}
