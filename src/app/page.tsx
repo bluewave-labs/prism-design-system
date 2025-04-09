@@ -25,7 +25,12 @@ const components = [
     href: '/select',
     title: 'Select',
     description: 'Select component with options',
-  }
+  },
+  {
+    href: '/radio',
+    title: 'Radio',
+    description: 'Radio component',
+  },
 ];
 
 export default function Home() {
