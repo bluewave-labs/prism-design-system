@@ -1,3 +1,5 @@
+import React from "react";
+
 export type InputProps = React.ComponentPropsWithoutRef<'input'> & {
   variant?: 'default' | 'icon' | 'label-out' | 'no-label';
   label?: string;

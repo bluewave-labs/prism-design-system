@@ -1,7 +1,7 @@
-import { DetailedHTMLProps, InputHTMLAttributes } from 'react';
 import { cn } from '../../lib/utils';
+import { RadioProps } from '../../types';
 
-const Radio = ({ className, ...props }: DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>) => {
+export const Radio = ({ className, ...props }: RadioProps) => {
   return (
     <input
       type="radio"
