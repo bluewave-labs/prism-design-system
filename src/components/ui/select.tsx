@@ -100,7 +100,7 @@ export const Select = ({ selected, options, onSelect, disabled = false }: Select
         )}
       >
         {options.map((item, index) => (
-          <option
+          <button
             onMouseEnter={() => setHighlightedIndex(index)}
             key={item}
             onClick={() => {
@@ -114,9 +114,10 @@ export const Select = ({ selected, options, onSelect, disabled = false }: Select
             )}
             aria-selected={selected === item}
             tabIndex={isOpen ? 0 : -1}
+            role="option"
           >
             {item}
-          </option>
+          </button>
         ))}
       </div>
     </div>
