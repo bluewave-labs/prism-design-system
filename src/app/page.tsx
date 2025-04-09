@@ -35,6 +35,11 @@ const components = [
     href: '/switch',
     title: 'Switch',
     description: 'Switch component',
+  },
+  {
+    href: '/table',
+    title: 'Table',
+    description: 'Table component',
   }
 ];
 
