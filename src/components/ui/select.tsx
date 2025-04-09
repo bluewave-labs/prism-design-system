@@ -8,6 +8,7 @@ export const Select = ({ selected, options, onSelect, disabled = false }: Select
   const [isOpen, setIsOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
   const [showAbove, setShowAbove] = useState(false);
+  const [highlightedIndex, setHighlightedIndex] = useState(-1);
 
   useEffect(() => {
     const handlePosition = () => {
@@ -44,6 +45,10 @@ export const Select = ({ selected, options, onSelect, disabled = false }: Select
         setIsOpen(!isOpen);
       }}
       className={cn('relative w-[204px]', disabled ? 'opacity-50 pointer-events-none' : 'cursor-pointer')}
+      role="listbox"
+      id="select-options"
+      aria-label="Select options"
+      tabIndex={0}
     >
       <p className="flex items-center justify-between border-[0.5px] bg-gray-40/12 border-gray-0/20 py-2.5 px-3.5 rounded-md cursor-pointer">
         {selected}
@@ -57,19 +62,23 @@ export const Select = ({ selected, options, onSelect, disabled = false }: Select
         )}
       >
         {options.map((item, index) => (
-          <button
-            key={index}
+          <option
+            onMouseEnter={() => setHighlightedIndex(index)}
+            key={item}
             onClick={() => {
               onSelect(item);
               setIsOpen(false);
             }}
             className={cn(
               'py-2 px-3 text-sm w-full text-left hover:bg-gray-0/12 cursor-pointer',
-              selected === item ? 'bg-gray-0/12' : ''
+              selected === item ? 'bg-gray-0/12' : '',
+              highlightedIndex === index ? 'bg-gray-0/12' : ''
             )}
+            aria-selected={selected === item}
+            tabIndex={isOpen ? 0 : -1}
           >
             {item}
-          </button>
+          </option>
         ))}
       </div>
     </div>
