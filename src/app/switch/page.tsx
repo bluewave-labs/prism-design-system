@@ -4,10 +4,10 @@
 import { Copy } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import sanitizeHtml from 'sanitize-html';
-import { Switch } from '../../components/ui/switch';
 import { cn } from '../../lib/utils';
 import { SwitchProps } from '../../types';
 import codeToHtml from '../../utils/codeToHtml';
+import { Switch } from '../../components';
 
 type OptionsType = 'default' | 'selected' | 'disabled' | 'size-sm';
 
