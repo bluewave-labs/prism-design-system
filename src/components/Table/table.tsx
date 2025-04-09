@@ -10,7 +10,7 @@ import {
   TableRow,
 } from '../ui/table';
 
-export function Table<TData, TValue>({ columns, data }: TableProps<TData, TValue>) {
+export function Table<TData, TValue>({ columns, data, className }: TableProps<TData, TValue>) {
   const table = useReactTable({
     data,
     columns,
@@ -18,7 +18,7 @@ export function Table<TData, TValue>({ columns, data }: TableProps<TData, TValue
   });
 
   return (
-    <TableComponent>
+    <TableComponent className={className}>
       <TableHeader>
         {table.getHeaderGroups().map((headerGroup) => (
           <TableHeaderRow key={headerGroup.id}>
