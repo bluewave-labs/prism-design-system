@@ -18,8 +18,10 @@ export const Select = ({ selected, options, onSelect, disabled = false }: Select
       case ' ':
         e.preventDefault();
         setIsOpen(!isOpen);
-        onSelect(options[highlightedIndex] ?? selected);
-        setHighlightedIndex(-1);
+        if (isOpen && highlightedIndex >= 0) {
+          onSelect(options[highlightedIndex]);
+          setHighlightedIndex(-1);
+        }
         break;
       case 'ArrowDown':
         e.preventDefault();
