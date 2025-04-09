@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { cva } from 'class-variance-authority';
 import { useEffect, useState } from 'react';
 import { cn } from '../../lib/utils';
@@ -10,7 +11,13 @@ const inputVariants = cva('', {
         'text-gray-10 placeholder:text-gray-20 bg-transparent grow text-sm shadow-xs outline-none focus-visible:ring-none pt-4',
       icon: 'flex items-center justify-center bg-gray-40/12 border-gray-0/20 w-full min-w-0 rounded-md border-[0.5px] px-2 py-2 text-sm shadow-xs transition-[color,box-shadow] aria-invalid:border-red-800 h-14 text-gray-10 placeholder:text-gray-20 outline-none focus-visible:ring-[0.5px] focus-visible:ring-gray-0/10 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-0/8',
       'label-out':
-        'bg-gray-40/12 border-gray-0/20 w-full min-w-0 rounded-md border-[0.5px] px-2 py-2 text-sm shadow-xs transition-[color,box-shadow] aria-invalid:border-red-800 h-14 text-gray-10 placeholder:text-gray-20 grow outline-none focus-visible:ring-[1px] focus-visible:ring-gray-0/10 focus-visible:ring-offset-1 focus-visible:ring-offset-gray-0/8',
+        'bg-gray-40/12 border-gray-0/20 w-full min-w-0 rounded-md border-[0.5px] px-2 py-2 text-sm shadow-xs transition-[color,box-shadow] aria-invalid:border-red-800 h-14 text-gray-10 placeholder:text-gray-20 grow outline-none focus-visible:ring-[1px] focus-visible:ring-gray-0/10 focus-visible:ring-offset-1 focus-visible:ring-offset-gray-0/8 disabled:opacity-50 disabled:pointer-events-none disabled:cursor-not-allowed',
+      'no-label':
+        'bg-gray-40/12 border-gray-0/20 w-full min-w-0 rounded-md border-[0.5px] px-2 py-2 text-sm shadow-xs transition-[color,box-shadow] aria-invalid:border-red-800 h-14 text-gray-10 placeholder:text-gray-20 outline-none focus-visible:ring-[0.5px] focus-visible:ring-gray-0/10 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-0/8 disabled:opacity-50 disabled:pointer-events-none disabled:cursor-not-allowed',
+    },
+    error: {
+      true: 'border-red-800',
+      false: '',
     },
   },
   defaultVariants: {
@@ -18,7 +25,31 @@ const inputVariants = cva('', {
   },
 });
 
-function Input({ className, type, variant, id, label, disabled, error, iconLeft, iconRight, ...props }: InputProps) {
+const labelVariants = cva('', {
+  variants: {
+    variant: {
+      default:
+        'relative flex items-center bg-gray-40/12 border-gray-0/20 w-full min-w-0 rounded-md border-[0.5px] px-4 py-2 text-sm shadow-xs transition-[color,box-shadow] aria-invalid:border-red-800 h-14',
+      'label-out': 'flex flex-col-reverse items-start justify-center w-full min-w-0',
+    },
+    disabled: {
+      true: 'opacity-50 cursor-not-allowed',
+      false: '',
+    },
+    error: {
+      true: 'border-red-800',
+      false: '',
+    },
+  },
+  defaultVariants: {
+    variant: 'default',
+    disabled: false,
+    error: false,
+  },
+});
+
+function Input(props: InputProps) {
+  const { className, type, variant, id, label, disabled, error, ...rest } = props;
   const [isFocused, setIsFocused] = useState(false);
 
   useEffect(() => {
@@ -28,19 +59,11 @@ function Input({ className, type, variant, id, label, disabled, error, iconLeft,
   }, [props.value]);
 
   if (variant === 'icon') {
-    return (
-      <div className={cn(inputVariants({ variant }), error ? 'border-red-800' : '', className)}>
-        {iconLeft && <span className="mr-2 text-2xl">{iconLeft}</span>}
-        <input
-          type={type}
-          data-slot="input"
-          id={id}
-          className={cn('outline-none focus-visible:ring-none', 'flex-1', className)}
-          {...props}
-        />
-        {iconRight && <span className="ml-2 text-2xl">{iconRight}</span>}
-      </div>
-    );
+    return <InputIcon {...props} />;
+  }
+
+  if (variant === 'no-label') {
+    return <NoLabelInput {...props} />;
   }
 
   return (
@@ -48,11 +71,11 @@ function Input({ className, type, variant, id, label, disabled, error, iconLeft,
       htmlFor={id}
       aria-invalid={error}
       className={cn(
-        variant !== 'label-out'
-          ? 'relative flex items-center bg-gray-40/12 border-gray-0/20 w-full min-w-0 rounded-md border-[0.5px] px-4 py-2 text-sm shadow-xs transition-[color,box-shadow] aria-invalid:border-red-800 h-14'
-          : 'flex flex-col-reverse items-start justify-center w-full min-w-0',
-        disabled && variant !== 'label-out' ? 'opacity-50 pointer-events-none cursor-not-allowed' : '',
-        error && variant !== 'label-out' ? 'border-red-800' : ''
+        labelVariants({
+          variant,
+          disabled: disabled ?? false,
+          error: error ?? false,
+        })
       )}
     >
       <input
@@ -60,15 +83,15 @@ function Input({ className, type, variant, id, label, disabled, error, iconLeft,
         data-slot="input"
         id={id}
         aria-invalid={error}
-        className={cn(inputVariants({ variant }), variant === 'label-out' && error ? 'border-red-800 aria-invalid:ring-red-300/20 aria-invalid:ring-offset-red-500/20' : '', className)}
+        className={cn(inputVariants({ variant, error: variant === 'label-out' && error ? error : false }), className)}
         placeholder="&nbsp;"
         onFocus={() => setIsFocused(true)}
         onBlur={(e) => {
-          if (!e.target.value) {  
+          if (!e.target.value) {
             setIsFocused(false);
           }
         }}
-        {...props}
+        {...rest}
       />
       <span
         className={cn(
@@ -81,6 +104,39 @@ function Input({ className, type, variant, id, label, disabled, error, iconLeft,
         {label}
       </span>
     </label>
+  );
+}
+
+function InputIcon({ variant, className, type, id, iconLeft, iconRight, disabled, error, ...props }: InputProps) {
+  return (
+    <div className={cn(inputVariants({ variant, error: error ?? false }), className)}>
+      {iconLeft && <span className="mr-2 text-2xl">{iconLeft}</span>}
+      <input
+        type={type}
+        data-slot="input"
+        id={id}
+        disabled={disabled}
+        className={cn('grow outline-none focus-visible:ring-none', className)}
+        {...props}
+      />
+      {iconRight && <span className="ml-2 text-2xl">{iconRight}</span>}
+    </div>
+  );
+}
+
+function NoLabelInput({ variant, className, type, id, disabled, error, ...props }: InputProps) {
+  const { iconLeft, iconRight, ...rest } = props;
+  return (
+    <input
+      type={type}
+      data-slot="input"
+      id={id}
+      aria-invalid={error}
+      disabled={disabled}
+      className={cn(inputVariants({ variant, error }), className)}
+      placeholder="&nbsp;"
+      {...rest}
+    />
   );
 }
 
