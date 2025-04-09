@@ -10,6 +10,41 @@ export const Select = ({ selected, options, onSelect, disabled = false }: Select
   const [showAbove, setShowAbove] = useState(false);
   const [highlightedIndex, setHighlightedIndex] = useState(-1);
 
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (disabled) return;
+
+    switch (e.key) {
+      case 'Enter':
+      case ' ':
+        e.preventDefault();
+        setIsOpen(!isOpen);
+        onSelect(options[highlightedIndex] ?? selected);
+        setHighlightedIndex(-1);
+        break;
+      case 'ArrowDown':
+        e.preventDefault();
+        if (isOpen) {
+          setHighlightedIndex((prev) => (prev < options.length - 1 ? prev + 1 : prev));
+        } else {
+          setIsOpen(true);
+        }
+        break;
+      case 'ArrowUp':
+        e.preventDefault();
+        if (isOpen) {
+          setHighlightedIndex((prev) => (prev > 0 ? prev - 1 : 0));
+        }
+        break;
+      case 'Escape':
+        e.preventDefault();
+        setIsOpen(false);
+        break;
+      case 'Tab':
+        setIsOpen(false);
+        break;
+    }
+  };
+
   useEffect(() => {
     const handlePosition = () => {
       if (ref.current) {
@@ -45,10 +80,13 @@ export const Select = ({ selected, options, onSelect, disabled = false }: Select
         setIsOpen(!isOpen);
       }}
       className={cn('relative w-[204px]', disabled ? 'opacity-50 pointer-events-none' : 'cursor-pointer')}
-      role="listbox"
-      id="select-options"
-      aria-label="Select options"
-      tabIndex={0}
+      onKeyDown={handleKeyDown}
+      tabIndex={disabled ? -1 : 0}
+      role="combobox"
+      aria-expanded={isOpen}
+      aria-haspopup="listbox"
+      aria-controls="select-options"
+      aria-disabled={disabled}
     >
       <p className="flex items-center justify-between border-[0.5px] bg-gray-40/12 border-gray-0/20 py-2.5 px-3.5 rounded-md cursor-pointer">
         {selected}
