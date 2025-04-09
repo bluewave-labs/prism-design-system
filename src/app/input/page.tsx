@@ -9,12 +9,10 @@ import { Input, InputProps } from '../../components';
 import { cn } from '../../lib/utils';
 import codeToHtml from '../../utils/codeToHtml';
 
-type OptionsType = 'default' | 'icon' | 'label-out';
+type OptionsType = 'default' | 'icon-left' | 'icon-right' | 'label-out' | 'no-label' | 'error' | 'disabled';
 
 const baseProps: InputProps = {
   label: 'Label',
-  iconLeft: <Link />,
-  iconRight: <Copy />,
 };
 
 const options: { option: OptionsType; text: string; prop: (val: InputProps) => InputProps }[] = [
@@ -24,17 +22,23 @@ const options: { option: OptionsType; text: string; prop: (val: InputProps) => I
     prop: () => baseProps,
   },
   {
-    option: 'icon',
+    option: 'icon-left',
     text: 'Icon Left',
     prop: (prev) => ({
       ...prev,
+      variant: 'icon',
+      iconLeft: prev.iconLeft ? undefined : <Link />,
+      placeholder: 'Placeholder',
     }),
   },
   {
-    option: 'icon',
+    option: 'icon-right',
     text: 'Icon Right',
     prop: (prev) => ({
       ...prev,
+      variant: 'icon',
+      iconRight: prev.iconRight ? undefined : <Copy />,
+      placeholder: 'Placeholder',
     }),
   },
   {
@@ -42,6 +46,34 @@ const options: { option: OptionsType; text: string; prop: (val: InputProps) => I
     text: 'Label Out',
     prop: (prev) => ({
       ...prev,
+      variant: 'label-out',
+      placeholder: 'Placeholder',
+    }),
+  },
+  {
+    option: 'no-label',
+    text: 'No Label',
+    prop: (prev) => ({
+      ...prev,
+      variant: 'no-label',
+      label: prev.label ? undefined : 'Label',
+      placeholder: 'Placeholder',
+    }),
+  },
+  {
+    option: 'error',
+    text: 'Error',
+    prop: (prev) => ({
+      ...prev,
+      error: prev.error ? undefined : true,
+    }),
+  },
+  {
+    option: 'disabled',
+    text: 'Disabled',
+    prop: (prev) => ({
+      ...prev,
+      disabled: prev.disabled ? undefined : true,
     }),
   },
 ];
@@ -55,9 +87,6 @@ const propTypes = `React.ComponentPropsWithoutRef<'input'> & {
   disabled?: boolean;
   placeholder?: string;
 }`;
-
-const variants = ['default', 'icon', 'label-out'] as const;
-type VariantsType = (typeof variants)[number];
 
 export default function Home() {
   const [props, setProps] = useState<InputProps>(baseProps);
@@ -115,16 +144,15 @@ export default function Home() {
                   setProps(option.prop);
                 } else {
                   const isSelected = selected.includes(option.option);
-                  const isVariant = variants.includes(option.option as VariantsType);
-                  let newList: OptionsType[] = selected.filter((it) => it !== 'default');
-                  if (isVariant) {
-                    newList = isSelected
-                      ? newList.filter((it) => it !== option.option)
-                      : [...newList.filter((it) => !variants.includes(it as VariantsType)), option.option];
-                  } else {
-                    newList = isSelected ? selected.filter((it) => it !== option.option) : [...selected, option.option];
+                  let newList = selected.filter((it) => it !== options[0].option);
+                  const isIconSelected = newList.some((it) => it.startsWith('icon'));
+                  const isNotIcon = ['no-label', 'label-out'].includes(option.option);
+                  if (isIconSelected && isNotIcon) {
+                    newList = newList.filter((it) => !it.startsWith('icon'));
                   }
-                  setSelected(newList);
+                  setSelected(
+                    isSelected ? newList.filter((item) => item !== option.option) : [...newList, option.option]
+                  );
                 }
                 setProps((prev) => option.prop(prev));
               }}

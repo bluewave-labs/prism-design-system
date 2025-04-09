@@ -38,14 +38,14 @@ const options: { option: OptionsType; text: string; prop: (val: ButtonProps) => 
     text: 'Default',
     prop: () => baseProps,
   },
-  // {
-  //   option: 'action',
-  //   text: 'Action',
-  //   prop: (prev) => ({
-  //     ...prev,
-  //     variant: prev.variant === 'action' ? undefined : 'action',
-  //   }),
-  // },
+  {
+    option: 'action',
+    text: 'Action',
+    prop: (prev) => ({
+      ...prev,
+      variant: prev.variant === 'action' ? undefined : 'action',
+    }),
+  },
   {
     option: 'destructive',
     text: 'Destructive',
