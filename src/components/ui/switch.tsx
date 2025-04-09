@@ -1,29 +1,47 @@
-"use client"
+'use client';
 
-import * as React from "react"
-import * as SwitchPrimitives from "@radix-ui/react-switch"
+import * as SwitchPrimitives from '@radix-ui/react-switch';
+import * as React from 'react';
 
-import { cn } from "src/lib/utils"
+import { cva } from 'class-variance-authority';
+import { cn } from '../../lib/utils';
+import { SwitchProps, SwitchRef } from '../../types';
 
-const Switch = React.forwardRef<
-  React.ElementRef<typeof SwitchPrimitives.Root>,
-  React.ComponentPropsWithoutRef<typeof SwitchPrimitives.Root>
->(({ className, ...props }, ref) => (
-  <SwitchPrimitives.Root
-    className={cn(
-      "peer inline-flex h-5 w-9 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-950 focus-visible:ring-offset-2 focus-visible:ring-offset-white disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-gray-900 data-[state=unchecked]:bg-gray-200 dark:focus-visible:ring-gray-300 dark:focus-visible:ring-offset-gray-950 dark:data-[state=checked]:bg-gray-50 dark:data-[state=unchecked]:bg-gray-800",
-      className
-    )}
-    {...props}
-    ref={ref}
-  >
-    <SwitchPrimitives.Thumb
-      className={cn(
-        "pointer-events-none block h-4 w-4 rounded-full bg-white shadow-lg ring-0 transition-transform data-[state=checked]:translate-x-4 data-[state=unchecked]:translate-x-0 dark:bg-gray-950"
-      )}
-    />
+const rootVariant = cva(
+  'peer inline-flex shrink-0 cursor-pointer items-center rounded-full border-gray-50 shadow-sm transition-colors disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-blue-30 data-[state=checked]:border-blue-30 data-[state=unchecked]:bg-gray-80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-10/20 focus-visible:ring-offset-2 focus-visible:ring-offset-white',
+  {
+    variants: {
+      size: {
+        default: 'h-8 w-13 border-2',
+        sm: 'h-5 w-8 border',
+      },
+    },
+    defaultVariants: {
+      size: 'default',
+    },
+  }
+);
+
+const thumbVariant = cva(
+  'pointer-events-none block rounded-full bg-gray-50 data-[state=checked]:bg-blue-90 shadow-lg ring-0 transition-transform',
+  {
+    variants: {
+      size: {
+        default: 'w-6 h-6 data-[state=checked]:translate-x-6 data-[state=unchecked]:translate-x-0.5',
+        sm: 'w-3.5 h-3.5 data-[state=checked]:translate-x-3.5 data-[state=unchecked]:translate-x-0.5',
+      },
+    },
+    defaultVariants: {
+      size: 'default',
+    },
+  }
+);
+
+const Switch = React.forwardRef<SwitchRef, SwitchProps>(({ className, size, ...props }, ref) => (
+  <SwitchPrimitives.Root className={cn(rootVariant({ size }), className)} {...props} ref={ref}>
+    <SwitchPrimitives.Thumb className={cn(thumbVariant({ size }))} />
   </SwitchPrimitives.Root>
-))
-Switch.displayName = SwitchPrimitives.Root.displayName
+));
+Switch.displayName = SwitchPrimitives.Root.displayName;
 
-export { Switch }
+export { Switch };
