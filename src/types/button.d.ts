@@ -1,3 +1,5 @@
+import React from "react";
+
 export type ButtonProps = React.ComponentProps<'button'> & {
   asChild?: boolean;
   variant?: 'default' | 'action' | 'destructive' | 'outline' | 'outline_active' | 'secondary' | 'ghost' | 'link';
