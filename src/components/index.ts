@@ -4,6 +4,7 @@ export * from './Input';
 export * from './Radio';
 export * from './Select';
 export * from './Sidebar';
+export * from './Switch';
 
 export * from './ui/avatar';
 export * from './ui/collapsible';
