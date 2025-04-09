@@ -21,6 +21,11 @@ const components = [
     title: 'Input',
     description: 'Input component with label and icon',
   },
+  {
+    href: '/select',
+    title: 'Select',
+    description: 'Select component with options',
+  }
 ];
 
 export default function Home() {

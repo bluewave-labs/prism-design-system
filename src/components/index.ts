@@ -1,6 +1,7 @@
 export * from './Button';
 export * from './Card';
 export * from './Input';
+export * from './Select';
 export * from './Sidebar';
 export * from './ui/avatar';
 export * from './ui/collapsible';
