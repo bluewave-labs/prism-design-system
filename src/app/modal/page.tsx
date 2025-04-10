@@ -5,7 +5,7 @@ import { Copy } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import ReactDOMServer from 'react-dom/server';
 import sanitizeHtml from 'sanitize-html';
-import { Button, Input, Modal } from '../../components';
+import { Button, DialogFooter, DialogHeader, Modal } from '../../components';
 import { cn } from '../../lib/utils';
 import { ModalProps } from '../../types';
 import codeToHtml from '../../utils/codeToHtml';
@@ -14,10 +14,24 @@ type OptionsType = 'default' | 'custom-close';
 
 const baseProps: ModalProps = {
   modalTrigger: <Button variant="destructive">Delete</Button>,
-  modalTitle: 'Are you absolutely sure?',
-  modalDescription:
-    'This action cannot be undone. This will permanently delete your account and remove your data from our servers.',
+  children: (
+    <DialogHeader>
+      <h1>Are you absolutely sure?</h1>
+      <p>
+        This action cannot be undone. This will permanently delete your account and remove your data from our servers.
+      </p>
+    </DialogHeader>
+  ),
 };
+
+const propTypes = `type ModalProps = {
+  modalTrigger: ReactNode | string;
+  children: ReactNode;
+  onOpenChange?: (open: boolean) => void;
+  defaultOpen?: boolean;
+  open?: boolean;
+  modal?: boolean;
+}`;
 
 const options: {
   option: OptionsType;
@@ -34,48 +48,35 @@ const options: {
     text: 'Custom close button',
     prop: (prev) => ({
       ...prev,
-      modalTitle: <h1>Share link</h1>,
-      modalDescription: 'Anyone who has this link will be able to view this.',
-      modalContent: (
-        <div className="flex items-center space-x-2">
-          <div className="grid flex-1 gap-2">
-            <label htmlFor="link" className="sr-only">
-              Link
-            </label>
-            <Input variant='icon' iconRight={<><span className="sr-only">Copy</span>
-            <Copy /></>} id="link" defaultValue="https://ui.shadcn.com/docs/installation" readOnly />
-          </div>
-        </div>
-      ),
-      customModalClose: <Button variant="secondary">Close</Button>,
     }),
   },
 ];
 
-const propTypes = `type ModalProps = {
-  modalTrigger: ReactNode | string;
-  modalTitle?: ReactNode;
-  modalDescription?: ReactNode;
-  modalContent?: ReactNode;
-  modalFooter?: ReactNode;
-  customModalClose?: ReactNode;
-}`;
-
 export default function Home() {
   const [props, setProps] = useState<ModalProps>(baseProps);
   const [htmlProps, setHtmlProps] = useState<string>('');
-  const [selected, setSelected] = useState<OptionsType[]>([options[0].option]);
+  const [selected, setSelected] = useState<OptionsType[]>(['default']);
   const [propType, setPropType] = useState<string>('');
+  const [openModal, setOpenModal] = useState(false);
 
   const buildHtmlProps = async () => {
     const sanitizedProps = {
       ...props,
       modalTrigger: ReactDOMServer.renderToString(props.modalTrigger),
-      modalContent: props.modalContent ? ReactDOMServer.renderToString(props.modalContent) : undefined,
-      modalTitle: props.modalTitle ? ReactDOMServer.renderToString(props.modalTitle) : undefined,
-      modalDescription: props.modalDescription ? ReactDOMServer.renderToString(props.modalDescription) : undefined,
-      customModalClose: props.customModalClose ? ReactDOMServer.renderToString(props.customModalClose) : undefined,
-      modalFooter: props.modalFooter ? ReactDOMServer.renderToString(props.modalFooter) : undefined,
+      children: selected.includes('custom-close')
+        ? ReactDOMServer.renderToString(
+            <>
+              {props.children}
+              <DialogFooter>
+                <Button onClick={() => setOpenModal(false)} variant="secondary">
+                  Close
+                </Button>
+              </DialogFooter>
+            </>
+          )
+        : ReactDOMServer.renderToString(props.children),
+      onOpenChange: setOpenModal.toString(),
+      open: openModal,
     };
     const html = await codeToHtml(JSON.stringify(sanitizedProps, null, 2));
     setHtmlProps(html);
@@ -104,7 +105,20 @@ export default function Home() {
   return (
     <div className="flex flex-col justify-center items-center gap-2 w-screen">
       <div className="flex flex-col items-center gap-2 p-4 h-[500px] justify-center w-full">
-        <Modal {...props} />
+        <Modal open={openModal} onOpenChange={setOpenModal} {...props}>
+          {selected.includes('custom-close') ? (
+            <>
+              {props.children}
+              <DialogFooter>
+                <Button onClick={() => setOpenModal(false)} variant="secondary">
+                  Close
+                </Button>
+              </DialogFooter>
+            </>
+          ) : (
+            props.children
+          )}
+        </Modal>
       </div>
       <div className="flex flex-col items-center justify-center gap-2 p-4 text-gray-0 w-[500px]">
         {options.map((option) => (
