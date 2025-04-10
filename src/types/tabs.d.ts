@@ -1,4 +1,5 @@
 import * as TabsPrimitive from '@radix-ui/react-tabs';
+import { ReactNode } from 'react';
 
 export interface TabsProps {
   tabsList: {
