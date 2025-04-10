@@ -142,7 +142,6 @@ export default function Home() {
         <button
           className="text-gray-50 absolute top-20 right-8 cursor-pointer"
           onClick={() => {
-            console.log(props);
             navigator.clipboard.writeText(JSON.stringify(props, null, 2));
           }}
           title="Copy props to clipboard"
