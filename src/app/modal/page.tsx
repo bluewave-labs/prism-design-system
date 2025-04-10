@@ -3,25 +3,20 @@
 'use client';
 import { Copy } from 'lucide-react';
 import { useEffect, useState } from 'react';
+import ReactDOMServer from 'react-dom/server';
 import sanitizeHtml from 'sanitize-html';
-import { Button, Input } from '../../components';
-import { DialogDescription, DialogHeader, DialogTitle, Modal } from '../../components/Modal';
+import { Button, Input, Modal } from '../../components';
 import { cn } from '../../lib/utils';
 import { ModalProps } from '../../types';
 import codeToHtml from '../../utils/codeToHtml';
 
 type OptionsType = 'default' | 'custom-close';
 
-const baseProps = {
+const baseProps: ModalProps = {
   modalTrigger: <Button variant="destructive">Delete</Button>,
-  modalContent: (
-    <DialogHeader>
-      <DialogTitle>Are you absolutely sure?</DialogTitle>
-      <DialogDescription>
-        This action cannot be undone. This will permanently delete your account and remove your data from our servers.
-      </DialogDescription>
-    </DialogHeader>
-  ),
+  modalTitle: 'Are you absolutely sure?',
+  modalDescription:
+    'This action cannot be undone. This will permanently delete your account and remove your data from our servers.',
 };
 
 const options: {
@@ -39,33 +34,31 @@ const options: {
     text: 'Custom close button',
     prop: (prev) => ({
       ...prev,
+      modalTitle: <h1>Share link</h1>,
+      modalDescription: 'Anyone who has this link will be able to view this.',
       modalContent: (
-        <>
-          <DialogHeader>
-            <DialogTitle>Share link</DialogTitle>
-            <DialogDescription>Anyone who has this link will be able to view this.</DialogDescription>
-          </DialogHeader>
-          <div className="flex items-center space-x-2">
-            <div className="grid flex-1 gap-2">
-              <label htmlFor="link" className="sr-only">
-                Link
-              </label>
-              <Input id="link" defaultValue="https://ui.shadcn.com/docs/installation" readOnly />
-            </div>
-            <Button type="submit" size="sm" className="px-3">
-              <span className="sr-only">Copy</span>
-              <Copy />
-            </Button>
+        <div className="flex items-center space-x-2">
+          <div className="grid flex-1 gap-2">
+            <label htmlFor="link" className="sr-only">
+              Link
+            </label>
+            <Input variant='icon' iconRight={<><span className="sr-only">Copy</span>
+            <Copy /></>} id="link" defaultValue="https://ui.shadcn.com/docs/installation" readOnly />
           </div>
-        </>
+        </div>
       ),
+      customModalClose: <Button variant="secondary">Close</Button>,
     }),
   },
 ];
 
 const propTypes = `type ModalProps = {
   modalTrigger: ReactNode | string;
-  modalContent: ReactNode;
+  modalTitle?: ReactNode;
+  modalDescription?: ReactNode;
+  modalContent?: ReactNode;
+  modalFooter?: ReactNode;
+  customModalClose?: ReactNode;
 }`;
 
 export default function Home() {
@@ -77,13 +70,12 @@ export default function Home() {
   const buildHtmlProps = async () => {
     const sanitizedProps = {
       ...props,
-      modalTrigger: `<Button variant="destructive">Delete</Button>`,
-      modalContent: `<DialogHeader>
-      <DialogTitle>Are you absolutely sure?</DialogTitle>
-      <DialogDescription>
-        This action cannot be undone. This will permanently delete your account and remove your data from our servers.
-      </DialogDescription>
-    </DialogHeader>`,
+      modalTrigger: ReactDOMServer.renderToString(props.modalTrigger),
+      modalContent: props.modalContent ? ReactDOMServer.renderToString(props.modalContent) : undefined,
+      modalTitle: props.modalTitle ? ReactDOMServer.renderToString(props.modalTitle) : undefined,
+      modalDescription: props.modalDescription ? ReactDOMServer.renderToString(props.modalDescription) : undefined,
+      customModalClose: props.customModalClose ? ReactDOMServer.renderToString(props.customModalClose) : undefined,
+      modalFooter: props.modalFooter ? ReactDOMServer.renderToString(props.modalFooter) : undefined,
     };
     const html = await codeToHtml(JSON.stringify(sanitizedProps, null, 2));
     setHtmlProps(html);
@@ -150,6 +142,7 @@ export default function Home() {
         <button
           className="text-gray-50 absolute top-20 right-8 cursor-pointer"
           onClick={() => {
+            console.log(props);
             navigator.clipboard.writeText(JSON.stringify(props, null, 2));
           }}
           title="Copy props to clipboard"

@@ -1,6 +1,10 @@
-import { ReactNode } from "react";
+import { ReactNode } from 'react';
 
 export type ModalProps = {
   modalTrigger: ReactNode | string;
-  modalContent: ReactNode;
-}
+  modalTitle?: ReactNode;
+  modalDescription?: ReactNode;
+  modalContent?: ReactNode;
+  modalFooter?: ReactNode;
+  customModalClose?: ReactNode;
+};

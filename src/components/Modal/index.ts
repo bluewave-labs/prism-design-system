@@ -1,4 +1,6 @@
+export type { ModalProps } from '../../types/modal';
 export {
+  DialogClose,
   DialogDescription,
   DialogFooter,
   DialogHeader,
