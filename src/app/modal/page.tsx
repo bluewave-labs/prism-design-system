@@ -75,7 +75,7 @@ export default function Home() {
             </>
           )
         : ReactDOMServer.renderToString(props.children),
-      onOpenChange: setOpenModal.toString(),
+      onOpenChange: "function (open: boolean) => void",
       open: openModal,
     };
     const html = await codeToHtml(JSON.stringify(sanitizedProps, null, 2));
