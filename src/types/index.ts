@@ -7,4 +7,4 @@ export type { SelectProps } from './select';
 export type { ItemNav, ItemsNav, SidebarProps } from './sidebar';
 export type { SwitchProps, SwitchRef } from './switch';
 export type { TableProps } from './table';
-export type { TabsProps } from './tabs';
+export type { TabsTriggerProps, TabsListProps, TabsListRef, TabsProps, TabsTriggerRef } from './tabs';
