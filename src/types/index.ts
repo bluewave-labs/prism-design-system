@@ -8,3 +8,4 @@ export type { ItemNav, ItemsNav, SidebarProps } from './sidebar';
 export type { SwitchProps, SwitchRef } from './switch';
 export type { TableProps } from './table';
 export type { TabsTriggerProps, TabsListProps, TabsListRef, TabsProps, TabsTriggerRef } from './tabs';
+export type { ModalProps } from './modal';
