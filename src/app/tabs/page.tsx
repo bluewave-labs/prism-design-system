@@ -5,28 +5,58 @@ import { Copy } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import ReactDOMServer from 'react-dom/server';
 import sanitizeHtml from 'sanitize-html';
-import { Tabs } from '../../components';
+import { Button, Card, CardContent, CardFooter, CardHeader, Tabs } from '../../components';
 import { cn } from '../../lib/utils';
 import { TabsProps } from '../../types';
 import codeToHtml from '../../utils/codeToHtml';
 
-type OptionsType = 'default' | 'pill';
+type OptionsType = 'default' | 'pill' | 'tab';
 
 const tabsList = [
   {
     label: 'Account',
     value: 'account',
-    content: <div>Account content</div>,
+    content: (
+      <Card>
+        <CardHeader>Account</CardHeader>
+        <CardContent>Account content</CardContent>
+        <CardFooter>
+          <Button>Account action</Button>
+        </CardFooter>
+      </Card>
+    ),
   },
   {
     label: 'Password',
     value: 'password',
-    content: <div>Password content</div>,
+    content: (
+      <Card>
+        <CardHeader>Password</CardHeader>
+        <CardContent>Password content</CardContent>
+        <CardFooter>
+          <Button>Password action</Button>
+        </CardFooter>
+      </Card>
+    ),
+  },
+  {
+    label: 'Username',
+    value: 'username',
+    content: (
+      <Card>
+        <CardHeader>Username</CardHeader>
+        <CardContent>Username content</CardContent>
+        <CardFooter>
+          <Button>Username action</Button>
+        </CardFooter>
+      </Card>
+    ),
   },
 ];
 
 const baseProps = {
   tabsList,
+  className: 'w-[400px] mx-auto',
 };
 
 const options: {
@@ -38,12 +68,24 @@ const options: {
     option: 'default',
     text: 'Default',
     prop: () => baseProps,
+    
   },
   {
     option: 'pill',
     text: 'Pill',
     prop: (prev) => ({
       ...prev,
+      variant: prev.variant === 'pill' ? undefined : 'pill',
+    }),
+  },
+  {
+    option: 'tab',
+    text: 'Tab',
+    prop: (prev) => ({
+      ...prev,
+      variant: prev.variant === 'tab' ? undefined : 'tab',
+      className: prev.variant !== 'tab' ? 'w-full' : 'w-[400px] mx-auto',
+      contentClassName: prev.variant !== 'tab' ? 'w-[500px]' : undefined,
     }),
   },
 ];
@@ -55,6 +97,10 @@ const propTypes = `interface TabsProps {
     content: ReactNode;
   }[];
   defaultValue?: string;
+  variant?: 'default' | 'pill' | 'tab';
+  className?: string;
+  contentClassName?: string;
+  tabsListClassName?: string;
 }`;
 
 export default function Home() {
@@ -109,15 +155,7 @@ export default function Home() {
               selected.includes(option.option) ? 'bg-gray-20 text-gray-90' : 'hover:bg-gray-0/12 hover:text-gray-10'
             )}
             onClick={() => {
-              if (option.option === options[0].option) {
-                setSelected([option.option]);
-              } else {
-                const isSelected = selected.includes(option.option);
-                const newList = selected.filter((it) => it !== options[0].option);
-                setSelected(
-                  isSelected ? newList.filter((item) => item !== option.option) : [...newList, option.option]
-                );
-              }
+              setSelected([option.option]);
               setProps((prev) => option.prop(prev));
             }}
           >
