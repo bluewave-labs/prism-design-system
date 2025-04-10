@@ -46,6 +46,11 @@ const components = [
     title: 'Tabs',
     description: 'Tabs component',
   },
+  {
+    href: '/modal',
+    title: 'Modal',
+    description: 'Modal component',
+  }
 ];
 
 export default function Home() {
