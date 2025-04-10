@@ -40,7 +40,12 @@ const components = [
     href: '/table',
     title: 'Table',
     description: 'Table component',
-  }
+  },
+  {
+    href: '/tabs',
+    title: 'Tabs',
+    description: 'Tabs component',
+  },
 ];
 
 export default function Home() {
