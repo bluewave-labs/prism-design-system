@@ -23,5 +23,5 @@ export type SidebarProps = {
   nav: ItemsNav;
   footer?: ReactNode;
   notifications?: ReactNode[];
-  user?: User;
+  fallbackUser?: () => Promise<User>;
 };
