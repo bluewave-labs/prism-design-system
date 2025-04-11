@@ -748,9 +748,6 @@
   .cursor-default {
     cursor: default;
   }
-  .cursor-not-allowed {
-    cursor: not-allowed;
-  }
   .cursor-pointer {
     cursor: pointer;
   }
@@ -824,13 +821,6 @@
       --tw-space-y-reverse: 0;
       margin-block-start: calc(calc(var(--spacing) * 1.5) * var(--tw-space-y-reverse));
       margin-block-end: calc(calc(var(--spacing) * 1.5) * calc(1 - var(--tw-space-y-reverse)));
-    }
-  }
-  .space-x-2 {
-    :where(& > :not(:last-child)) {
-      --tw-space-x-reverse: 0;
-      margin-inline-start: calc(calc(var(--spacing) * 2) * var(--tw-space-x-reverse));
-      margin-inline-end: calc(calc(var(--spacing) * 2) * calc(1 - var(--tw-space-x-reverse)));
     }
   }
   .self-end {
@@ -3082,7 +3072,6 @@ body {
 @property --tw-skew-x { syntax: "*"; inherits: false; initial-value: skewX(0); }
 @property --tw-skew-y { syntax: "*"; inherits: false; initial-value: skewY(0); }
 @property --tw-space-y-reverse { syntax: "*"; inherits: false; initial-value: 0; }
-@property --tw-space-x-reverse { syntax: "*"; inherits: false; initial-value: 0; }
 @property --tw-border-style { syntax: "*"; inherits: false; initial-value: solid; }
 @property --tw-gradient-position { syntax: "*"; inherits: false; }
 @property --tw-gradient-from { syntax: "<color>"; inherits: false; initial-value: #0000; }
@@ -3128,6 +3117,7 @@ body {
 @property --tw-duration { syntax: "*"; inherits: false; }
 @property --tw-ease { syntax: "*"; inherits: false; }
 @property --tw-content { syntax: "*"; initial-value: ""; inherits: false; }
+@property --tw-space-x-reverse { syntax: "*"; inherits: false; initial-value: 0; }
 @keyframes pulse {
   50% {
     opacity: 0.5;
@@ -3160,7 +3150,6 @@ body {
       --tw-skew-x: skewX(0);
       --tw-skew-y: skewY(0);
       --tw-space-y-reverse: 0;
-      --tw-space-x-reverse: 0;
       --tw-border-style: solid;
       --tw-gradient-position: initial;
       --tw-gradient-from: #0000;
@@ -3206,6 +3195,7 @@ body {
       --tw-duration: initial;
       --tw-ease: initial;
       --tw-content: "";
+      --tw-space-x-reverse: 0;
     }
   }
 }

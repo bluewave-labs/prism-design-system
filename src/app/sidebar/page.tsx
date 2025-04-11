@@ -2,13 +2,13 @@
 import { BookOpen, Bot, Copy, Settings2, SquareTerminal } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import ReactDOMServer from 'react-dom/server';
+import sanitizeHtml from 'sanitize-html';
 import { SidebarProvider } from '../../components';
 import AppSidebar from '../../components/Sidebar/Sidebar';
 import Footer from '../../components/Sidebar/footer';
+import { cn } from '../../lib/utils';
 import { SidebarProps } from '../../types';
 import codeToHtml from '../../utils/codeToHtml';
-import sanitizeHtml from 'sanitize-html';
-import { cn } from '../../lib/utils';
 
 const items_nav = [
   {

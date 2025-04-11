@@ -33,7 +33,7 @@ const labelVariants = cva('', {
       'label-out': 'flex flex-col-reverse items-start justify-center w-full min-w-0',
     },
     disabled: {
-      true: 'opacity-50 cursor-not-allowed',
+      true: 'opacity-50',
       false: '',
     },
     error: {
@@ -109,7 +109,7 @@ function Input(props: InputProps) {
 
 function InputIcon({ variant, className, type, id, iconLeft, iconRight, disabled, error, ...props }: InputProps) {
   return (
-    <div className={cn(inputVariants({ variant, error: error ?? false }), className)}>
+    <div className={cn(labelVariants({ error: error ?? false, disabled: disabled ?? false }), className)}>
       {iconLeft && <span className="mr-2 text-2xl">{iconLeft}</span>}
       <input
         type={type}

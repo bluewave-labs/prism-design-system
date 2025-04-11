@@ -204,7 +204,7 @@ function Sidebar({
                 data-sidebar="sidebar"
                 data-slot="sidebar"
                 data-mobile="true"
-                className="w-(--sidebar-width) p-0 [&>button]:hidden border-gray-0/20"
+                className="w-(--sidebar-width) max-w-[90%] p-0 [&>button]:hidden border-gray-0/20"
                 style={
                   {
                     '--sidebar-width': SIDEBAR_WIDTH_MOBILE,

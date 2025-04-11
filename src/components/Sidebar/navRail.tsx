@@ -1,8 +1,9 @@
 'use client';
-import { cn } from '../../lib/utils';
 import { Bell, Globe, Home, MonitorUp } from 'lucide-react';
 import Link from 'next/link';
 import { ReactNode, useEffect, useState } from 'react';
+import { cn } from '../../lib/utils';
+import { User } from '../../types/sidebar';
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '../ui/dropdown-menu';
 import {
@@ -16,28 +17,40 @@ import {
   SidebarTrigger,
   useSidebar,
 } from '../ui/sidebar';
+import { getUser, logOut } from './server-functions';
 
-const DASHBOARD_URL = 'dashboard.uprock.com';
+const DASHBOARD_URL = 'https://prism.uprockstaging.com/console';
 
 const products = [
   {
     icon: <MonitorUp className=" [&>svg]:size-6" />,
     name: 'UpTime',
-    url: 'uptime.uprock.com',
+    url: 'https://uptime.uprockstaging.com/uptime',
   },
   {
     icon: <Globe className=" [&>svg]:size-6" />,
     name: 'RockScapper',
-    url: 'scraper.uprock.com',
+    url: 'https://rockscraper.uprockstaging.com/dashboard',
   },
 ];
 
 const NavRail = ({ notifications }: { notifications?: ReactNode[] }) => {
   const [url, setUrl] = useState<string | null>(null);
+  const [user, setUser] = useState<User | null>(null);
   const { isMobile } = useSidebar();
+
+  const findUser = async () => {
+    const cookieUser = await getUser();
+    if (cookieUser) {
+      setUser(cookieUser);
+    } else {
+      window.location.href = DASHBOARD_URL;
+    }
+  };
 
   useEffect(() => {
     setUrl(window.location.href);
+    findUser();
   }, []);
 
   const hasNotifications = notifications?.length && notifications.length > 0;
@@ -53,7 +66,7 @@ const NavRail = ({ notifications }: { notifications?: ReactNode[] }) => {
             isActive={url?.includes(DASHBOARD_URL)}
             className="flex items-center justify-center h-10"
           >
-            <Link href={`https://${DASHBOARD_URL}`} title="Dashboard">
+            <Link href={DASHBOARD_URL} title="Dashboard">
               <Home className=" [&>svg]:size-6" />
             </Link>
           </SidebarMenuButton>
@@ -68,7 +81,7 @@ const NavRail = ({ notifications }: { notifications?: ReactNode[] }) => {
                 isActive={url?.includes(product.url)}
                 className="flex items-center justify-center h-10"
               >
-                <Link href={`https://${product.url}`} title={product.name}>
+                <Link href={product.url} title={product.name}>
                   {product.icon}
                 </Link>
               </SidebarMenuButton>
@@ -113,23 +126,28 @@ const NavRail = ({ notifications }: { notifications?: ReactNode[] }) => {
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <div className="flex items-center justify-center">
-                  <Avatar>
-                    <AvatarImage src="https://placecats.com/32/32" className="w-8 h-8 rounded-full" />
-                    <AvatarFallback>JD</AvatarFallback>
-                  </Avatar>
+                  {user ? (
+                    <Avatar>
+                      <AvatarImage src={user.image} className="w-8 h-8 rounded-full" />
+                      <AvatarFallback>{user.username[0].toUpperCase()}</AvatarFallback>
+                    </Avatar>
+                  ) : (
+                    <Avatar>
+                      <AvatarImage src="https://placecats.com/32/32" className="w-8 h-8 rounded-full" />
+                      <AvatarFallback>JD</AvatarFallback>
+                    </Avatar>
+                  )}
                 </div>
               </DropdownMenuTrigger>
               <DropdownMenuContent
                 side="top"
                 className={`w-[--radix-popper-anchor-width] bg-gray-80 text-gray-20 border-transparent`}
               >
-                <DropdownMenuItem>
-                  <span>Account</span>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <span>Billing</span>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
+                <DropdownMenuItem
+                  onClick={() => {
+                    logOut().then(() => (window.location.href = `https://prism.uprockstaging.com/auth/register`));
+                  }}
+                >
                   <span>Sign out</span>
                 </DropdownMenuItem>
               </DropdownMenuContent>
