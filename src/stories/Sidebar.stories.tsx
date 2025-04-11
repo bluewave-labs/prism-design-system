@@ -104,15 +104,35 @@ const meta: Meta<typeof AppSidebar> = {
       control: {
         accept: ['string'],
       },
+      description: 'The name of the product.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'Product Name' },
+      },
     },
     nav: {
       control: 'object',
+      description: 'The navigation items.',
+      table: {
+        type: { summary: 'Array<{ title: string, url: string, icon: ReactNode }>' },
+        defaultValue: { summary: '[]' },
+      },
     },
     footer: {
       control: 'object',
+      description: 'The footer of the sidebar menu.',
+      table: {
+        type: { summary: 'ReactNode' },
+        defaultValue: { summary: 'undefined' },
+      },
     },
     notifications: {
       control: 'object',
+      description: 'The notifications to be displayed in the NavRail.',
+      table: {
+        type: { summary: 'Array<ReactNode>' },
+        defaultValue: { summary: '[]' },
+      }
     },
   },
   args: {

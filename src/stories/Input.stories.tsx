@@ -12,24 +12,58 @@ const meta: Meta<typeof Input> = {
     variant: {
       control: 'select',
       options: ['default', 'icon', 'label-out', 'no-label'],
+      description: 'The variant of the input.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'default' },
+      },
     },
     label: {
       control: 'text',
+      description: 'The label of the input.',
+      table: {
+        type: { summary: 'string' },
+      },
     },
     iconLeft: {
       control: 'object',
+      description: 'The left icon of the input.',
+      table: {
+        type: { summary: 'ReactNode' },
+        defaultValue: { summary: 'undefined' },
+      }
     },
     iconRight: {
       control: 'object',
+      description: 'The right icon of the input.',
+      table: {
+        type: { summary: 'ReactNode' },
+        defaultValue: { summary: 'undefined' },
+      }
     },
     error: {
       control: 'boolean',
+      description: 'Whether the input has an error.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
     },
     disabled: {
       control: 'boolean',
+      description: 'Whether the input is disabled.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
     },
     placeholder: {
       control: 'text',
+      description: 'The placeholder of the input.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'undefined' },
+      },
     },
   },
   args: {

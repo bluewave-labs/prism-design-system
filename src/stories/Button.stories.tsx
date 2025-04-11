@@ -13,22 +13,43 @@ const meta: Meta<typeof Button> = {
   tags: ['autodocs'],
   argTypes: {
     variant: {
-      options: ['default', 'action', 'destructive', 'outline', 'outline_active', 'secondary', 'ghost', 'link'],
       control: 'select',
+      options: ['default', 'primary', 'secondary', 'ghost', 'link', 'destructive'],
+      description: 'The variant of the button.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'default' },
+      }
     },
     size: {
       control: 'select',
       options: ['default', 'xs', 'sm', 'md', 'lg', 'icon'],
+      description: 'The size of the button.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'default' },
+      }
     },
     rounded: {
       control: 'select',
       options: ['default', 'sm', 'md', 'lg', 'full'],
+      description: 'The border radius of the button.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'default' },
+      }
     },
     asChild: {
       control: { type: 'boolean' },
+      description: 'If true, the button will be rendered as the child component.',
     },
     children: {
       control: 'object',
+      description: 'The content of the button.',
+      table: {
+        type: { summary: 'ReactNode' },
+        defaultValue: { summary: 'string' },
+      }
     },
   },
   args: { onClick: fn(), variant: 'default', size: 'default', rounded: 'default', children: <a href="#">Button</a> },

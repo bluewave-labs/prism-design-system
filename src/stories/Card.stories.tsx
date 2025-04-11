@@ -12,14 +12,29 @@ const meta: Meta<typeof Card> = {
     variant: {
       control: 'select',
       options: ['default', 'clickable', 'console'],
+      description: 'The variant of the card.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'default' },
+      },
     },
     asChild: {
       control: {
         type: 'boolean',
       },
+      description: 'If true, the card will be rendered as the child component.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
     },
     children: {
       control: 'object',
+      description: 'The content of the card.',
+      table: {
+        type: { summary: 'ReactNode' },
+        defaultValue: { summary: 'Card' },
+      },
     },
   },
   args: {
