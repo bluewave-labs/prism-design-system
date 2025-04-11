@@ -49,7 +49,7 @@ const labelVariants = cva('', {
 });
 
 function Input(props: InputProps) {
-  const { className, type, variant, id, label, disabled, error, ...rest } = props;
+  const { className, type, variant, id, label, disabled, error, placeholder, ...rest } = props;
   const [isFocused, setIsFocused] = useState(false);
 
   useEffect(() => {
@@ -84,7 +84,7 @@ function Input(props: InputProps) {
         id={id}
         aria-invalid={error}
         className={cn(inputVariants({ variant, error: variant === 'label-out' && error ? error : false }), className)}
-        placeholder="&nbsp;"
+        placeholder={variant === 'label-out' ? placeholder : " "}
         onFocus={() => setIsFocused(true)}
         onBlur={(e) => {
           if (!e.target.value) {
@@ -98,7 +98,7 @@ function Input(props: InputProps) {
           variant !== 'label-out'
             ? 'absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-40 transition-all ease-in-out'
             : 'text-gray-10 font-medium mb-4 ml-1',
-          isFocused && variant !== 'label-out' ? 'scale-[80%] top-3 left-3' : ''
+          isFocused && variant !== 'label-out' ? 'scale-[80%] top-3 left-2.5' : ''
         )}
       >
         {label}
