@@ -48,7 +48,7 @@
   },
   "scripts": {
     "dev": "next dev --turbopack",
-    "dev:https": "sudo port=443 next dev --experimental-https",
+    "dev:https": "next dev --experimental-https",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
