@@ -34,13 +34,19 @@ const products = [
   },
 ];
 
-const NavRail = ({ notifications }: { notifications?: ReactNode[] }) => {
+const NavRail = ({
+  notifications,
+  fallbackUser,
+}: {
+  notifications?: ReactNode[];
+  fallbackUser?: () => Promise<User>;
+}) => {
   const [url, setUrl] = useState<string | null>(null);
   const [user, setUser] = useState<User | null>(null);
   const { isMobile } = useSidebar();
 
   const findUser = async () => {
-    const cookieUser = await getUser();
+    const cookieUser = await (fallbackUser ? fallbackUser() : getUser());
     if (cookieUser) {
       setUser(cookieUser);
     } else {
