@@ -44,7 +44,6 @@ const meta: Meta<typeof Select> = {
     options: {
       control: {
         type: 'select',
-        options: countries,
       },
       description: 'The options to select from',
       table: {
