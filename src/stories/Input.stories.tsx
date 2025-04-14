@@ -8,6 +8,9 @@ const meta: Meta<typeof Input> = {
   title: 'Input',
   component: Input,
   tags: ['autodocs'],
+  parameters: {
+    layout: 'padded'
+  },
   argTypes: {
     variant: {
       control: 'select',

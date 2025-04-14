@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import React from 'react';
-import { Button, DialogFooter, DialogHeader, Modal, ModalProps, Radio, RadioBtn } from '../components';
+import { RadioBtn } from '../components';
 import '../style/globals.css';
 
 const meta: Meta<typeof RadioBtn> = {
@@ -42,10 +41,10 @@ const meta: Meta<typeof RadioBtn> = {
     },
   },
   args: {
-      checked: false,
-      disabled: undefined,
-      label: 'Radio',
-      id: 'radio',
+    checked: false,
+    disabled: undefined,
+    label: 'Radio',
+    id: 'radio',
   },
 };
 

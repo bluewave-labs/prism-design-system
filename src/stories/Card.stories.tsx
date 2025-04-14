@@ -7,7 +7,9 @@ const meta: Meta<typeof Card> = {
   title: 'Card',
   component: Card,
   tags: ['autodocs'],
-  // More on argTypes: https://storybook.js.org/docs/api/argtypes
+  parameters: {
+    layout: 'padded'
+  },
   argTypes: {
     variant: {
       control: 'select',
