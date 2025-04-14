@@ -94,7 +94,7 @@ const meta: Meta<TableProps<TData, TData>> = {
   component: Table,
   tags: ['autodocs'],
   parameters: {
-    layout: 'padded'
+    layout: 'padded',
   },
   argTypes: {
     columns: {
@@ -118,8 +118,7 @@ const meta: Meta<TableProps<TData, TData>> = {
       description: 'Custom CSS class for the table',
       table: {
         type: { summary: 'string' },
-        defaultValue: { summary: 'undefined' },
-      }
+      },
     },
   },
   args: {

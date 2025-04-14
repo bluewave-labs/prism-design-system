@@ -20,7 +20,6 @@ const meta: Meta<typeof RadioBtn> = {
       description: 'Whether the radio button is disabled or not.',
       table: {
         type: { summary: 'boolean' },
-        defaultValue: { summary: 'undefined' },
       },
     },
     label: {
@@ -28,7 +27,6 @@ const meta: Meta<typeof RadioBtn> = {
       description: 'The label for the radio button.',
       table: {
         type: { summary: 'string' },
-        defaultValue: { summary: 'Radio' },
       },
     },
     id: {
@@ -36,7 +34,6 @@ const meta: Meta<typeof RadioBtn> = {
       description: 'The id for the radio button.',
       table: {
         type: { summary: 'string' },
-        defaultValue: { summary: 'radio' },
       },
     },
   },

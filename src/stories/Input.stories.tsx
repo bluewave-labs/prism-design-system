@@ -9,7 +9,7 @@ const meta: Meta<typeof Input> = {
   component: Input,
   tags: ['autodocs'],
   parameters: {
-    layout: 'padded'
+    layout: 'padded',
   },
   argTypes: {
     variant: {
@@ -33,23 +33,20 @@ const meta: Meta<typeof Input> = {
       description: 'The left icon of the input.',
       table: {
         type: { summary: 'ReactNode' },
-        defaultValue: { summary: 'undefined' },
-      }
+      },
     },
     iconRight: {
       control: 'object',
       description: 'The right icon of the input.',
       table: {
         type: { summary: 'ReactNode' },
-        defaultValue: { summary: 'undefined' },
-      }
+      },
     },
     error: {
       control: 'boolean',
       description: 'Whether the input has an error.',
       table: {
         type: { summary: 'boolean' },
-        defaultValue: { summary: 'false' },
       },
     },
     disabled: {
@@ -57,7 +54,6 @@ const meta: Meta<typeof Input> = {
       description: 'Whether the input is disabled.',
       table: {
         type: { summary: 'boolean' },
-        defaultValue: { summary: 'false' },
       },
     },
     placeholder: {
@@ -65,7 +61,6 @@ const meta: Meta<typeof Input> = {
       description: 'The placeholder of the input.',
       table: {
         type: { summary: 'string' },
-        defaultValue: { summary: 'undefined' },
       },
     },
   },
@@ -93,7 +88,7 @@ export const IconLeft: Story = {
   args: {
     ...Default.args,
     variant: 'icon',
-    iconRight: undefined
+    iconRight: undefined,
   },
 };
 

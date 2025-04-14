@@ -37,7 +37,7 @@ const meta: Meta<typeof Select> = {
           summary: 'string',
         },
         defaultValue: {
-          summary: 'undefined',
+          summary: 'options[0]',
         },
       },
     },
@@ -50,9 +50,6 @@ const meta: Meta<typeof Select> = {
         type: {
           summary: 'string[]',
         },
-        defaultValue: {
-          summary: 'undefined',
-        },
       },
     },
     disabled: {
@@ -64,9 +61,6 @@ const meta: Meta<typeof Select> = {
         type: {
           summary: 'boolean',
         },
-        defaultValue: {
-          summary: 'false',
-        },
       },
     },
     onSelect: {
@@ -75,9 +69,6 @@ const meta: Meta<typeof Select> = {
       table: {
         type: {
           summary: 'function',
-        },
-        defaultValue: {
-          summary: 'undefined',
         },
       },
     },

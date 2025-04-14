@@ -27,7 +27,6 @@ const meta: Meta<typeof Card> = {
       description: 'If true, the card will be rendered as the child component.',
       table: {
         type: { summary: 'boolean' },
-        defaultValue: { summary: 'false' },
       },
     },
     children: {
@@ -35,7 +34,6 @@ const meta: Meta<typeof Card> = {
       description: 'The content of the card.',
       table: {
         type: { summary: 'ReactNode' },
-        defaultValue: { summary: 'Card' },
       },
     },
   },

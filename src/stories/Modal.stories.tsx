@@ -24,7 +24,6 @@ const meta: Meta<typeof Modal> = {
       description: 'The trigger for the modal, can be a string or a ReactNode.',
       table: {
         type: { summary: 'string | ReactNode' },
-        defaultValue: { summary: 'string' },
       },
     },
     children: {
@@ -32,7 +31,6 @@ const meta: Meta<typeof Modal> = {
       description: 'The content of the modal.',
       table: {
         type: { summary: 'ReactNode' },
-        defaultValue: { summary: 'ReactNode' },
       },
     },
     onOpenChange: {
@@ -42,7 +40,6 @@ const meta: Meta<typeof Modal> = {
       description: 'Callback function when the modal open state changes.',
       table: {
         type: { summary: '(open: boolean) => void' },
-        defaultValue: { summary: 'undefined' },
       },
     },
     defaultOpen: {

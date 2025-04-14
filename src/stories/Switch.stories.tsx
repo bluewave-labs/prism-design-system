@@ -16,8 +16,10 @@ const meta: Meta<typeof Switch> = {
         type: {
           summary: 'boolean',
         },
+        defaultValue: {
+          summary: 'false',
+        },
       },
-      defaultValue: false,
     },
     disabled: {
       control: {
@@ -29,7 +31,6 @@ const meta: Meta<typeof Switch> = {
           summary: 'boolean',
         },
       },
-      defaultValue: undefined,
     },
     id: {
       control: {
@@ -41,7 +42,6 @@ const meta: Meta<typeof Switch> = {
           summary: 'string',
         },
       },
-      defaultValue: 'undefined',
     },
     onCheckedChange: {
       control: {
@@ -53,7 +53,6 @@ const meta: Meta<typeof Switch> = {
           summary: '(checked: boolean) => void',
         },
       },
-      defaultValue: undefined,
     },
     size: {
       control: 'select',
@@ -67,13 +66,13 @@ const meta: Meta<typeof Switch> = {
           summary: 'default',
         },
       },
-    }
+    },
   },
   args: {
+    size: 'default',
     checked: false,
     disabled: undefined,
     id: 'switch',
-    size: 'default',
   },
 };
 

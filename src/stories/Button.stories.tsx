@@ -42,13 +42,15 @@ const meta: Meta<typeof Button> = {
     asChild: {
       control: { type: 'boolean' },
       description: 'If true, the button will be rendered as the child component.',
+      table: {
+        type: { summary: 'boolean' },
+      }
     },
     children: {
       control: 'object',
       description: 'The content of the button.',
       table: {
         type: { summary: 'ReactNode' },
-        defaultValue: { summary: 'string' },
       }
     },
   },

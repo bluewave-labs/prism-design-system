@@ -106,7 +106,6 @@ const meta: Meta<typeof AppSidebar> = {
       description: 'The name of the product.',
       table: {
         type: { summary: 'string' },
-        defaultValue: { summary: 'Product Name' },
       },
     },
     nav: {
@@ -122,7 +121,6 @@ const meta: Meta<typeof AppSidebar> = {
       description: 'The footer of the sidebar menu.',
       table: {
         type: { summary: 'ReactNode' },
-        defaultValue: { summary: 'undefined' },
       },
     },
     notifications: {
@@ -131,7 +129,7 @@ const meta: Meta<typeof AppSidebar> = {
       table: {
         type: { summary: 'Array<ReactNode>' },
         defaultValue: { summary: '[]' },
-      }
+      },
     },
   },
   args: {
@@ -189,4 +187,3 @@ export const NoLabel: Story = {
     ],
   },
 };
-
