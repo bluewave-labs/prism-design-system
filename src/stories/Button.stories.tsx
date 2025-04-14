@@ -14,7 +14,7 @@ const meta: Meta<typeof Button> = {
   argTypes: {
     variant: {
       control: 'select',
-      options: ['default', 'primary', 'secondary', 'ghost', 'link', 'destructive'],
+      options: ['default', 'secondary', 'ghost', 'link', 'destructive'],
       description: 'The variant of the button.',
       table: {
         type: { summary: 'string' },
