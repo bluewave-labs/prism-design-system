@@ -46,6 +46,7 @@
     "react": "^18.0.0",
     "react-dom": "^18.0.0"
   },
+  "homepage": "./",
   "scripts": {
     "dev": "next dev --turbopack",
     "dev:https": "next dev --experimental-https",
@@ -57,7 +58,7 @@
     "release": "npm run build:pkg && standard-version",
     "build:pkg": "tsup",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build -o ./docs"
   },
   "dependencies": {
     "@radix-ui/react-avatar": "^1.1.3",
