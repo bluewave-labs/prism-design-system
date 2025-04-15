@@ -99,10 +99,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-          registry-url: https://registry.npmjs.org/
       - run: |
-          npm config set @bluewave:registry https://registry.npmjs.org/
-          npm config set //registry.npmjs.org/:_authToken ${{ secrets.npm_token }}
           cd dist
           npm publish --access public --ignore-scripts
         env:
