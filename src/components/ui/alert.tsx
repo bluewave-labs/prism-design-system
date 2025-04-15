@@ -22,25 +22,32 @@ const alertVariants = cva(
   }
 );
 
-const Alert = React.forwardRef<HTMLDivElement, BannerProps>(({ className, variant, children, ...props }, ref) => {
-  const [closed, setClosed] = React.useState(false);
+const Alert = React.forwardRef<HTMLDivElement, BannerProps>(
+  ({ className, variant, children, isOpen = true, onClose, ...props }, ref) => {
+    const [internalIsOpen, setInternalIsOpen] = React.useState(isOpen);
 
-  return variant === 'closeable' ? (
-    !closed && (
+    const handleClose = () => {
+      setInternalIsOpen(false);
+      onClose?.();
+    };
+
+    return variant === 'closeable' ? (
+      internalIsOpen && (
+        <div ref={ref} role="alert" className={cn(alertVariants({ variant }), className)} {...props}>
+          <button onClick={handleClose} className="absolute top-2 right-2 cursor-pointer hover:text-gray-10">
+            <X />
+            <span className="sr-only">Close</span>
+          </button>
+          {children}
+        </div>
+      )
+    ) : (
       <div ref={ref} role="alert" className={cn(alertVariants({ variant }), className)} {...props}>
-        <button onClick={() => setClosed(true)} className='absolute top-2 right-2 cursor-pointer hover:text-gray-10'>
-          <X />
-          <span className="sr-only">Close</span>
-        </button>
         {children}
       </div>
-    )
-  ) : (
-    <div ref={ref} role="alert" className={cn(alertVariants({ variant }), className)} {...props}>
-      {children}
-    </div>
-  );
-});
+    );
+  }
+);
 Alert.displayName = 'Alert';
 
 const AlertTitle = React.forwardRef<HTMLParagraphElement, React.HTMLAttributes<HTMLHeadingElement>>(

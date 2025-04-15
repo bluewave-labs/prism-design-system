@@ -1,6 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { AlertDescription, AlertTitle, Banner } from '../components';
+import { useState } from 'react';
+import { AlertDescription, AlertTitle, Banner, BannerProps } from '../components';
 import '../style/globals.css';
+
+const RenderBanner = (args: BannerProps) => {
+  const [isOpen, setIsOpen] = useState(true);
+
+  return <Banner isOpen={isOpen} onClose={() => setIsOpen(false)} {...args} />;
+};
 
 const meta: Meta<typeof Banner> = {
   title: 'Banner',
@@ -42,6 +49,28 @@ const meta: Meta<typeof Banner> = {
         },
       },
     },
+    isOpen: {
+      control: 'boolean',
+      description: 'Whether the banner is open',
+      table: {
+        type: {
+          summary: 'boolean',
+        },
+        defaultValue: {
+          summary: 'true',
+        },
+      },
+    },
+    onClose: {
+      control: { accept: 'function' },
+      description: 'Function to handle the close event',
+      table: {
+        type: { summary: '() => void' },
+      },
+      defaultValue: {
+        summary: '',
+      },
+    },
   },
   args: {
     variant: 'default',
@@ -53,6 +82,7 @@ const meta: Meta<typeof Banner> = {
       </>
     ),
   },
+  render: (args) => <RenderBanner {...args} />,
 };
 
 export default meta;
