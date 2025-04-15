@@ -187,3 +187,11 @@ export const NoLabel: Story = {
     ],
   },
 };
+
+export const NoNotifications: Story = {
+  args: {
+    ...Default.args,
+    notifications: [],
+  },
+};
+

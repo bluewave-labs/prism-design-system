@@ -14,12 +14,12 @@ const meta: Meta<typeof Button> = {
   argTypes: {
     variant: {
       control: 'select',
-      options: ['default', 'secondary', 'ghost', 'link', 'destructive'],
+      options: ['default', 'action', 'destructive', 'outline', 'outline_active', 'secondary', 'ghost', 'link'],
       description: 'The variant of the button.',
       table: {
         type: { summary: 'string' },
         defaultValue: { summary: 'default' },
-      }
+      },
     },
     size: {
       control: 'select',
@@ -28,7 +28,7 @@ const meta: Meta<typeof Button> = {
       table: {
         type: { summary: 'string' },
         defaultValue: { summary: 'default' },
-      }
+      },
     },
     rounded: {
       control: 'select',
@@ -37,21 +37,21 @@ const meta: Meta<typeof Button> = {
       table: {
         type: { summary: 'string' },
         defaultValue: { summary: 'default' },
-      }
+      },
     },
     asChild: {
       control: { type: 'boolean' },
       description: 'If true, the button will be rendered as the child component.',
       table: {
         type: { summary: 'boolean' },
-      }
+      },
     },
     children: {
       control: 'object',
       description: 'The content of the button.',
       table: {
         type: { summary: 'ReactNode' },
-      }
+      },
     },
   },
   args: { onClick: fn(), variant: 'default', size: 'default', rounded: 'default', children: <a href="#">Button</a> },
