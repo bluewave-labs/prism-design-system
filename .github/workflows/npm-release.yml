@@ -53,6 +53,18 @@ jobs:
       - run: npm run release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Get new version
+        id: version
+        run: |
+          echo "version=$(node -p "require('./package.json').version")" >> $GITHUB_OUTPUT
+      - name: Update package versions
+        run: |
+          # Update main package.json
+          sed -i "s/\"version\": \".*\"/\"version\": \"${{ steps.version.outputs.version }}\"/" package.json
+          # Update dist package.json if it exists
+          if [ -f "dist/package.json" ]; then
+            sed -i "s/\"version\": \".*\"/\"version\": \"${{ steps.version.outputs.version }}\"/" dist/package.json
+          fi
       - run: npm run build:pkg
       - name: Prepare dist for publishing
         run: |
