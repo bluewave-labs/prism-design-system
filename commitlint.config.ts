@@ -5,11 +5,11 @@ const config = {
   extends: ['@commitlint/config-conventional'],
   rules: {
     'body-leading-blank': [RuleConfigSeverity.Warning, 'always'] as const,
-    'body-max-line-length': [RuleConfigSeverity.Error, 'always', 100] as const,
+    'body-max-line-length': [RuleConfigSeverity.Warning, 'always', 100] as const,
     'footer-leading-blank': [RuleConfigSeverity.Warning, 'always'] as const,
-    'footer-max-line-length': [RuleConfigSeverity.Error, 'always', 100] as const,
-    'header-max-length': [RuleConfigSeverity.Error, 'always', 100] as const,
-    'header-trim': [RuleConfigSeverity.Error, 'always'] as const,
+    'footer-max-line-length': [RuleConfigSeverity.Warning, 'always', 100] as const,
+    'header-max-length': [RuleConfigSeverity.Warning, 'always', 100] as const,
+    'header-trim': [RuleConfigSeverity.Warning, 'always'] as const,
     'subject-case': [
       RuleConfigSeverity.Error,
       'never',

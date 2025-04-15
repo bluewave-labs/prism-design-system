@@ -1,3 +1,56 @@
+# [0.2.0](https://github.com/bluewave-labs/prism-design-system/compare/v0.1.3...v0.2.0) (2025-04-15)
+
+
+### Bug Fixes
+
+* add accessibility to select ([16e508b](https://github.com/bluewave-labs/prism-design-system/commit/16e508bef9d9e40fa48c1f858e6fb459d85b2a24))
+* add accessibility to select ([8092b96](https://github.com/bluewave-labs/prism-design-system/commit/8092b9675141874dc1082d48cfd9d6257523b86e))
+
+
+### Features
+
+* add Button story ([ffb9516](https://github.com/bluewave-labs/prism-design-system/commit/ffb9516305e6da119dc0cc08c671c434e60dbd77))
+* add card from ui ([fad93da](https://github.com/bluewave-labs/prism-design-system/commit/fad93daf624bb826719be7f12b36be4c847c228b))
+* add Card story ([12868eb](https://github.com/bluewave-labs/prism-design-system/commit/12868ebf2253629fe7782e7406a1bdded299531f))
+* add color tokens to storybook ([4717c34](https://github.com/bluewave-labs/prism-design-system/commit/4717c34d8c43fe8a252752925f1709acc746d701))
+* add component variants ([4f17f92](https://github.com/bluewave-labs/prism-design-system/commit/4f17f921812d6dc29a63c64ad1d6b8279a5c6329))
+* add dialog ui ([c9a894e](https://github.com/bluewave-labs/prism-design-system/commit/c9a894eeb66c0ccbe2af49f8ac97cd1b01b3b64b))
+* add gh pages config ([b0e6175](https://github.com/bluewave-labs/prism-design-system/commit/b0e61758784076a5cbbf43ff1e918d8a7daf5cbf))
+* add input from ui ([4bacdf2](https://github.com/bluewave-labs/prism-design-system/commit/4bacdf2122afe2bd394ec3498dd33b91315dd861))
+* add Input story ([bf14ec4](https://github.com/bluewave-labs/prism-design-system/commit/bf14ec45a979ca13ab68845def14db019320396b))
+* add input variants ([29fda9d](https://github.com/bluewave-labs/prism-design-system/commit/29fda9d21143896f59f2c3b7272870908c2787bd))
+* add logout and getUser functions ([934d091](https://github.com/bluewave-labs/prism-design-system/commit/934d091d06fcd5d3a832d84c995135bbba78bfa5))
+* add Modal story ([8c66681](https://github.com/bluewave-labs/prism-design-system/commit/8c666817caa1afcd9321c1539cea4bcf7e9c75cc))
+* add modal types ([6a36748](https://github.com/bluewave-labs/prism-design-system/commit/6a36748b1e988cf73a0df765bdb139a055f639a9))
+* add new variant to input ([ef5f452](https://github.com/bluewave-labs/prism-design-system/commit/ef5f452088bee5ab87b53ed6cf2eb5e01b5e8e8b))
+* add Radio Btn story ([6e6a66b](https://github.com/bluewave-labs/prism-design-system/commit/6e6a66b5699a75da056ece1bf4a9b954a15e1df1))
+* add radio types ([f7f9b1f](https://github.com/bluewave-labs/prism-design-system/commit/f7f9b1f7029d512070e3afdf3ac7409e8eab72a8))
+* add radio ui ([71354ef](https://github.com/bluewave-labs/prism-design-system/commit/71354ef8091ee13e411917bf9ce600111976bb4e))
+* add recovered user to navRail ([339ae52](https://github.com/bluewave-labs/prism-design-system/commit/339ae529943eb8503cf79b80d32dad1d99972d04))
+* add select prop type ([a60f4eb](https://github.com/bluewave-labs/prism-design-system/commit/a60f4eb779619ce74c4aa144c3b650dea9eb9cdf))
+* add Select story ([b11b2a3](https://github.com/bluewave-labs/prism-design-system/commit/b11b2a3252e674262fae23127022bc6064d5974a))
+* add Sidebar story ([43521a6](https://github.com/bluewave-labs/prism-design-system/commit/43521a6ea4bbb3ec1bcf3ee553f6e3a824a24f5f))
+* add storybook ([b7edc0a](https://github.com/bluewave-labs/prism-design-system/commit/b7edc0a60ed93bd7c234c3545c64ee1811088b18))
+* add storybook build files ([1128a17](https://github.com/bluewave-labs/prism-design-system/commit/1128a17f14f8e4d406d0709b5a28be8641db3e5c))
+* add Switch story ([7268fc0](https://github.com/bluewave-labs/prism-design-system/commit/7268fc07edccb8427984f8035238698ef72eec2e))
+* add switch types ([681148a](https://github.com/bluewave-labs/prism-design-system/commit/681148a59d8da75dec02c53c11103abb03ab6e5d))
+* add switch ui ([08dd69e](https://github.com/bluewave-labs/prism-design-system/commit/08dd69ed5f92b9708a35e6e882eb99c345cd916e))
+* add Table story ([c41fa88](https://github.com/bluewave-labs/prism-design-system/commit/c41fa88c9585f4366efc25734a6c49df40d4fb27))
+* add table ui ([d35f18a](https://github.com/bluewave-labs/prism-design-system/commit/d35f18a9349038d7e3a9597255b0c0a7f36f3341))
+* add tabs display ([97e37ce](https://github.com/bluewave-labs/prism-design-system/commit/97e37ce2505fb725bc2e33599355f0fdd2532176))
+* add tabs display ([803ee8d](https://github.com/bluewave-labs/prism-design-system/commit/803ee8dff724d62b8f78f126051f87e9739ab8bb))
+* add Tabs story ([8855604](https://github.com/bluewave-labs/prism-design-system/commit/8855604b623cd3b9b9e50b0e4b2d09cfb153e11a))
+* add tabs ui ([306f24e](https://github.com/bluewave-labs/prism-design-system/commit/306f24ea0badf02e8c4c2c7199781c15479a4691))
+* add variants to component ([b6f4298](https://github.com/bluewave-labs/prism-design-system/commit/b6f4298ac01e8b053fd6dc22ba3e0163dde15a85))
+* create card component ([37f32d5](https://github.com/bluewave-labs/prism-design-system/commit/37f32d5f62211585783a48e61f1c0812e666a736))
+* create component ([13b7e20](https://github.com/bluewave-labs/prism-design-system/commit/13b7e2056620e9122c602dcc41495bee8a4e473c))
+* create component type ([564a82b](https://github.com/bluewave-labs/prism-design-system/commit/564a82b8f154f5f24a59c478b4349377cea425f4))
+* create labeled radio btn ([4f73e60](https://github.com/bluewave-labs/prism-design-system/commit/4f73e603db57b121935d88cd16b7abfe9cc7e875))
+* create modal component ([b6c4ece](https://github.com/bluewave-labs/prism-design-system/commit/b6c4ece734d809fd22fca61261ee41c47973b88d))
+* create select ui ([648eb97](https://github.com/bluewave-labs/prism-design-system/commit/648eb975ecca6ae5711b6700029dd668c551f616))
+* create table component ([ddd51e3](https://github.com/bluewave-labs/prism-design-system/commit/ddd51e3aa235025f0de6a8586cdb5312ab01e3cf))
+* update table component ([fcdfb13](https://github.com/bluewave-labs/prism-design-system/commit/fcdfb13e467c0bd0f0e650b37754caa9b7cfc2dc))
+
 # Changelog
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.

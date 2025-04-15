@@ -1,6 +1,5 @@
 {
-  "name": "@bluewave/prism-ui",
-  "version": "0.1.31",
+  "name": "@bluewavelabs/prism-ui",
   "type": "module",
   "main": "dist/index.cjs",
   "module": "dist/index.js",
@@ -55,7 +54,7 @@
     "lint": "next lint",
     "build:tokens": "npx style-dictionary build --config ./sd.config.json",
     "prepare": "husky",
-    "release": "npm run build:pkg && standard-version",
+    "release": "standard-version",
     "build:pkg": "tsup",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build -o ./docs"
