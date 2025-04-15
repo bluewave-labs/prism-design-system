@@ -34,7 +34,7 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: storybook
-          path: storybook-static
+          path: docs/
 
   release:
     needs: [build, build-storybook]
@@ -62,6 +62,8 @@ jobs:
           cp LICENSE dist/
           # Remove prepare script from package.json
           sed -i '/"prepare": "husky"/d' dist/package.json
+          # Ensure correct package name
+          sed -i 's/"name": "prism-ui"/"name": "@bluewave\/prism-ui"/' dist/package.json
       - uses: actions/upload-artifact@v4
         with:
           name: dist
