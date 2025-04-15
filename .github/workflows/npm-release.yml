@@ -78,11 +78,11 @@ jobs:
           name: dist
           path: dist/
 
-      - name: Commit package.json
-        run: |
-          git add package.json
-          git commit -m "chore: update package.json for version ${{ steps.version.outputs.version }}"
-          git push origin master
+      # - name: Commit package.json
+      #   run: |
+      #     git add package.json
+      #     git commit -m "chore: update package.json for version ${{ steps.version.outputs.version }}"
+      #     git push origin master
 
       - name: Configure npm
         run: |
