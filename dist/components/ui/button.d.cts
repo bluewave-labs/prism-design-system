@@ -4,7 +4,7 @@ import * as class_variance_authority_types from 'class-variance-authority/types'
 import 'react';
 
 declare const buttonVariants: (props?: ({
-    variant?: "default" | "action" | "destructive" | "outline" | "outline_active" | "secondary" | "ghost" | "link" | null | undefined;
+    variant?: "default" | "destructive" | "link" | "action" | "outline" | "outline_active" | "secondary" | "ghost" | null | undefined;
     size?: "default" | "xs" | "sm" | "md" | "lg" | "icon" | null | undefined;
     rounded?: "default" | "sm" | "md" | "lg" | "full" | null | undefined;
 } & class_variance_authority_types.ClassProp) | undefined) => string;

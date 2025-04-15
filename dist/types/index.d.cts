@@ -8,6 +8,7 @@ export { I as ItemNav, a as ItemsNav, S as SidebarProps } from '../sidebar.d-W-h
 export { S as SwitchProps, a as SwitchRef } from '../switch.d-CpMII3k3.cjs';
 export { T as TableProps } from '../table.d-B66iXpKe.cjs';
 export { a as TabsListProps, b as TabsListRef, T as TabsProps, c as TabsTriggerProps, d as TabsTriggerRef } from '../tabs.d-DlQ4xs8S.cjs';
+export { B as BannerProps } from '../banner.d-DfC7hzOt.cjs';
 import 'react';
 import '@radix-ui/react-dialog';
 import '@radix-ui/react-switch';

@@ -537,7 +537,7 @@ var NavRail = ({
       }
     ) }, product.name)) }) }),
     /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(SidebarFooter, { className: "p-0 self-end", children: /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)(SidebarMenu, { className: "flex flex-col items-center justify-center gap-1", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(SidebarMenuItem, { children: /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)(DropdownMenu, { children: [
+      hasNotifications && /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(SidebarMenuItem, { children: /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)(DropdownMenu, { children: [
         /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(DropdownMenuTrigger, { className: "flex items-center justify-center w-8 h-8 md:w-10 md:h-10", children: /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
           "span",
           {
@@ -552,7 +552,7 @@ var NavRail = ({
           DropdownMenuContent,
           {
             className: `w-[--radix-popper-anchor-width] bg-gray-80 text-gray-20 border-transparent`,
-            children: hasNotifications ? notifications.map((notification, index) => /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(DropdownMenuItem, { asChild: true, className: "max-w-64 flex flex-col gap-1 items-start", children: notification }, index)) : /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(DropdownMenuItem, { className: "max-w-64", children: /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("span", { className: "text-gray-40", children: "No notifications" }) })
+            children: notifications.map((notification, index) => /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(DropdownMenuItem, { asChild: true, className: "max-w-64 flex flex-col gap-1 items-start", children: notification }, index))
           }
         )
       ] }) }),
