@@ -3,6 +3,7 @@ import { defineConfig } from 'tsup';
 export default defineConfig({
   entry: [
     'src/index.ts',
+    'src/components/Banner/index.ts',
     'src/components/Button/index.ts',
     'src/components/Sidebar/index.ts',
     'src/components/Sidebar/content.tsx',
@@ -25,6 +26,7 @@ export default defineConfig({
     'src/components/Tabs/index.ts',
     'src/components/Tabs/tabs.tsx',
     'src/components/ui/avatar.tsx',
+    'src/components/ui/alert.tsx',
     'src/components/ui/button.tsx',
     'src/components/ui/card.tsx',
     'src/components/ui/collapsible.tsx',
@@ -53,6 +55,7 @@ export default defineConfig({
   dts: {
     entry: [
       'src/index.ts',
+      'src/components/Banner/index.ts',
       'src/components/Button/index.ts',
       'src/components/Sidebar/index.ts',
       'src/components/Sidebar/content.tsx',
@@ -75,6 +78,7 @@ export default defineConfig({
       'src/components/Tabs/index.ts',
       'src/components/Tabs/tabs.tsx',
       'src/components/ui/avatar.tsx',
+      'src/components/ui/alert.tsx',
       'src/components/ui/button.tsx',
       'src/components/ui/card.tsx',
       'src/components/ui/collapsible.tsx',
