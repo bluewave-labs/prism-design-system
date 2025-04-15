@@ -50,10 +50,10 @@ jobs:
           git config --global user.name "GitHub Actions"
           git config --global user.email "github-actions@github.com"
       - run: npm ci
-      - run: npm run build:pkg
       - run: npm run release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - run: npm run build:pkg
       - name: Prepare dist for publishing
         run: |
           mkdir -p final-dist

@@ -55,7 +55,7 @@
     "lint": "next lint",
     "build:tokens": "npx style-dictionary build --config ./sd.config.json",
     "prepare": "husky",
-    "release": "npm run build:pkg && standard-version",
+    "release": "standard-version",
     "build:pkg": "tsup",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build -o ./docs"
