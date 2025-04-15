@@ -56,14 +56,15 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Prepare dist for publishing
         run: |
-          mkdir -p dist
-          cp package.json dist/
-          cp README.md dist/
-          cp LICENSE dist/
-          # Remove prepare script from package.json
-          sed -i '/"prepare": "husky"/d' dist/package.json
-          # Ensure correct package name
-          sed -i 's/"name": "prism-ui"/"name": "@bluewavelabs\/prism-ui"/' dist/package.json
+          mkdir -p final-dist
+          cp -r dist/* final-dist/
+          cp package.json final-dist/
+          cp README.md final-dist/
+          cp LICENSE final-dist/
+          sed -i '/"prepare": "husky"/d' final-dist/package.json
+          sed -i 's/"name": "prism-ui"/"name": "@bluewavelabs\/prism-ui"/' final-dist/package.json
+          rm -rf dist
+          mv final-dist dist
       - uses: actions/upload-artifact@v4
         with:
           name: dist
@@ -85,6 +86,10 @@ jobs:
           fi
           if [ ! -d "dist/style" ]; then
             echo "Error: style directory is missing from dist directory"
+            exit 1
+          fi
+          if [ ! -f "dist/index.cjs" ]; then
+            echo "Error: index.cjs is missing from dist directory"
             exit 1
           fi
           echo "Dist verification passed"

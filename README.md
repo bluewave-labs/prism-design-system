@@ -1,36 +1,81 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Prism Design System
 
-## Getting Started
+A comprehensive design system by [Uprock](https://uprock.com) that provides a set of reusable components, patterns, and guidelines for building consistent and accessible user interfaces.
 
-First, run the development server:
+## Features
+
+- **Component Library**: A collection of pre-built, customizable UI components
+- **Accessibility**: Built with WCAG compliance in mind
+- **Documentation**: Comprehensive guides and examples
+
+## Installation
 
 ```bash
-npm run dev
+npm install @bluewavelabs/prism-ui
 # or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+yarn add @bluewavelabs/prism-ui
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Usage
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Import Styles
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+First, import the styles in your application's entry file (e.g., `App.tsx`, `main.tsx`, or `index.tsx`).
 
-## Learn More
+```tsx
+// Import complete styles
+import '@bluewavelabs/prism-ui/style';
+```
 
-To learn more about Next.js, take a look at the following resources:
+### Using Components
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```tsx
+import { Button, Card, Input } from '@bluewavelabs/prism-ui';
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+function App() {
+  return (
+    <Card>
+      <Input label="Enter your name" />
+      <Button>Submit</Button>
+    </Card>
+  );
+}
+```
 
-## Deploy on Vercel
+## Available Components
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Button
+- Card
+- Input
+- Select
+- Radio
+- Switch
+- Table
+- Tabs
+- Modal
+- Sidebar
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Documentation
+
+For detailed documentation and examples, visit our [Storybook](https://bluewave-labs.github.io/prism-design-system/?path=/docs/configure-your-project--docs).
+
+## Development
+
+### Local Development
+
+```bash
+# Start Storybook
+npm run storybook
+
+# Build package
+npm run build:pkg
+
+```
+
+## Contributing
+
+We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
