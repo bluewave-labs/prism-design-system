@@ -50,13 +50,39 @@ jobs:
       - run: npm run release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Prepare dist for publishing
+        run: |
+          mkdir -p dist
+          cp package.json dist/
+          cp README.md dist/
+          cp LICENSE dist/
       - uses: actions/upload-artifact@v4
         with:
           name: dist
           path: dist/
 
+  verify-dist:
+    needs: release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist/
+      - name: Verify dist contents
+        run: |
+          if [ ! -f "dist/package.json" ]; then
+            echo "Error: package.json is missing from dist directory"
+            exit 1
+          fi
+          if [ ! -d "dist/style" ]; then
+            echo "Error: style directory is missing from dist directory"
+            exit 1
+          fi
+          echo "Dist verification passed"
+
   publish-npm:
-    needs: [build, build-storybook, release]
+    needs: [build, build-storybook, release, verify-dist]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -71,6 +97,7 @@ jobs:
       - run: |
           npm config set @bluewave:registry https://registry.npmjs.org/
           npm config set //registry.npmjs.org/:_authToken ${{ secrets.npm_token }}
-          npm publish ./dist --access public
+          cd dist
+          npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
