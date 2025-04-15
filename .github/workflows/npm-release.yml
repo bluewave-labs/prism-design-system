@@ -103,7 +103,7 @@ jobs:
           node-version: 20
       - name: Configure npm
         run: |
-          echo "//registry.npmjs.org/:_authToken=${NODE_AUTH_TOKEN}" > .npmrc
+          npm config set //registry.npmjs.org/:_authToken ${{ secrets.npm_token }}
       - run: |
           cd dist
           npm publish --access public --ignore-scripts
