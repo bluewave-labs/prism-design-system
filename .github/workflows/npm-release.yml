@@ -4,7 +4,9 @@
 name: Node.js Package
 
 on:
-  workflow_dispatch:
+  pull_request:
+    branches:
+      - master
   push:
     branches:
       - master
@@ -93,6 +95,7 @@ jobs:
         run: |
           git config --global user.name "GitHub Actions"
           git config --global user.email "github-actions@github.com"
+          git pull origin master
           git add dist/ package.json
           git commit -m "chore: update dist for version ${{ steps.version.outputs.version }}"
           git push origin master
