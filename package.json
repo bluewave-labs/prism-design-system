@@ -5,6 +5,15 @@
   "main": "dist/index.cjs",
   "module": "dist/index.js",
   "types": "dist/index.d.cts",
+  "author": "BlueWave Labs",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
+  },
   "files": [
     "dist"
   ],
@@ -37,15 +46,6 @@
     "ui",
     "components"
   ],
-  "author": "BlueWave Labs",
-  "license": "MIT",
-  "publishConfig": {
-    "access": "public"
-  },
-  "peerDependencies": {
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0"
-  },
   "homepage": "./",
   "scripts": {
     "dev": "next dev --turbopack",

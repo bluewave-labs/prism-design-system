@@ -45,6 +45,10 @@ jobs:
         with:
           node-version: 20
           cache: 'npm'
+      - name: Configure Git
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "github-actions@github.com"
       - run: npm ci
       - run: npm run build:pkg
       - run: npm run release
