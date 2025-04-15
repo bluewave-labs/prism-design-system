@@ -88,6 +88,10 @@ jobs:
             echo "Error: style directory is missing from dist directory"
             exit 1
           fi
+          if [ ! -f "dist/index.cjs" ]; then
+            echo "Error: index.cjs is missing from dist directory"
+            exit 1
+          fi
           echo "Dist verification passed"
 
   publish-npm:
