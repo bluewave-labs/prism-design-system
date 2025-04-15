@@ -97,37 +97,33 @@ const NavRail = ({
       </SidebarContent>
       <SidebarFooter className="p-0 self-end">
         <SidebarMenu className="flex flex-col items-center justify-center gap-1">
-          <SidebarMenuItem>
-            <DropdownMenu>
-              <DropdownMenuTrigger className="flex items-center justify-center w-8 h-8 md:w-10 md:h-10">
-                <span
-                  className={cn(
-                    'relative',
-                    hasNotifications
-                      ? 'before:w-1.5 before:h-1.5 before:bg-[#FFB4AB] before:rounded-full before:-top-0.5 before:-right-0.5 before:absolute'
-                      : ''
-                  )}
+          {hasNotifications && (
+            <SidebarMenuItem>
+              <DropdownMenu>
+                <DropdownMenuTrigger className="flex items-center justify-center w-8 h-8 md:w-10 md:h-10">
+                  <span
+                    className={cn(
+                      'relative',
+                      hasNotifications
+                        ? 'before:w-1.5 before:h-1.5 before:bg-[#FFB4AB] before:rounded-full before:-top-0.5 before:-right-0.5 before:absolute'
+                        : ''
+                    )}
+                  >
+                    <Bell className="text-gray-10" />
+                  </span>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent
+                  className={`w-[--radix-popper-anchor-width] bg-gray-80 text-gray-20 border-transparent`}
                 >
-                  <Bell className="text-gray-10" />
-                </span>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent
-                className={`w-[--radix-popper-anchor-width] bg-gray-80 text-gray-20 border-transparent`}
-              >
-                {hasNotifications ? (
-                  notifications.map((notification, index) => (
+                  {notifications.map((notification, index) => (
                     <DropdownMenuItem asChild key={index} className="max-w-64 flex flex-col gap-1 items-start">
                       {notification}
                     </DropdownMenuItem>
-                  ))
-                ) : (
-                  <DropdownMenuItem className="max-w-64">
-                    <span className="text-gray-40">No notifications</span>
-                  </DropdownMenuItem>
-                )}
-              </DropdownMenuContent>
-            </DropdownMenu>
-          </SidebarMenuItem>
+                  ))}
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </SidebarMenuItem>
+          )}
           <SidebarMenuItem>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>

@@ -50,7 +50,12 @@ const components = [
     href: '/modal',
     title: 'Modal',
     description: 'Modal component',
-  }
+  },
+  {
+    href: '/banner',
+    title: 'Banner',
+    description: 'Banner component',
+  },
 ];
 
 export default function Home() {

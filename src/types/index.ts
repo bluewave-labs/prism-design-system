@@ -9,3 +9,4 @@ export type { ItemNav, ItemsNav, SidebarProps } from './sidebar';
 export type { SwitchProps, SwitchRef } from './switch';
 export type { TableProps } from './table';
 export type { TabsListProps, TabsListRef, TabsProps, TabsTriggerProps, TabsTriggerRef } from './tabs';
+export type { BannerProps } from './banner';
