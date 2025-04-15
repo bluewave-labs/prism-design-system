@@ -4,6 +4,7 @@
 name: Node.js Package
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - master
@@ -35,6 +36,13 @@ jobs:
         with:
           name: storybook
           path: docs/
+      - name: Commit and push docs
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "github-actions@github.com"
+          git add docs/
+          git commit -m "chore: update storybook documentation"
+          git push origin master
 
   release:
     needs: [build, build-storybook]
@@ -81,6 +89,13 @@ jobs:
         with:
           name: dist
           path: dist/
+      - name: Commit and push dist
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "github-actions@github.com"
+          git add dist/ package.json
+          git commit -m "chore: update dist for version ${{ steps.version.outputs.version }}"
+          git push origin master
 
   verify-dist:
     needs: release
