@@ -20,50 +20,38 @@ jobs:
       - run: npm ci
       - run: npm run build
 
-  build-storybook:
+  release:
     needs: build
     runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      NODE_AUTH_TOKEN: ${{secrets.npm_token}}
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: 'npm'
-      - run: npm ci
-      - run: npm run build-storybook
-      - uses: actions/upload-artifact@v4
-        with:
-          name: storybook
-          path: docs/
-      - name: Commit and push docs
-        run: |
-          git config --global user.name "GitHub Actions"
-          git config --global user.email "github-actions@github.com"
-          git add docs/
-          git commit -m "chore: update storybook documentation"
-          git push origin master
+      - name: Checkout
+        uses: actions/checkout@v4
 
-  release:
-    needs: [build, build-storybook]
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: 'npm'
+
       - name: Configure Git
         run: |
           git config --global user.name "GitHub Actions"
           git config --global user.email "github-actions@github.com"
-      - run: npm ci
-      - run: npm run release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Release
+        run: npm run release
+
       - name: Get new version
         id: version
         run: |
           echo "version=$(node -p "require('./package.json').version")" >> $GITHUB_OUTPUT
+
       - name: Update package versions
         run: |
           # Update main package.json
@@ -72,72 +60,35 @@ jobs:
           if [ -f "dist/package.json" ]; then
             sed -i "s/\"version\": \".*\"/\"version\": \"${{ steps.version.outputs.version }}\"/" dist/package.json
           fi
-      - run: npm run build:pkg
+
+      - name: Build package
+        run: npm run build:pkg
+
       - name: Prepare dist for publishing
         run: |
-          mkdir -p final-dist
-          cp -r dist/* final-dist/
-          cp package.json final-dist/
-          cp README.md final-dist/
-          cp LICENSE final-dist/
-          sed -i '/"prepare": "husky"/d' final-dist/package.json
-          sed -i 's/"name": "prism-ui"/"name": "@bluewavelabs\/prism-ui"/' final-dist/package.json
-          rm -rf dist
-          mv final-dist dist
-      - uses: actions/upload-artifact@v4
+          cp package.json dist/
+          cp README.md dist/
+          cp LICENSE dist/
+          sed -i '/"prepare": "husky"/d' dist/package.json
+          sed -i 's/"name": "prism-ui"/"name": "@bluewavelabs\/prism-ui"/' dist/package.json
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
         with:
           name: dist
           path: dist/
-      - name: Commit and push dist
+
+      - name: Commit package.json
         run: |
-          git config --global user.name "GitHub Actions"
-          git config --global user.email "github-actions@github.com"
-          git pull origin master
-          git add dist/ package.json
-          git commit -m "chore: update dist for version ${{ steps.version.outputs.version }}"
+          git add package.json
+          git commit -m "chore: update package.json for version ${{ steps.version.outputs.version }}"
           git push origin master
 
-  verify-dist:
-    needs: release
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/download-artifact@v4
-        with:
-          name: dist
-          path: dist/
-      - name: Verify dist contents
-        run: |
-          if [ ! -f "dist/package.json" ]; then
-            echo "Error: package.json is missing from dist directory"
-            exit 1
-          fi
-          if [ ! -d "dist/style" ]; then
-            echo "Error: style directory is missing from dist directory"
-            exit 1
-          fi
-          if [ ! -f "dist/index.cjs" ]; then
-            echo "Error: index.cjs is missing from dist directory"
-            exit 1
-          fi
-          echo "Dist verification passed"
-
-  publish-npm:
-    needs: [build, build-storybook, release, verify-dist]
-    runs-on: ubuntu-latest
-    env:
-      NODE_AUTH_TOKEN: ${{secrets.npm_token}}
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/download-artifact@v4
-        with:
-          name: dist
-          path: dist/
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 20
       - name: Configure npm
         run: |
           npm config set //registry.npmjs.org/:_authToken ${{ secrets.npm_token }}
-      - run: |
+
+      - name: Publish package
+        run: |
           cd dist
           npm publish --access public --ignore-scripts
