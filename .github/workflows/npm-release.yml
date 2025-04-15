@@ -90,6 +90,8 @@ jobs:
   publish-npm:
     needs: [build, build-storybook, release, verify-dist]
     runs-on: ubuntu-latest
+    env:
+      NODE_AUTH_TOKEN: ${{secrets.npm_token}}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/download-artifact@v4
@@ -99,8 +101,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
+      - name: Configure npm
+        run: |
+          npm config set //registry.npmjs.org/:_authToken ${{ secrets.npm_token }}
       - run: |
           cd dist
           npm publish --access public --ignore-scripts
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.npm_token}}
