@@ -1,3 +1,11 @@
+## [0.3.1](https://github.com/bluewave-labs/prism-design-system/compare/v0.3.0...v0.3.1) (2025-04-15)
+
+
+### Bug Fixes
+
+* add the rest of the button variants on the sories ([08bf21a](https://github.com/bluewave-labs/prism-design-system/commit/08bf21a10f693072a1fe76527c345eda371df19a))
+* fix notification behaviour on nav rail ([f7d31b7](https://github.com/bluewave-labs/prism-design-system/commit/f7d31b76e1ab6b5b617e47e33e22a1e7368fa124))
+
 # [0.3.0](https://github.com/bluewave-labs/prism-design-system/compare/v0.2.0...v0.3.0) (2025-04-15)
 
 

@@ -1389,7 +1389,7 @@ var NavRail = ({
       }
     ) }, product.name)) }) }),
     /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(SidebarFooter, { className: "p-0 self-end", children: /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)(SidebarMenu, { className: "flex flex-col items-center justify-center gap-1", children: [
-      hasNotifications && /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(SidebarMenuItem, { children: /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)(DropdownMenu, { children: [
+      hasNotifications ? /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(SidebarMenuItem, { children: /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)(DropdownMenu, { children: [
         /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(DropdownMenuTrigger, { className: "flex items-center justify-center w-8 h-8 md:w-10 md:h-10", children: /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(
           "span",
           {
@@ -1407,7 +1407,7 @@ var NavRail = ({
             children: notifications.map((notification, index) => /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(DropdownMenuItem, { asChild: true, className: "max-w-64 flex flex-col gap-1 items-start", children: notification }, index))
           }
         )
-      ] }) }),
+      ] }) }) : null,
       /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(SidebarMenuItem, { children: /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)(DropdownMenu, { children: [
         /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(DropdownMenuTrigger, { asChild: true, children: /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("div", { className: "flex items-center justify-center", children: user ? /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)(Avatar, { children: [
           /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(AvatarImage, { src: user.image, className: "w-8 h-8 rounded-full" }),
