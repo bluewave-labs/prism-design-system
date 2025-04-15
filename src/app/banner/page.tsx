@@ -50,17 +50,8 @@ const options: {
   },
 ];
 
-const propTypes = `interface TabsProps {
-  tabsList: {
-    value: string;
-    label: string;
-    content: ReactNode;
-  }[];
-  defaultValue?: string;
-  variant?: 'default' | 'pill' | 'tab';
-  className?: string;
-  contentClassName?: string;
-  tabsListClassName?: string;
+const propTypes = `interface BannerProps extends React.HTMLAttributes<HTMLDivElement> {
+  variant?: 'default' | 'destructive' | 'closeable';
 }`;
 
 export default function Home() {
