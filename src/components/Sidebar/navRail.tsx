@@ -97,7 +97,7 @@ const NavRail = ({
       </SidebarContent>
       <SidebarFooter className="p-0 self-end">
         <SidebarMenu className="flex flex-col items-center justify-center gap-1">
-          {hasNotifications && (
+          {hasNotifications ? (
             <SidebarMenuItem>
               <DropdownMenu>
                 <DropdownMenuTrigger className="flex items-center justify-center w-8 h-8 md:w-10 md:h-10">
@@ -123,7 +123,7 @@ const NavRail = ({
                 </DropdownMenuContent>
               </DropdownMenu>
             </SidebarMenuItem>
-          )}
+          ): null}
           <SidebarMenuItem>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
