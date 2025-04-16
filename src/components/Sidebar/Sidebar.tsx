@@ -19,7 +19,16 @@ export const AppSidebar = ({ product = 'Example', nav, footer, notifications, lo
     }
   }, [pathname]);
 
-  return isMobile ? (
+  return !isMobile ? (
+    <div className="flex" suppressHydrationWarning>
+      <NavRail notifications={notifications} logOut={logOut} user={user} />
+      <Sidebar collapsible="icon">
+        <Header product={product} />
+        <Content nav={nav} />
+        <SidebarFooter>{footer ?? null}</SidebarFooter>
+      </Sidebar>
+    </div>
+  ) : (
     <Sidebar
       suppressHydrationWarning
       header={
@@ -50,15 +59,6 @@ export const AppSidebar = ({ product = 'Example', nav, footer, notifications, lo
         </div>
       </div>
     </Sidebar>
-  ) : (
-    <div className="flex" suppressHydrationWarning>
-      <NavRail notifications={notifications} logOut={logOut} user={user} />
-      <Sidebar collapsible="icon">
-        <Header product={product} />
-        <Content nav={nav} />
-        <SidebarFooter>{footer ?? null}</SidebarFooter>
-      </Sidebar>
-    </div>
   );
 };
 
