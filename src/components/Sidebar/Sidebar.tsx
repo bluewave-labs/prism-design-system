@@ -21,6 +21,7 @@ export const AppSidebar = ({ product = 'Example', nav, footer, notifications, lo
 
   return isMobile ? (
     <Sidebar
+      suppressHydrationWarning
       header={
         <div
           className={cn(
@@ -50,7 +51,7 @@ export const AppSidebar = ({ product = 'Example', nav, footer, notifications, lo
       </div>
     </Sidebar>
   ) : (
-    <div className="flex">
+    <div className="flex" suppressHydrationWarning>
       <NavRail notifications={notifications} logOut={logOut} user={user} />
       <Sidebar collapsible="icon">
         <Header product={product} />
