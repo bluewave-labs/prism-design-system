@@ -9,7 +9,7 @@ import Content from './content';
 import Header from './header';
 import NavRail from './navRail';
 
-export const AppSidebar = ({ product = 'Example', nav, footer, notifications, fallbackUser }: SidebarProps) => {
+export const AppSidebar = ({ product = 'Example', nav, footer, notifications, logOut, user }: SidebarProps) => {
   const { isMobile, setOpenMobile } = useSidebar();
   const pathname = usePathname();
 
@@ -41,7 +41,7 @@ export const AppSidebar = ({ product = 'Example', nav, footer, notifications, fa
       }
     >
       <div className="flex">
-        <NavRail notifications={notifications} fallbackUser={fallbackUser} />
+        <NavRail notifications={notifications} logOut={logOut} user={user} />
         <div className="flex flex-col w-full bg-linear-180 from-blue-105/80 to-blue-115/80 backdrop-blur-xl">
           <Header product={product} />
           <Content nav={nav} />
@@ -51,7 +51,7 @@ export const AppSidebar = ({ product = 'Example', nav, footer, notifications, fa
     </Sidebar>
   ) : (
     <div className="flex">
-      <NavRail notifications={notifications} fallbackUser={fallbackUser} />
+      <NavRail notifications={notifications} logOut={logOut} user={user} />
       <Sidebar collapsible="icon">
         <Header product={product} />
         <Content nav={nav} />

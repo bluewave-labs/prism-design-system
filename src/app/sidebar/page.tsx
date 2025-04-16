@@ -91,6 +91,14 @@ const notifications = [
 
 type OptionsType = 'complete' | 'no-footer' | 'no-label' | 'no-collapsable' | 'more-categories' | 'no-notifications';
 
+const user = {
+  user_id: '1',
+  full_name: 'John Doe',
+  email: 'john.doe@email.com',
+  image: 'https://placecats.com/32/32',
+  username: 'john_doe',
+};
+
 const baseProps: SidebarProps = {
   product: 'RockScraper',
   nav: [
@@ -101,6 +109,8 @@ const baseProps: SidebarProps = {
   ],
   footer: <Footer />,
   notifications,
+  logOut: () => {},
+  user,
 };
 
 const options: { option: OptionsType; text: string; prop: (val: SidebarProps) => SidebarProps }[] = [

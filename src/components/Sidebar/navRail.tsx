@@ -3,7 +3,7 @@ import { Bell, Globe, Home, MonitorUp } from 'lucide-react';
 import Link from 'next/link';
 import { ReactNode, useEffect, useState } from 'react';
 import { cn } from '../../lib/utils';
-import { User } from '../../types/sidebar';
+import { NavRailProps, User } from '../../types/sidebar';
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '../ui/dropdown-menu';
 import {
@@ -17,7 +17,6 @@ import {
   SidebarTrigger,
   useSidebar,
 } from '../ui/sidebar';
-import { getUser, logOut } from './server-functions';
 
 const DASHBOARD_URL = 'https://prism.uprockstaging.com/console';
 
@@ -34,29 +33,12 @@ const products = [
   },
 ];
 
-const NavRail = ({
-  notifications,
-  fallbackUser,
-}: {
-  notifications?: ReactNode[];
-  fallbackUser?: () => Promise<User>;
-}) => {
+const NavRail = ({ notifications, user, logOut }: NavRailProps) => {
   const [url, setUrl] = useState<string | null>(null);
-  const [user, setUser] = useState<User | null>(null);
   const { isMobile } = useSidebar();
-
-  const findUser = async () => {
-    const cookieUser = await (fallbackUser ? fallbackUser() : getUser());
-    if (cookieUser) {
-      setUser(cookieUser);
-    } else {
-      window.location.href = DASHBOARD_URL;
-    }
-  };
 
   useEffect(() => {
     setUrl(window.location.href);
-    findUser();
   }, []);
 
   const hasNotifications = notifications?.length && notifications.length > 0;
@@ -123,14 +105,14 @@ const NavRail = ({
                 </DropdownMenuContent>
               </DropdownMenu>
             </SidebarMenuItem>
-          ): null}
+          ) : null}
           <SidebarMenuItem>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <div className="flex items-center justify-center">
                   {user ? (
                     <Avatar>
-                      <AvatarImage src={user.image} className="w-8 h-8 rounded-full" />
+                      <AvatarImage src={user.image ?? undefined} className="w-8 h-8 rounded-full" />
                       <AvatarFallback>{user.username[0].toUpperCase()}</AvatarFallback>
                     </Avatar>
                   ) : (
@@ -145,11 +127,7 @@ const NavRail = ({
                 side="top"
                 className={`w-[--radix-popper-anchor-width] bg-gray-80 text-gray-20 border-transparent`}
               >
-                <DropdownMenuItem
-                  onClick={() => {
-                    logOut().then(() => (window.location.href = `https://prism.uprockstaging.com/auth/register`));
-                  }}
-                >
+                <DropdownMenuItem onClick={logOut}>
                   <span>Sign out</span>
                 </DropdownMenuItem>
               </DropdownMenuContent>
