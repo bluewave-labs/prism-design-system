@@ -10,7 +10,7 @@ import {
   TableRow,
 } from '../ui/table';
 
-export function Table<TData, TValue>({ columns, data, className }: TableProps<TData, TValue>) {
+export function Table<TData, TValue>({ columns, data, className, onRowClick }: TableProps<TData, TValue>) {
   const table = useReactTable({
     data,
     columns,
@@ -35,7 +35,11 @@ export function Table<TData, TValue>({ columns, data, className }: TableProps<TD
       <TableBody>
         {table.getRowModel().rows?.length ? (
           table.getRowModel().rows.map((row) => (
-            <TableRow key={row.id} data-state={row.getIsSelected() && 'selected'}>
+            <TableRow
+              key={row.id}
+              data-state={row.getIsSelected() && 'selected'}
+              onClick={() => onRowClick?.(row.original)}
+            >
               {row.getVisibleCells().map((cell) => (
                 <TableCell key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</TableCell>
               ))}
