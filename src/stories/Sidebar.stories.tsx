@@ -4,13 +4,13 @@ import { BookOpen, Bot, Settings2, SquareTerminal } from 'lucide-react';
 import { AppSidebar, SidebarProvider } from '../components';
 import '../style/globals.css';
 
-const fallbackUser = async () => ({
+const user = {
   user_id: '1',
   full_name: 'John Doe',
   email: 'john.doe@email.com',
   image: '',
   username: 'john_doe',
-});
+};
 
 const items_nav = [
   {
@@ -112,7 +112,7 @@ const meta: Meta<typeof AppSidebar> = {
       control: 'object',
       description: 'The navigation items.',
       table: {
-        type: { summary: 'Array<{ title: string, url: string, icon: ReactNode }>' },
+        type: { summary: 'Array<{label: string, items: Array<{ title: string, url: string, icon: ReactNode }>}>' },
         defaultValue: { summary: '[]' },
       },
     },
@@ -131,6 +131,20 @@ const meta: Meta<typeof AppSidebar> = {
         defaultValue: { summary: '[]' },
       },
     },
+    logOut: {
+      control: { accept: 'function' },
+      description: 'The function to be called when the user logs out.',
+      table: {
+        type: { summary: '() => void' },
+      },
+    },
+    user: {
+      control: 'object',
+      description: 'The user to be displayed in the NavRail.',
+      table: {
+        type: { summary: 'Object' },
+      },
+    },
   },
   args: {
     product: 'Product Name',
@@ -141,10 +155,12 @@ const meta: Meta<typeof AppSidebar> = {
       },
     ],
     notifications,
+    logOut: () => {},
+    user,
   },
   render: (args) => (
     <SidebarProvider>
-      <AppSidebar fallbackUser={fallbackUser} {...args} />
+      <AppSidebar {...args} />
     </SidebarProvider>
   ),
 };
@@ -194,4 +210,3 @@ export const NoNotifications: Story = {
     notifications: [],
   },
 };
-
