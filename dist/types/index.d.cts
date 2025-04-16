@@ -4,7 +4,7 @@ export { I as InputProps } from '../input.d-DIZqsASn.cjs';
 export { D as DialogContentProps, a as DialogContentRef, M as ModalProps } from '../modal.d-BBt8gctR.cjs';
 export { R as RadioProps } from '../radio.d-yFrftUGC.cjs';
 export { S as SelectProps } from '../select.d-DbL1blL_.cjs';
-export { I as ItemNav, a as ItemsNav, S as SidebarProps } from '../sidebar.d-W-hqk5lK.cjs';
+export { I as ItemNav, a as ItemsNav, S as SidebarProps } from '../sidebar.d-DD1vNnwR.cjs';
 export { S as SwitchProps, a as SwitchRef } from '../switch.d-CpMII3k3.cjs';
 export { T as TableProps } from '../table.d-B66iXpKe.cjs';
 export { a as TabsListProps, b as TabsListRef, T as TabsProps, c as TabsTriggerProps, d as TabsTriggerRef } from '../tabs.d-DlQ4xs8S.cjs';

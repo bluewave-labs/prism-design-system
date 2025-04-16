@@ -4,7 +4,7 @@ type User = {
   email: string;
   image?: string;
   username: string;
-}
+};
 
 type ItemNav = {
   title: string;
@@ -18,12 +18,16 @@ type ItemsNav = {
   items: ItemNav[];
 }[];
 
-type SidebarProps = {
+type NavRailProps = {
+  notifications?: ReactNode[];
+  user?: User;
+  logOut: () => void;
+};
+
+type SidebarProps = NavRailProps & {
   product?: string;
   nav: ItemsNav;
   footer?: ReactNode;
-  notifications?: ReactNode[];
-  fallbackUser?: () => Promise<User>;
 };
 
-export type { ItemNav as I, SidebarProps as S, User as U, ItemsNav as a };
+export type { ItemNav as I, NavRailProps as N, SidebarProps as S, ItemsNav as a };

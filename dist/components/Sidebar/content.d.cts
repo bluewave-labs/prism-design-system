@@ -1,5 +1,5 @@
 import * as react_jsx_runtime from 'react/jsx-runtime';
-import { a as ItemsNav } from '../../sidebar.d-W-hqk5lK.cjs';
+import { a as ItemsNav } from '../../sidebar.d-DD1vNnwR.cjs';
 
 declare const Content: ({ nav }: {
     nav?: ItemsNav;

@@ -1,4 +1,4 @@
-export { S as SidebarProps } from '../../sidebar.d-W-hqk5lK.cjs';
+export { S as SidebarProps } from '../../sidebar.d-DD1vNnwR.cjs';
 import * as class_variance_authority_types from 'class-variance-authority/types';
 import * as react_jsx_runtime from 'react/jsx-runtime';
 import { VariantProps } from 'class-variance-authority';

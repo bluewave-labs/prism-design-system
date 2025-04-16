@@ -1,3 +1,10 @@
+## [0.3.2](https://github.com/bluewave-labs/prism-design-system/compare/v0.3.1...v0.3.2) (2025-04-16)
+
+
+### Bug Fixes
+
+* remove user logic from navRail component ([e86a698](https://github.com/bluewave-labs/prism-design-system/commit/e86a6984325d839ff6601be67ccc9ef690cc181a))
+
 ## [0.3.1](https://github.com/bluewave-labs/prism-design-system/compare/v0.3.0...v0.3.1) (2025-04-15)
 
 

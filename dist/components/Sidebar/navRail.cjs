@@ -458,30 +458,6 @@ function SidebarMenuButton(_a) {
   ] });
 }
 
-// src/components/Sidebar/server-functions.ts
-var import_jsonwebtoken = __toESM(require("jsonwebtoken"), 1);
-var import_headers = require("next/headers");
-var logOut = async () => {
-  console.log("Logging out");
-};
-var getUser = async () => {
-  const token = (await (0, import_headers.cookies)()).get("access_token");
-  if (!token) {
-    return null;
-  }
-  try {
-    const decodeUser = import_jsonwebtoken.default.verify(token.value, process.env.JWT_SECRET || "your_secret_key");
-    if (!decodeUser) {
-      return null;
-    }
-    const _a = decodeUser, { exp } = _a, user = __objRest(_a, ["exp"]);
-    return user;
-  } catch (error) {
-    console.error("Error verifying token:", error);
-    return null;
-  }
-};
-
 // src/components/Sidebar/navRail.tsx
 var import_jsx_runtime6 = require("react/jsx-runtime");
 var DASHBOARD_URL = "https://prism.uprockstaging.com/console";
@@ -497,24 +473,12 @@ var products = [
     url: "https://rockscraper.uprockstaging.com/dashboard"
   }
 ];
-var NavRail = ({
-  notifications,
-  fallbackUser
-}) => {
+var NavRail = ({ notifications, user, logOut }) => {
+  var _a;
   const [url, setUrl] = (0, import_react.useState)(null);
-  const [user, setUser] = (0, import_react.useState)(null);
   const { isMobile } = useSidebar();
-  const findUser = async () => {
-    const cookieUser = await (fallbackUser ? fallbackUser() : getUser());
-    if (cookieUser) {
-      setUser(cookieUser);
-    } else {
-      window.location.href = DASHBOARD_URL;
-    }
-  };
   (0, import_react.useEffect)(() => {
     setUrl(window.location.href);
-    findUser();
   }, []);
   const hasNotifications = (notifications == null ? void 0 : notifications.length) && notifications.length > 0;
   return /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)(SidebarRail, { children: [
@@ -558,7 +522,7 @@ var NavRail = ({
       ] }) }) : null,
       /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(SidebarMenuItem, { children: /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)(DropdownMenu, { children: [
         /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(DropdownMenuTrigger, { asChild: true, children: /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("div", { className: "flex items-center justify-center", children: user ? /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)(Avatar, { children: [
-          /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(AvatarImage, { src: user.image, className: "w-8 h-8 rounded-full" }),
+          /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(AvatarImage, { src: (_a = user.image) != null ? _a : void 0, className: "w-8 h-8 rounded-full" }),
           /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(AvatarFallback, { children: user.username[0].toUpperCase() })
         ] }) : /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)(Avatar, { children: [
           /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(AvatarImage, { src: "https://placecats.com/32/32", className: "w-8 h-8 rounded-full" }),
@@ -569,15 +533,7 @@ var NavRail = ({
           {
             side: "top",
             className: `w-[--radix-popper-anchor-width] bg-gray-80 text-gray-20 border-transparent`,
-            children: /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
-              DropdownMenuItem,
-              {
-                onClick: () => {
-                  logOut().then(() => window.location.href = `https://prism.uprockstaging.com/auth/register`);
-                },
-                children: /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("span", { children: "Sign out" })
-              }
-            )
+            children: /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(DropdownMenuItem, { onClick: logOut, children: /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("span", { children: "Sign out" }) })
           }
         )
       ] }) })
