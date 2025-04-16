@@ -120,6 +120,13 @@ const meta: Meta<TableProps<TData, TData>> = {
         type: { summary: 'string' },
       },
     },
+    onRowClick: {
+      control: { accept: 'function' },
+      description: 'The function to be called when a row is clicked',
+      table: {
+        type: { summary: '() => void' },
+      },
+    },
   },
   args: {
     columns,
