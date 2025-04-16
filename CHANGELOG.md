@@ -1,3 +1,10 @@
+## [0.4.1](https://github.com/bluewave-labs/prism-design-system/compare/v0.4.0...v0.4.1) (2025-04-16)
+
+
+### Bug Fixes
+
+* fix sidebar rendering ([1d4b23b](https://github.com/bluewave-labs/prism-design-system/commit/1d4b23bb0b869af27a0180dfc25b17afc0f3d1da))
+
 # [0.4.0](https://github.com/bluewave-labs/prism-design-system/compare/v0.3.2...v0.4.0) (2025-04-16)
 
 

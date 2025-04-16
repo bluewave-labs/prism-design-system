@@ -390,7 +390,7 @@ function Sidebar(_a) {
   return /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)(
     "div",
     {
-      className: "group peer hidden md:block",
+      className: "group peer block",
       "data-state": state,
       "data-collapsible": state === "collapsed" ? collapsible : "",
       "data-variant": variant,
@@ -915,9 +915,17 @@ var AppSidebar = ({ product = "Example", nav, footer, notifications, logOut, use
       setOpenMobile(false);
     }
   }, [pathname]);
-  return isMobile ? /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(
+  return !isMobile ? /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("div", { className: "flex", suppressHydrationWarning: true, children: [
+    /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(navRail_default, { notifications, logOut, user }),
+    /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)(Sidebar, { collapsible: "icon", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(header_default, { product }),
+      /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(content_default, { nav }),
+      /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(SidebarFooter, { children: footer != null ? footer : null })
+    ] })
+  ] }) : /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(
     Sidebar,
     {
+      suppressHydrationWarning: true,
       header: /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)(
         "div",
         {
@@ -940,14 +948,7 @@ var AppSidebar = ({ product = "Example", nav, footer, notifications, logOut, use
         ] })
       ] })
     }
-  ) : /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("div", { className: "flex", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(navRail_default, { notifications, logOut, user }),
-    /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)(Sidebar, { collapsible: "icon", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(header_default, { product }),
-      /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(content_default, { nav }),
-      /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(SidebarFooter, { children: footer != null ? footer : null })
-    ] })
-  ] });
+  );
 };
 var Sidebar_default = AppSidebar;
 // Annotate the CommonJS export names for ESM import in node:
