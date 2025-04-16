@@ -142,7 +142,7 @@ function TableCell(_a) {
 
 // src/components/Table/table.tsx
 var import_jsx_runtime2 = require("react/jsx-runtime");
-function Table2({ columns, data, className }) {
+function Table2({ columns, data, className, onRowClick }) {
   var _a;
   const table = (0, import_react_table.useReactTable)({
     data,
@@ -153,7 +153,15 @@ function Table2({ columns, data, className }) {
     /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(TableHeader, { children: table.getHeaderGroups().map((headerGroup) => /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(TableHeaderRow, { children: headerGroup.headers.map((header) => {
       return /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(TableHead, { children: header.isPlaceholder ? null : (0, import_react_table.flexRender)(header.column.columnDef.header, header.getContext()) }, header.id);
     }) }, headerGroup.id)) }),
-    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(TableBody, { children: ((_a = table.getRowModel().rows) == null ? void 0 : _a.length) ? table.getRowModel().rows.map((row) => /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(TableRow, { "data-state": row.getIsSelected() && "selected", children: row.getVisibleCells().map((cell) => /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(TableCell, { children: (0, import_react_table.flexRender)(cell.column.columnDef.cell, cell.getContext()) }, cell.id)) }, row.id)) : /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(TableRow, { children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(TableCell, { colSpan: columns.length, className: "h-24 text-center", children: "No results." }) }) })
+    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(TableBody, { children: ((_a = table.getRowModel().rows) == null ? void 0 : _a.length) ? table.getRowModel().rows.map((row) => /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
+      TableRow,
+      {
+        "data-state": row.getIsSelected() && "selected",
+        onClick: () => onRowClick == null ? void 0 : onRowClick(row.original),
+        children: row.getVisibleCells().map((cell) => /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(TableCell, { children: (0, import_react_table.flexRender)(cell.column.columnDef.cell, cell.getContext()) }, cell.id))
+      },
+      row.id
+    )) : /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(TableRow, { children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(TableCell, { colSpan: columns.length, className: "h-24 text-center", children: "No results." }) }) })
   ] });
 }
 // Annotate the CommonJS export names for ESM import in node:
