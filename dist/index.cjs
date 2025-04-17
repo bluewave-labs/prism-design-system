@@ -2446,7 +2446,8 @@ PaginationEllipsis.displayName = "PaginationEllipsis";
 
 // src/components/Pagination/pagination.tsx
 var import_jsx_runtime30 = require("react/jsx-runtime");
-var Pagination2 = ({ currentPage, totalPages, onPageChange }) => {
+var Pagination2 = (_a) => {
+  var _b = _a, { currentPage, totalPages, onPageChange, className } = _b, props = __objRest(_b, ["currentPage", "totalPages", "onPageChange", "className"]);
   const showPrevious = currentPage > 1;
   const showNext = currentPage < totalPages;
   const renderPageNumbers = () => {
@@ -2479,11 +2480,11 @@ var Pagination2 = ({ currentPage, totalPages, onPageChange }) => {
     }
     return pages;
   };
-  return /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(Pagination, { children: /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)(PaginationContent, { children: [
+  return /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(Pagination, __spreadProps(__spreadValues({ className }, props), { children: /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)(PaginationContent, { children: [
     showPrevious ? /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(PaginationItem, { children: /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(PaginationPrevious, { href: "#", onClick: () => onPageChange(currentPage - 1) }) }) : null,
     renderPageNumbers(),
     showNext ? /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(PaginationItem, { children: /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(PaginationNext, { href: "#", onClick: () => onPageChange(currentPage + 1) }) }) : null
-  ] }) });
+  ] }) }));
 };
 
 // src/style/colors.ts

@@ -1,3 +1,10 @@
+## [0.5.1](https://github.com/bluewave-labs/prism-design-system/compare/v0.5.0...v0.5.1) (2025-04-17)
+
+
+### Bug Fixes
+
+* update pagination props ([179bf42](https://github.com/bluewave-labs/prism-design-system/commit/179bf424306358dcea56ba186872d6f1ab6f605a))
+
 # [0.5.0](https://github.com/bluewave-labs/prism-design-system/compare/v0.4.1...v0.5.0) (2025-04-17)
 
 
