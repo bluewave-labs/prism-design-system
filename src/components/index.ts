@@ -9,6 +9,7 @@ export * from './Sidebar';
 export * from './Switch';
 export * from './Table';
 export * from './Tabs';
+export * from './Pagination';
 
 export * from './ui/avatar';
 export * from './ui/collapsible';
