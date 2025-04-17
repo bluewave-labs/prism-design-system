@@ -97,6 +97,7 @@ __export(index_exports, {
   DropdownMenuTrigger: () => DropdownMenuTrigger,
   Input: () => Input,
   Modal: () => Modal,
+  Pagination: () => Pagination2,
   Radio: () => Radio,
   RadioBtn: () => RadioBtn,
   Select: () => Select,
@@ -383,10 +384,10 @@ var import_jsx_runtime5 = require("react/jsx-runtime");
 var inputVariants = (0, import_class_variance_authority4.cva)("", {
   variants: {
     variant: {
-      default: "text-gray-10 placeholder:text-gray-20 bg-transparent grow text-sm shadow-xs outline-none focus-visible:ring-none pt-4",
-      icon: "flex items-center justify-center bg-gray-40/12 border-gray-0/20 w-full min-w-0 rounded-md border-[0.5px] px-2 py-2 text-sm shadow-xs transition-[color,box-shadow] aria-invalid:border-red-800 h-14 text-gray-10 placeholder:text-gray-20 outline-none focus-visible:ring-[0.5px] focus-visible:ring-gray-0/10 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-0/8",
-      "label-out": "bg-gray-40/12 border-gray-0/20 w-full min-w-0 rounded-md border-[0.5px] px-2 py-2 text-sm shadow-xs transition-[color,box-shadow] aria-invalid:border-red-800 h-14 text-gray-10 placeholder:text-gray-20 grow outline-none focus-visible:ring-[1px] focus-visible:ring-gray-0/10 focus-visible:ring-offset-1 focus-visible:ring-offset-gray-0/8 disabled:opacity-50 disabled:pointer-events-none disabled:cursor-not-allowed",
-      "no-label": "bg-gray-40/12 border-gray-0/20 w-full min-w-0 rounded-md border-[0.5px] px-2 py-2 text-sm shadow-xs transition-[color,box-shadow] aria-invalid:border-red-800 h-14 text-gray-10 placeholder:text-gray-20 outline-none focus-visible:ring-[0.5px] focus-visible:ring-gray-0/10 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-0/8 disabled:opacity-50 disabled:pointer-events-none disabled:cursor-not-allowed"
+      default: "[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none text-gray-10 placeholder:text-gray-20 bg-transparent grow text-sm shadow-xs outline-none focus-visible:ring-none pt-4",
+      icon: "[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none flex items-center justify-center bg-gray-40/12 border-gray-0/20 w-full min-w-0 rounded-md border-[0.5px] px-2 py-2 text-sm shadow-xs transition-[color,box-shadow] aria-invalid:border-red-800 h-14 text-gray-10 placeholder:text-gray-20 outline-none focus-visible:ring-[0.5px] focus-visible:ring-gray-0/10 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-0/8",
+      "label-out": "[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none bg-gray-40/12 border-gray-0/20 w-full min-w-0 rounded-md border-[0.5px] px-2 py-2 text-sm shadow-xs transition-[color,box-shadow] aria-invalid:border-red-800 h-14 text-gray-10 placeholder:text-gray-20 grow outline-none focus-visible:ring-[1px] focus-visible:ring-gray-0/10 focus-visible:ring-offset-1 focus-visible:ring-offset-gray-0/8 disabled:opacity-50 disabled:pointer-events-none disabled:cursor-not-allowed",
+      "no-label": "[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none bg-gray-40/12 border-gray-0/20 w-full min-w-0 rounded-md border-[0.5px] px-2 py-2 text-sm shadow-xs transition-[color,box-shadow] aria-invalid:border-red-800 h-14 text-gray-10 placeholder:text-gray-20 outline-none focus-visible:ring-[0.5px] focus-visible:ring-gray-0/10 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-0/8 disabled:opacity-50 disabled:pointer-events-none disabled:cursor-not-allowed"
     },
     error: {
       true: "border-red-800",
@@ -2371,6 +2372,120 @@ var Tabs2 = (_a) => {
   ] }));
 };
 
+// src/components/ui/pagination.tsx
+var import_lucide_react9 = require("lucide-react");
+var React8 = __toESM(require("react"), 1);
+var import_link3 = __toESM(require("next/link"), 1);
+var import_jsx_runtime29 = require("react/jsx-runtime");
+var Pagination = (_a) => {
+  var _b = _a, { className } = _b, props = __objRest(_b, ["className"]);
+  return /* @__PURE__ */ (0, import_jsx_runtime29.jsx)(
+    "nav",
+    __spreadValues({
+      role: "navigation",
+      "aria-label": "pagination",
+      className: cn("mx-auto flex w-full justify-center", className)
+    }, props)
+  );
+};
+Pagination.displayName = "Pagination";
+var PaginationContent = React8.forwardRef(
+  (_a, ref) => {
+    var _b = _a, { className } = _b, props = __objRest(_b, ["className"]);
+    return /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("ul", __spreadValues({ ref, className: cn("flex flex-row items-center gap-1", className) }, props));
+  }
+);
+PaginationContent.displayName = "PaginationContent";
+var PaginationItem = React8.forwardRef((_a, ref) => {
+  var _b = _a, { className } = _b, props = __objRest(_b, ["className"]);
+  return /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("li", __spreadValues({ ref, className: cn("", className) }, props));
+});
+PaginationItem.displayName = "PaginationItem";
+var PaginationLink = (_a) => {
+  var _b = _a, { className, isActive, size = "icon" } = _b, props = __objRest(_b, ["className", "isActive", "size"]);
+  return /* @__PURE__ */ (0, import_jsx_runtime29.jsx)(
+    import_link3.default,
+    __spreadValues({
+      "aria-current": isActive ? "page" : void 0,
+      className: cn(
+        buttonVariants({
+          variant: isActive ? "outline" : "ghost",
+          size,
+          rounded: "md"
+        }),
+        className
+      )
+    }, props)
+  );
+};
+PaginationLink.displayName = "PaginationLink";
+var PaginationPrevious = (_a) => {
+  var _b = _a, { className } = _b, props = __objRest(_b, ["className"]);
+  return /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)(PaginationLink, __spreadProps(__spreadValues({ "aria-label": "Go to previous page", size: "default", className: cn("gap-1 pl-2.5", className) }, props), { children: [
+    /* @__PURE__ */ (0, import_jsx_runtime29.jsx)(import_lucide_react9.ChevronLeft, { className: "h-4 w-4" }),
+    /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("span", { className: "sr-only", children: "Previous" })
+  ] }));
+};
+PaginationPrevious.displayName = "PaginationPrevious";
+var PaginationNext = (_a) => {
+  var _b = _a, { className } = _b, props = __objRest(_b, ["className"]);
+  return /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)(PaginationLink, __spreadProps(__spreadValues({ "aria-label": "Go to next page", size: "default", className: cn("gap-1 pr-2.5", className) }, props), { children: [
+    /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("span", { className: "sr-only", children: "Next" }),
+    /* @__PURE__ */ (0, import_jsx_runtime29.jsx)(import_lucide_react9.ChevronRight, { className: "h-4 w-4" })
+  ] }));
+};
+PaginationNext.displayName = "PaginationNext";
+var PaginationEllipsis = (_a) => {
+  var _b = _a, { className } = _b, props = __objRest(_b, ["className"]);
+  return /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)("span", __spreadProps(__spreadValues({ "aria-hidden": true, className: cn("flex h-9 w-9 items-center justify-center", className) }, props), { children: [
+    /* @__PURE__ */ (0, import_jsx_runtime29.jsx)(import_lucide_react9.MoreHorizontal, { className: "h-4 w-4" }),
+    /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("span", { className: "sr-only", children: "More pages" })
+  ] }));
+};
+PaginationEllipsis.displayName = "PaginationEllipsis";
+
+// src/components/Pagination/pagination.tsx
+var import_jsx_runtime30 = require("react/jsx-runtime");
+var Pagination2 = ({ currentPage, totalPages, onPageChange }) => {
+  const showPrevious = currentPage > 1;
+  const showNext = currentPage < totalPages;
+  const renderPageNumbers = () => {
+    const pages = [];
+    pages.push(
+      /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(PaginationItem, { children: /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(PaginationLink, { href: "#", isActive: 1 === currentPage, onClick: () => onPageChange(1), children: "1" }) }, 1)
+    );
+    const range = 1;
+    const start = Math.max(2, currentPage - range);
+    const end = Math.min(totalPages - 1, currentPage + range);
+    if (start > 2) {
+      pages.push(
+        /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(PaginationItem, { children: /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(PaginationEllipsis, {}) }, "ellipsis-start")
+      );
+    }
+    for (let i = start; i <= end; i++) {
+      pages.push(
+        /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(PaginationItem, { children: /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(PaginationLink, { href: "#", isActive: i === currentPage, onClick: () => onPageChange(i), children: i }) }, i)
+      );
+    }
+    if (end < totalPages - 1) {
+      pages.push(
+        /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(PaginationItem, { children: /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(PaginationEllipsis, {}) }, "ellipsis-end")
+      );
+    }
+    if (totalPages > 1) {
+      pages.push(
+        /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(PaginationItem, { children: /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(PaginationLink, { href: "#", isActive: totalPages === currentPage, onClick: () => onPageChange(totalPages), children: totalPages }) }, totalPages)
+      );
+    }
+    return pages;
+  };
+  return /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(Pagination, { children: /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)(PaginationContent, { children: [
+    showPrevious ? /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(PaginationItem, { children: /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(PaginationPrevious, { href: "#", onClick: () => onPageChange(currentPage - 1) }) }) : null,
+    renderPageNumbers(),
+    showNext ? /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(PaginationItem, { children: /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(PaginationNext, { href: "#", onClick: () => onPageChange(currentPage + 1) }) }) : null
+  ] }) });
+};
+
 // src/style/colors.ts
 var colors = {
   blue: {
@@ -2446,6 +2561,7 @@ var colors = {
   DropdownMenuTrigger,
   Input,
   Modal,
+  Pagination,
   Radio,
   RadioBtn,
   Select,

@@ -742,6 +742,9 @@
   .w-8 {
     width: calc(var(--spacing) * 8);
   }
+  .w-9 {
+    width: calc(var(--spacing) * 9);
+  }
   .w-13 {
     width: calc(var(--spacing) * 13);
   }
@@ -916,6 +919,11 @@
   .resize {
     resize: both;
   }
+  .\[appearance\:textfield\] {
+    -webkit-appearance: textfield;
+    -moz-appearance: textfield;
+    appearance: textfield;
+  }
   .appearance-none {
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -935,6 +943,9 @@
   }
   .flex-col-reverse {
     flex-direction: column-reverse;
+  }
+  .flex-row {
+    flex-direction: row;
   }
   .flex-wrap {
     flex-wrap: wrap;
@@ -1557,6 +1568,15 @@
   }
   .pr-2 {
     padding-right: calc(var(--spacing) * 2);
+  }
+  .pr-2\.5 {
+    padding-right: calc(var(--spacing) * 2.5);
+  }
+  .pl-2 {
+    padding-left: calc(var(--spacing) * 2);
+  }
+  .pl-2\.5 {
+    padding-left: calc(var(--spacing) * 2.5);
   }
   .pl-8 {
     padding-left: calc(var(--spacing) * 8);
@@ -3383,6 +3403,18 @@
     & tr:last-child {
       border-style: var(--tw-border-style);
       border-width: 0px;
+    }
+  }
+  .\[\&\:\:-webkit-inner-spin-button\]\:appearance-none {
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      appearance: none;
+    }
+  }
+  .\[\&\:\:-webkit-outer-spin-button\]\:appearance-none {
+    &::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      appearance: none;
     }
   }
   .\[\&\:has\(\[role\=checkbox\]\)\]\:pr-0 {

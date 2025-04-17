@@ -1,3 +1,10 @@
+# [0.5.0](https://github.com/bluewave-labs/prism-design-system/compare/v0.4.1...v0.5.0) (2025-04-17)
+
+
+### Features
+
+* add pagination ([c6d2e47](https://github.com/bluewave-labs/prism-design-system/commit/c6d2e47c9ad28ed7aaecd54f59f656d0a5412b97))
+
 ## [0.4.1](https://github.com/bluewave-labs/prism-design-system/compare/v0.4.0...v0.4.1) (2025-04-16)
 
 

@@ -1,81 +1,126 @@
 # Prism Design System
 
-A comprehensive design system by [Uprock](https://uprock.com) that provides a set of reusable components, patterns, and guidelines for building consistent and accessible user interfaces.
+A modern, accessible, and customizable React component library built with Tailwind CSS by [Uprock](https://uprock.com).
+
 
 ## Features
 
-- **Component Library**: A collection of pre-built, customizable UI components
-- **Accessibility**: Built with WCAG compliance in mind
-- **Documentation**: Comprehensive guides and examples
+- 🎨 **Comprehensive Component Library**: Button, Card, Input, Modal, Radio, Select, Sidebar, Switch, Table, Tabs, and more
+- 🎯 **Accessibility First**: Built with accessibility in mind using Radix UI primitives
+- 🎨 **Themeable**: Customizable colors and styles
+- 📦 **TypeScript Support**: Fully typed components
+- 🎨 **Tailwind CSS**: Built with Tailwind for consistent styling
+- 📚 **Storybook Documentation**: Interactive component documentation
 
 ## Installation
 
 ```bash
 npm install @bluewavelabs/prism-ui
-# or
-yarn add @bluewavelabs/prism-ui
 ```
 
-## Usage
+## Quick Start
 
-### Import Styles
-
-First, import the styles in your application's entry file (e.g., `App.tsx`, `main.tsx`, or `index.tsx`).
+1. Import the styles in your app's entry point (e.g., `App.tsx` or `main.tsx`):
 
 ```tsx
-// Import complete styles
 import '@bluewavelabs/prism-ui/style';
 ```
 
-### Using Components
+2. Use the components in your app:
 
 ```tsx
 import { Button, Card, Input } from '@bluewavelabs/prism-ui';
 
 function App() {
   return (
-    <Card>
-      <Input label="Enter your name" />
-      <Button>Submit</Button>
-    </Card>
+    <div>
+      <Button>Click me</Button>
+      <Card>
+        <Card.Title>Welcome</Card.Title>
+        <Card.Content>This is a card</Card.Content>
+      </Card>
+      <Input label="Enter text" />
+    </div>
   );
 }
 ```
 
-## Available Components
+## Components
 
-- Button
-- Card
-- Input
-- Select
-- Radio
-- Switch
-- Table
-- Tabs
-- Modal
-- Sidebar
+### Basic Components
+- [Button](./src/components/Button) - Versatile button component with multiple variants
+- [Card](./src/components/Card) - Flexible card component for content display
+- [Input](./src/components/Input) - Form input component with validation support
 
-## Documentation
+### Form Components
+- [Radio](./src/components/Radio) - Radio button component
+- [Select](./src/components/Select) - Dropdown select component
+- [Switch](./src/components/Switch) - Toggle switch component
 
-For detailed documentation and examples, visit our [Storybook](https://bluewave-labs.github.io/prism-design-system/?path=/docs/configure-your-project--docs).
+### Layout Components
+- [Modal](./src/components/Modal) - Dialog/modal component
+- [Sidebar](./src/components/Sidebar) - Navigation sidebar
+- [Table](./src/components/Table) - Data table component
+- [Tabs](./src/components/Tabs) - Tabbed interface component
+
+## Styling
+
+Prism uses Tailwind CSS for styling. You can customize the theme by:
+
+1. Extending the Tailwind config:
+```js
+// tailwind.config.js
+module.exports = {
+  theme: {
+    extend: {
+      colors: {
+        // Your custom colors
+      },
+    },
+  },
+}
+```
+
+2. Importing the base styles:
+```js
+import '@bluewavelabs/prism-ui/style';
+```
 
 ## Development
 
-### Local Development
+### Setup
+
+1. Clone the repository
+2. Install dependencies:
+```bash
+npm install
+```
+
+3. Start Storybook:
+```bash
+npm run storybook
+```
+
+### Building
 
 ```bash
-# Start Storybook
-npm run storybook
+npm run build
+```
 
-# Build package
-npm run build:pkg
+### Publishing
 
+```bash
+npm run release
 ```
 
 ## Contributing
 
-We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details.
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+MIT © [Uprock Prism](https://uprock.com/)
