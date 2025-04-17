@@ -31,11 +31,20 @@ const meta: Meta<typeof Pagination> = {
         type: { summary: '() => void' },
       },
     },
+    className: {
+      control: 'text',
+      description: 'The class name to be applied to the pagination component',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: '' },
+      },
+    },
   },
   args: {
     currentPage: 1,
     totalPages: 5,
     onPageChange: () => {},
+    className: '',
   },
 };
 

@@ -9,7 +9,7 @@ import {
   PaginationPrevious,
 } from '../ui/pagination';
 
-export const Pagination = ({ currentPage, totalPages, onPageChange }: PaginationProps) => {
+export const Pagination = ({ currentPage, totalPages, onPageChange, className, ...props }: PaginationProps) => {
   const showPrevious = currentPage > 1;
   const showNext = currentPage < totalPages;
 
@@ -53,7 +53,7 @@ export const Pagination = ({ currentPage, totalPages, onPageChange }: Pagination
         </PaginationItem>
       );
     }
-    
+
     if (totalPages > 1) {
       pages.push(
         <PaginationItem key={totalPages}>
@@ -68,7 +68,7 @@ export const Pagination = ({ currentPage, totalPages, onPageChange }: Pagination
   };
 
   return (
-    <PaginationComponent>
+    <PaginationComponent className={className} {...props}>
       <PaginationContent>
         {showPrevious ? (
           <PaginationItem>
