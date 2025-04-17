@@ -10,3 +10,4 @@ export type { SwitchProps, SwitchRef } from './switch';
 export type { TableProps } from './table';
 export type { TabsListProps, TabsListRef, TabsProps, TabsTriggerProps, TabsTriggerRef } from './tabs';
 export type { BannerProps } from './banner';
+export type { PaginationProps } from './pagination';
