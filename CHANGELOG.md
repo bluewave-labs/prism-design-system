@@ -1,3 +1,10 @@
+## [0.5.2](https://github.com/bluewave-labs/prism-design-system/compare/v0.5.1...v0.5.2) (2025-04-18)
+
+
+### Bug Fixes
+
+* fix peer dependencies ([7bc26e5](https://github.com/bluewave-labs/prism-design-system/commit/7bc26e58c2375c3d929ba7382f788ebf323d7f3f))
+
 ## [0.5.1](https://github.com/bluewave-labs/prism-design-system/compare/v0.5.0...v0.5.1) (2025-04-17)
 
 
