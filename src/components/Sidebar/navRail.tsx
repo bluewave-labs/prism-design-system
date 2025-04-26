@@ -18,18 +18,20 @@ import {
   useSidebar,
 } from '../ui/sidebar';
 
-const DASHBOARD_URL = 'https://prism.uprockstaging.com/console';
+const DASHBOARD_URL = 'https://prism.uprockstaging.com';
 
 const products = [
   {
     icon: <MonitorUp className=" [&>svg]:size-6" />,
     name: 'UpTime',
-    url: 'https://uptime.uprockstaging.com/uptime',
+    url: 'https://uptime.uprockstaging.com',
+    path: '/uptime',
   },
   {
     icon: <Globe className=" [&>svg]:size-6" />,
     name: 'RockScapper',
-    url: 'https://rockscraper.uprockstaging.com/dashboard',
+    url: 'https://crawler.uprockstaging.com',
+    path: '/',
   },
 ];
 
@@ -38,7 +40,7 @@ const NavRail = ({ notifications, user, logOut }: NavRailProps) => {
   const { isMobile } = useSidebar();
 
   useEffect(() => {
-    setUrl(window.location.href);
+    setUrl(window.location.origin);
   }, []);
 
   const hasNotifications = notifications?.length && notifications.length > 0;
@@ -51,10 +53,10 @@ const NavRail = ({ notifications, user, logOut }: NavRailProps) => {
         ) : (
           <SidebarMenuButton
             asChild
-            isActive={url?.includes(DASHBOARD_URL)}
+            isActive={url?.startsWith(DASHBOARD_URL)}
             className="flex items-center justify-center h-10"
           >
-            <Link href={DASHBOARD_URL} title="Dashboard">
+            <Link href={`${DASHBOARD_URL}/console`} title="Dashboard">
               <Home className=" [&>svg]:size-6" />
             </Link>
           </SidebarMenuButton>
@@ -66,10 +68,10 @@ const NavRail = ({ notifications, user, logOut }: NavRailProps) => {
             <SidebarMenuItem key={product.name}>
               <SidebarMenuButton
                 asChild
-                isActive={url?.includes(product.url)}
+                isActive={url?.startsWith(product.url)}
                 className="flex items-center justify-center h-10"
               >
-                <Link href={product.url} title={product.name}>
+                <Link href={`${product.url}${product.path}`} title={product.name}>
                   {product.icon}
                 </Link>
               </SidebarMenuButton>
