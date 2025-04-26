@@ -822,17 +822,19 @@ function DropdownMenuItem(_a) {
 
 // src/components/Sidebar/navRail.tsx
 var import_jsx_runtime10 = require("react/jsx-runtime");
-var DASHBOARD_URL = "https://prism.uprockstaging.com/console";
+var DASHBOARD_URL = "https://prism.uprockstaging.com";
 var products = [
   {
     icon: /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(import_lucide_react5.MonitorUp, { className: " [&>svg]:size-6" }),
     name: "UpTime",
-    url: "https://uptime.uprockstaging.com/uptime"
+    url: "https://uptime.uprockstaging.com",
+    path: "/uptime"
   },
   {
     icon: /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(import_lucide_react5.Globe, { className: " [&>svg]:size-6" }),
     name: "RockScapper",
-    url: "https://rockscraper.uprockstaging.com/dashboard"
+    url: "https://crawler.uprockstaging.com",
+    path: "/"
   }
 ];
 var NavRail = ({ notifications, user, logOut }) => {
@@ -840,7 +842,7 @@ var NavRail = ({ notifications, user, logOut }) => {
   const [url, setUrl] = (0, import_react.useState)(null);
   const { isMobile } = useSidebar();
   (0, import_react.useEffect)(() => {
-    setUrl(window.location.href);
+    setUrl(window.location.origin);
   }, []);
   const hasNotifications = (notifications == null ? void 0 : notifications.length) && notifications.length > 0;
   return /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)(SidebarRail, { children: [
@@ -848,18 +850,18 @@ var NavRail = ({ notifications, user, logOut }) => {
       SidebarMenuButton,
       {
         asChild: true,
-        isActive: url == null ? void 0 : url.includes(DASHBOARD_URL),
+        isActive: url == null ? void 0 : url.startsWith(DASHBOARD_URL),
         className: "flex items-center justify-center h-10",
-        children: /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(import_link2.default, { href: DASHBOARD_URL, title: "Dashboard", children: /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(import_lucide_react5.Home, { className: " [&>svg]:size-6" }) })
+        children: /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(import_link2.default, { href: `${DASHBOARD_URL}/console`, title: "Dashboard", children: /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(import_lucide_react5.Home, { className: " [&>svg]:size-6" }) })
       }
     ) }),
     /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(SidebarContent, { className: "grow", children: /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(SidebarMenu, { className: "", children: products.map((product) => /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(SidebarMenuItem, { children: /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(
       SidebarMenuButton,
       {
         asChild: true,
-        isActive: url == null ? void 0 : url.includes(product.url),
+        isActive: url == null ? void 0 : url.startsWith(product.url),
         className: "flex items-center justify-center h-10",
-        children: /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(import_link2.default, { href: product.url, title: product.name, children: product.icon })
+        children: /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(import_link2.default, { href: `${product.url}${product.path}`, title: product.name, children: product.icon })
       }
     ) }, product.name)) }) }),
     /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(SidebarFooter, { className: "p-0 self-end", children: /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)(SidebarMenu, { className: "flex flex-col items-center justify-center gap-1", children: [
