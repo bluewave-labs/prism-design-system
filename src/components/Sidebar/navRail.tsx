@@ -40,20 +40,20 @@ const NavRail = ({ notifications, user, logOut }: NavRailProps) => {
   const { isMobile } = useSidebar();
 
   useEffect(() => {
-    setUrl(window.location.origin);
+    setUrl(window.location.hostname);
   }, []);
 
   const hasNotifications = notifications?.length && notifications.length > 0;
 
   return (
     <SidebarRail>
-      <SidebarHeader className="p-0 w-8 h-8 md:w-10 md:h-10 justify-center">
+      <SidebarHeader className="p-0 w-8 h-8 md:w-10 md:h-10 justify-center" blurBg={false}>
         {isMobile ? (
           <SidebarTrigger />
         ) : (
           <SidebarMenuButton
             asChild
-            isActive={url?.startsWith(DASHBOARD_URL)}
+            isActive={DASHBOARD_URL.includes(url ?? '')}
             className="flex items-center justify-center h-10"
           >
             <Link href={`${DASHBOARD_URL}/console`} title="Dashboard">
@@ -68,7 +68,7 @@ const NavRail = ({ notifications, user, logOut }: NavRailProps) => {
             <SidebarMenuItem key={product.name}>
               <SidebarMenuButton
                 asChild
-                isActive={url?.startsWith(product.url)}
+                isActive={product.url?.includes(url ?? '')}
                 className="flex items-center justify-center h-10"
               >
                 <Link href={`${product.url}${product.path}`} title={product.name}>

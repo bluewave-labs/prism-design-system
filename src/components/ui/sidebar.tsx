@@ -193,11 +193,7 @@ function Sidebar({
           )}
           {...props}
         >
-          <div
-            data-sidebar="sidebar"
-            data-slot="sidebar-inner"
-            className="flex h-full w-full flex-col"
-          >
+          <div data-sidebar="sidebar" data-slot="sidebar-inner" className="flex h-full w-full flex-col">
             {header}
             <Sheet open={openMobile} onOpenChange={setOpenMobile} {...props}>
               <SheetContent
@@ -327,12 +323,16 @@ function SidebarInput({ className, ...props }: React.ComponentProps<typeof Input
   );
 }
 
-function SidebarHeader({ className, ...props }: React.ComponentProps<'div'>) {
+function SidebarHeader({ className, blurBg = true, ...props }: React.ComponentProps<'div'> & { blurBg?: boolean }) {
   return (
     <div
       data-slot="sidebar-header"
       data-sidebar="header"
-      className={cn(`flex items-center justify-start bg-blur md:justify-between gap-2 p-2 text-gray-10 font-medium`, className)}
+      className={cn(
+        `flex items-center justify-start md:justify-between gap-2 p-2 text-gray-10 font-medium`,
+        blurBg && 'bg-blur',
+        className
+      )}
       {...props}
     />
   );
