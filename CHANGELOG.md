@@ -1,3 +1,10 @@
+## [0.5.4](https://github.com/bluewave-labs/prism-design-system/compare/v0.5.3...v0.5.4) (2025-04-28)
+
+
+### Bug Fixes
+
+* fix nav rail active menu item ([60c6f34](https://github.com/bluewave-labs/prism-design-system/commit/60c6f345377474571624f605eb5502d5ecbdf6cf))
+
 ## [0.5.3](https://github.com/bluewave-labs/prism-design-system/compare/v0.5.2...v0.5.3) (2025-04-26)
 
 

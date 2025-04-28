@@ -1155,37 +1155,29 @@ function Sidebar(_a) {
               className
             )
           }, props), {
-            children: /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)(
-              "div",
-              {
-                "data-sidebar": "sidebar",
-                "data-slot": "sidebar-inner",
-                className: "flex h-full w-full flex-col",
-                children: [
-                  header,
-                  /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(Sheet, __spreadProps(__spreadValues({ open: openMobile, onOpenChange: setOpenMobile }, props), { children: /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)(
-                    SheetContent,
-                    {
-                      "data-sidebar": "sidebar",
-                      "data-slot": "sidebar",
-                      "data-mobile": "true",
-                      className: "w-(--sidebar-width) max-w-[90%] p-0 [&>button]:hidden border-gray-0/20",
-                      style: {
-                        "--sidebar-width": SIDEBAR_WIDTH_MOBILE
-                      },
-                      side,
-                      children: [
-                        /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)(SheetHeader, { className: "sr-only", children: [
-                          /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(SheetTitle, { children: "Sidebar" }),
-                          /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(SheetDescription, { children: "Displays the mobile sidebar." })
-                        ] }),
-                        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("div", { className: "flex h-full w-full flex-col menu-shadow", children })
-                      ]
-                    }
-                  ) }))
-                ]
-              }
-            )
+            children: /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("div", { "data-sidebar": "sidebar", "data-slot": "sidebar-inner", className: "flex h-full w-full flex-col", children: [
+              header,
+              /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(Sheet, __spreadProps(__spreadValues({ open: openMobile, onOpenChange: setOpenMobile }, props), { children: /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)(
+                SheetContent,
+                {
+                  "data-sidebar": "sidebar",
+                  "data-slot": "sidebar",
+                  "data-mobile": "true",
+                  className: "w-(--sidebar-width) max-w-[90%] p-0 [&>button]:hidden border-gray-0/20",
+                  style: {
+                    "--sidebar-width": SIDEBAR_WIDTH_MOBILE
+                  },
+                  side,
+                  children: [
+                    /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)(SheetHeader, { className: "sr-only", children: [
+                      /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(SheetTitle, { children: "Sidebar" }),
+                      /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(SheetDescription, { children: "Displays the mobile sidebar." })
+                    ] }),
+                    /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("div", { className: "flex h-full w-full flex-col menu-shadow", children })
+                  ]
+                }
+              ) }))
+            ] })
           })
         )
       }
@@ -1302,13 +1294,17 @@ function SidebarInput(_a) {
   );
 }
 function SidebarHeader(_a) {
-  var _b = _a, { className } = _b, props = __objRest(_b, ["className"]);
+  var _b = _a, { className, blurBg = true } = _b, props = __objRest(_b, ["className", "blurBg"]);
   return /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(
     "div",
     __spreadValues({
       "data-slot": "sidebar-header",
       "data-sidebar": "header",
-      className: cn(`flex items-center justify-start bg-blur md:justify-between gap-2 p-2 text-gray-10 font-medium`, className)
+      className: cn(
+        `flex items-center justify-start md:justify-between gap-2 p-2 text-gray-10 font-medium`,
+        blurBg && "bg-blur",
+        className
+      )
     }, props)
   );
 }
@@ -1998,28 +1994,31 @@ var NavRail = ({ notifications, user, logOut }) => {
   const [url, setUrl] = (0, import_react3.useState)(null);
   const { isMobile } = useSidebar();
   (0, import_react3.useEffect)(() => {
-    setUrl(window.location.origin);
+    setUrl(window.location.hostname);
   }, []);
   const hasNotifications = (notifications == null ? void 0 : notifications.length) && notifications.length > 0;
   return /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)(SidebarRail, { children: [
-    /* @__PURE__ */ (0, import_jsx_runtime21.jsx)(SidebarHeader, { className: "p-0 w-8 h-8 md:w-10 md:h-10 justify-center", children: isMobile ? /* @__PURE__ */ (0, import_jsx_runtime21.jsx)(SidebarTrigger, {}) : /* @__PURE__ */ (0, import_jsx_runtime21.jsx)(
+    /* @__PURE__ */ (0, import_jsx_runtime21.jsx)(SidebarHeader, { className: "p-0 w-8 h-8 md:w-10 md:h-10 justify-center", blurBg: false, children: isMobile ? /* @__PURE__ */ (0, import_jsx_runtime21.jsx)(SidebarTrigger, {}) : /* @__PURE__ */ (0, import_jsx_runtime21.jsx)(
       SidebarMenuButton,
       {
         asChild: true,
-        isActive: url == null ? void 0 : url.startsWith(DASHBOARD_URL),
+        isActive: DASHBOARD_URL.includes(url != null ? url : ""),
         className: "flex items-center justify-center h-10",
         children: /* @__PURE__ */ (0, import_jsx_runtime21.jsx)(import_link2.default, { href: `${DASHBOARD_URL}/console`, title: "Dashboard", children: /* @__PURE__ */ (0, import_jsx_runtime21.jsx)(import_lucide_react8.Home, { className: " [&>svg]:size-6" }) })
       }
     ) }),
-    /* @__PURE__ */ (0, import_jsx_runtime21.jsx)(SidebarContent, { className: "grow", children: /* @__PURE__ */ (0, import_jsx_runtime21.jsx)(SidebarMenu, { className: "", children: products.map((product) => /* @__PURE__ */ (0, import_jsx_runtime21.jsx)(SidebarMenuItem, { children: /* @__PURE__ */ (0, import_jsx_runtime21.jsx)(
-      SidebarMenuButton,
-      {
-        asChild: true,
-        isActive: url == null ? void 0 : url.startsWith(product.url),
-        className: "flex items-center justify-center h-10",
-        children: /* @__PURE__ */ (0, import_jsx_runtime21.jsx)(import_link2.default, { href: `${product.url}${product.path}`, title: product.name, children: product.icon })
-      }
-    ) }, product.name)) }) }),
+    /* @__PURE__ */ (0, import_jsx_runtime21.jsx)(SidebarContent, { className: "grow", children: /* @__PURE__ */ (0, import_jsx_runtime21.jsx)(SidebarMenu, { className: "", children: products.map((product) => {
+      var _a2;
+      return /* @__PURE__ */ (0, import_jsx_runtime21.jsx)(SidebarMenuItem, { children: /* @__PURE__ */ (0, import_jsx_runtime21.jsx)(
+        SidebarMenuButton,
+        {
+          asChild: true,
+          isActive: (_a2 = product.url) == null ? void 0 : _a2.includes(url != null ? url : ""),
+          className: "flex items-center justify-center h-10",
+          children: /* @__PURE__ */ (0, import_jsx_runtime21.jsx)(import_link2.default, { href: `${product.url}${product.path}`, title: product.name, children: product.icon })
+        }
+      ) }, product.name);
+    }) }) }),
     /* @__PURE__ */ (0, import_jsx_runtime21.jsx)(SidebarFooter, { className: "p-0 self-end", children: /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)(SidebarMenu, { className: "flex flex-col items-center justify-center gap-1", children: [
       hasNotifications ? /* @__PURE__ */ (0, import_jsx_runtime21.jsx)(SidebarMenuItem, { children: /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)(DropdownMenu, { children: [
         /* @__PURE__ */ (0, import_jsx_runtime21.jsx)(DropdownMenuTrigger, { className: "flex items-center justify-center w-8 h-8 md:w-10 md:h-10", children: /* @__PURE__ */ (0, import_jsx_runtime21.jsx)(

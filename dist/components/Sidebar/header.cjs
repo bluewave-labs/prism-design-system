@@ -158,13 +158,17 @@ function SidebarTrigger(_a) {
   );
 }
 function SidebarHeader(_a) {
-  var _b = _a, { className } = _b, props = __objRest(_b, ["className"]);
+  var _b = _a, { className, blurBg = true } = _b, props = __objRest(_b, ["className", "blurBg"]);
   return /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
     "div",
     __spreadValues({
       "data-slot": "sidebar-header",
       "data-sidebar": "header",
-      className: cn(`flex items-center justify-start bg-blur md:justify-between gap-2 p-2 text-gray-10 font-medium`, className)
+      className: cn(
+        `flex items-center justify-start md:justify-between gap-2 p-2 text-gray-10 font-medium`,
+        blurBg && "bg-blur",
+        className
+      )
     }, props)
   );
 }
