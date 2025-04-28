@@ -45,8 +45,6 @@ const NavRail = ({ notifications, user, logOut }: NavRailProps) => {
 
   const hasNotifications = notifications?.length && notifications.length > 0;
 
-  console.log(url, url?.includes(DASHBOARD_URL), DASHBOARD_URL);
-
   return (
     <SidebarRail>
       <SidebarHeader className="p-0 w-8 h-8 md:w-10 md:h-10 justify-center" blurBg={false}>
