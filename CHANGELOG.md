@@ -1,3 +1,11 @@
+## [0.5.5](https://github.com/bluewave-labs/prism-design-system/compare/v0.5.4...v0.5.5) (2025-04-30)
+
+
+### Bug Fixes
+
+* add className to select ([21557a7](https://github.com/bluewave-labs/prism-design-system/commit/21557a7779a45af9a7d73809a63878357fb51767))
+* add classNames to pagination ([05d86aa](https://github.com/bluewave-labs/prism-design-system/commit/05d86aaf027278fe72eb0e599c3125f943584f8b))
+
 ## [0.5.4](https://github.com/bluewave-labs/prism-design-system/compare/v0.5.3...v0.5.4) (2025-04-28)
 
 

@@ -37,7 +37,7 @@ function cn(...inputs) {
 
 // src/components/ui/select.tsx
 var import_jsx_runtime = require("react/jsx-runtime");
-var Select = ({ selected, options, onSelect, disabled = false }) => {
+var Select = ({ selected, options, onSelect, disabled = false, className = "" }) => {
   const [isOpen, setIsOpen] = (0, import_react.useState)(false);
   const ref = (0, import_react.useRef)(null);
   const [showAbove, setShowAbove] = (0, import_react.useState)(false);
@@ -109,7 +109,7 @@ var Select = ({ selected, options, onSelect, disabled = false }) => {
         }
         setIsOpen(!isOpen);
       },
-      className: cn("relative w-[204px]", disabled ? "opacity-50 pointer-events-none" : "cursor-pointer"),
+      className: cn("relative w-[204px]", disabled ? "opacity-50 pointer-events-none" : "cursor-pointer", className),
       onKeyDown: handleKeyDown,
       tabIndex: disabled ? -1 : 0,
       role: "combobox",

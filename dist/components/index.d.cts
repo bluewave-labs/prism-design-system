@@ -3,13 +3,13 @@ export { C as CardProps } from '../card.d-WJkPFQhH.cjs';
 export { I as InputProps } from '../input.d-DIZqsASn.cjs';
 export { M as ModalProps } from '../modal.d-BBt8gctR.cjs';
 export { R as RadioProps } from '../radio.d-yFrftUGC.cjs';
-export { S as SelectProps } from '../select.d-DbL1blL_.cjs';
+export { S as SelectProps } from '../select.d-mEv5InDG.cjs';
 export { S as SidebarProps } from '../sidebar.d-DD1vNnwR.cjs';
 export { S as SwitchProps, a as SwitchRef } from '../switch.d-CpMII3k3.cjs';
 export { T as TableProps } from '../table.d-BrHIh049.cjs';
 export { T as TabsProps } from '../tabs.d-DlQ4xs8S.cjs';
 export { B as BannerProps } from '../banner.d-DfC7hzOt.cjs';
-import { P as PaginationProps } from '../pagination.d-ClhiXu5A.cjs';
+import { P as PaginationProps } from '../pagination.d-CR0UVuYM.cjs';
 export { AlertDescription, AlertTitle, Alert as Banner } from './ui/alert.cjs';
 export { Button } from './ui/button.cjs';
 export { CardAction, CardContent, CardDescription, CardFooter, CardHeader, CardTitle, ConsoleButton } from './ui/card.cjs';
@@ -46,6 +46,6 @@ import '@radix-ui/react-avatar';
 import '@radix-ui/react-collapsible';
 import '@radix-ui/react-dropdown-menu';
 
-declare const Pagination: ({ currentPage, totalPages, onPageChange, className, ...props }: PaginationProps) => react_jsx_runtime.JSX.Element;
+declare const Pagination: ({ currentPage, totalPages, onPageChange, className, itemClassName, linkClassName, ...props }: PaginationProps) => react_jsx_runtime.JSX.Element;
 
 export { Pagination, PaginationProps };

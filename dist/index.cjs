@@ -650,7 +650,7 @@ var RadioBtn = (_a) => {
 var import_lucide_react3 = require("lucide-react");
 var import_react2 = require("react");
 var import_jsx_runtime10 = require("react/jsx-runtime");
-var Select = ({ selected, options, onSelect, disabled = false }) => {
+var Select = ({ selected, options, onSelect, disabled = false, className = "" }) => {
   const [isOpen, setIsOpen] = (0, import_react2.useState)(false);
   const ref = (0, import_react2.useRef)(null);
   const [showAbove, setShowAbove] = (0, import_react2.useState)(false);
@@ -722,7 +722,7 @@ var Select = ({ selected, options, onSelect, disabled = false }) => {
         }
         setIsOpen(!isOpen);
       },
-      className: cn("relative w-[204px]", disabled ? "opacity-50 pointer-events-none" : "cursor-pointer"),
+      className: cn("relative w-[204px]", disabled ? "opacity-50 pointer-events-none" : "cursor-pointer", className),
       onKeyDown: handleKeyDown,
       tabIndex: disabled ? -1 : 0,
       role: "combobox",
@@ -2448,43 +2448,75 @@ PaginationEllipsis.displayName = "PaginationEllipsis";
 // src/components/Pagination/pagination.tsx
 var import_jsx_runtime30 = require("react/jsx-runtime");
 var Pagination2 = (_a) => {
-  var _b = _a, { currentPage, totalPages, onPageChange, className } = _b, props = __objRest(_b, ["currentPage", "totalPages", "onPageChange", "className"]);
+  var _b = _a, {
+    currentPage,
+    totalPages,
+    onPageChange,
+    className,
+    itemClassName,
+    linkClassName
+  } = _b, props = __objRest(_b, [
+    "currentPage",
+    "totalPages",
+    "onPageChange",
+    "className",
+    "itemClassName",
+    "linkClassName"
+  ]);
   const showPrevious = currentPage > 1;
   const showNext = currentPage < totalPages;
   const renderPageNumbers = () => {
     const pages = [];
     pages.push(
-      /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(PaginationItem, { children: /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(PaginationLink, { href: "#", isActive: 1 === currentPage, onClick: () => onPageChange(1), children: "1" }) }, 1)
+      /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(PaginationItem, { className: itemClassName, children: /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(PaginationLink, { href: "#", isActive: 1 === currentPage, onClick: () => onPageChange(1), className: linkClassName, children: "1" }) }, 1)
     );
     const range = 1;
     const start = Math.max(2, currentPage - range);
     const end = Math.min(totalPages - 1, currentPage + range);
     if (start > 2) {
       pages.push(
-        /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(PaginationItem, { children: /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(PaginationEllipsis, {}) }, "ellipsis-start")
+        /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(PaginationItem, { className: itemClassName, children: /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(PaginationEllipsis, {}) }, "ellipsis-start")
       );
     }
     for (let i = start; i <= end; i++) {
       pages.push(
-        /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(PaginationItem, { children: /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(PaginationLink, { href: "#", isActive: i === currentPage, onClick: () => onPageChange(i), children: i }) }, i)
+        /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(PaginationItem, { className: itemClassName, children: /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(
+          PaginationLink,
+          {
+            href: "#",
+            isActive: i === currentPage,
+            onClick: () => onPageChange(i),
+            className: linkClassName,
+            children: i
+          }
+        ) }, i)
       );
     }
     if (end < totalPages - 1) {
       pages.push(
-        /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(PaginationItem, { children: /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(PaginationEllipsis, {}) }, "ellipsis-end")
+        /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(PaginationItem, { className: itemClassName, children: /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(PaginationEllipsis, { className: linkClassName }) }, "ellipsis-end")
       );
     }
     if (totalPages > 1) {
       pages.push(
-        /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(PaginationItem, { children: /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(PaginationLink, { href: "#", isActive: totalPages === currentPage, onClick: () => onPageChange(totalPages), children: totalPages }) }, totalPages)
+        /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(PaginationItem, { className: itemClassName, children: /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(
+          PaginationLink,
+          {
+            href: "#",
+            isActive: totalPages === currentPage,
+            onClick: () => onPageChange(totalPages),
+            className: linkClassName,
+            children: totalPages
+          }
+        ) }, totalPages)
       );
     }
     return pages;
   };
   return /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(Pagination, __spreadProps(__spreadValues({ className }, props), { children: /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)(PaginationContent, { children: [
-    showPrevious ? /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(PaginationItem, { children: /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(PaginationPrevious, { href: "#", onClick: () => onPageChange(currentPage - 1) }) }) : null,
+    showPrevious ? /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(PaginationItem, { className: itemClassName, children: /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(PaginationPrevious, { href: "#", onClick: () => onPageChange(currentPage - 1), className: linkClassName }) }) : null,
     renderPageNumbers(),
-    showNext ? /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(PaginationItem, { children: /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(PaginationNext, { href: "#", onClick: () => onPageChange(currentPage + 1) }) }) : null
+    showNext ? /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(PaginationItem, { className: itemClassName, children: /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(PaginationNext, { href: "#", onClick: () => onPageChange(currentPage + 1), className: linkClassName }) }) : null
   ] }) }));
 };
 
