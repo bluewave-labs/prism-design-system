@@ -3,4 +3,5 @@ export type SelectProps = {
   options: string[];
   onSelect: (val: string) => void;
   disabled?: boolean;
+  className?: string;
 };

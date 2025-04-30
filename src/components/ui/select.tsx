@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import { cn } from '../../lib/utils';
 import { SelectProps } from '../../types';
 
-export const Select = ({ selected, options, onSelect, disabled = false }: SelectProps) => {
+export const Select = ({ selected, options, onSelect, disabled = false, className = '' }: SelectProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
   const [showAbove, setShowAbove] = useState(false);
@@ -81,7 +81,7 @@ export const Select = ({ selected, options, onSelect, disabled = false }: Select
         }
         setIsOpen(!isOpen);
       }}
-      className={cn('relative w-[204px]', disabled ? 'opacity-50 pointer-events-none' : 'cursor-pointer')}
+      className={cn('relative w-[204px]', disabled ? 'opacity-50 pointer-events-none' : 'cursor-pointer', className)}
       onKeyDown={handleKeyDown}
       tabIndex={disabled ? -1 : 0}
       role="combobox"
