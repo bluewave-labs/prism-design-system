@@ -9,7 +9,15 @@ import {
   PaginationPrevious,
 } from '../ui/pagination';
 
-export const Pagination = ({ currentPage, totalPages, onPageChange, className, ...props }: PaginationProps) => {
+export const Pagination = ({
+  currentPage,
+  totalPages,
+  onPageChange,
+  className,
+  itemClassName,
+  linkClassName,
+  ...props
+}: PaginationProps) => {
   const showPrevious = currentPage > 1;
   const showNext = currentPage < totalPages;
 
@@ -17,8 +25,8 @@ export const Pagination = ({ currentPage, totalPages, onPageChange, className, .
     const pages = [];
 
     pages.push(
-      <PaginationItem key={1}>
-        <PaginationLink href="#" isActive={1 === currentPage} onClick={() => onPageChange(1)}>
+      <PaginationItem key={1} className={itemClassName}>
+        <PaginationLink href="#" isActive={1 === currentPage} onClick={() => onPageChange(1)} className={linkClassName}>
           1
         </PaginationLink>
       </PaginationItem>
@@ -30,7 +38,7 @@ export const Pagination = ({ currentPage, totalPages, onPageChange, className, .
 
     if (start > 2) {
       pages.push(
-        <PaginationItem key="ellipsis-start">
+        <PaginationItem key="ellipsis-start" className={itemClassName}>
           <PaginationEllipsis />
         </PaginationItem>
       );
@@ -38,8 +46,13 @@ export const Pagination = ({ currentPage, totalPages, onPageChange, className, .
 
     for (let i = start; i <= end; i++) {
       pages.push(
-        <PaginationItem key={i}>
-          <PaginationLink href="#" isActive={i === currentPage} onClick={() => onPageChange(i)}>
+        <PaginationItem key={i} className={itemClassName}>
+          <PaginationLink
+            href="#"
+            isActive={i === currentPage}
+            onClick={() => onPageChange(i)}
+            className={linkClassName}
+          >
             {i}
           </PaginationLink>
         </PaginationItem>
@@ -48,16 +61,21 @@ export const Pagination = ({ currentPage, totalPages, onPageChange, className, .
 
     if (end < totalPages - 1) {
       pages.push(
-        <PaginationItem key="ellipsis-end">
-          <PaginationEllipsis />
+        <PaginationItem key="ellipsis-end" className={itemClassName}>
+          <PaginationEllipsis className={linkClassName} />
         </PaginationItem>
       );
     }
 
     if (totalPages > 1) {
       pages.push(
-        <PaginationItem key={totalPages}>
-          <PaginationLink href="#" isActive={totalPages === currentPage} onClick={() => onPageChange(totalPages)}>
+        <PaginationItem key={totalPages} className={itemClassName}>
+          <PaginationLink
+            href="#"
+            isActive={totalPages === currentPage}
+            onClick={() => onPageChange(totalPages)}
+            className={linkClassName}
+          >
             {totalPages}
           </PaginationLink>
         </PaginationItem>
@@ -71,16 +89,16 @@ export const Pagination = ({ currentPage, totalPages, onPageChange, className, .
     <PaginationComponent className={className} {...props}>
       <PaginationContent>
         {showPrevious ? (
-          <PaginationItem>
-            <PaginationPrevious href="#" onClick={() => onPageChange(currentPage - 1)} />
+          <PaginationItem className={itemClassName}>
+            <PaginationPrevious href="#" onClick={() => onPageChange(currentPage - 1)} className={linkClassName} />
           </PaginationItem>
         ) : null}
 
         {renderPageNumbers()}
 
         {showNext ? (
-          <PaginationItem>
-            <PaginationNext href="#" onClick={() => onPageChange(currentPage + 1)} />
+          <PaginationItem className={itemClassName}>
+            <PaginationNext href="#" onClick={() => onPageChange(currentPage + 1)} className={linkClassName} />
           </PaginationItem>
         ) : null}
       </PaginationContent>
