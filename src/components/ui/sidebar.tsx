@@ -81,7 +81,11 @@ function SidebarProvider({
   const getCookie = async () => {
     const sidebarState = localStorage.getItem(SIDEBAR_COOKIE_NAME);
     if (sidebarState) {
-      setOpen(sidebarState === 'true');
+      if (setOpenProp) {
+        setOpenProp(sidebarState === 'true');
+      } else {
+        _setOpen(sidebarState === 'true');
+      }
     }
   };
 
