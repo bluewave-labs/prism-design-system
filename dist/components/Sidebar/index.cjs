@@ -527,17 +527,30 @@ function SidebarProvider(_a) {
   const [_open, _setOpen] = React2.useState(defaultOpen);
   const open = openProp != null ? openProp : _open;
   const setOpen = React2.useCallback(
-    (value) => {
+    async (value) => {
       const openState = typeof value === "function" ? value(open) : value;
       if (setOpenProp) {
         setOpenProp(openState);
       } else {
         _setOpen(openState);
       }
-      document.cookie = `${SIDEBAR_COOKIE_NAME}=${openState}; path=/; max-age=${SIDEBAR_COOKIE_MAX_AGE}; SameSite=Lax`;
+      localStorage.setItem(SIDEBAR_COOKIE_NAME, openState.toString());
     },
     [setOpenProp, open]
   );
+  const getCookie = async () => {
+    const sidebarState = localStorage.getItem(SIDEBAR_COOKIE_NAME);
+    if (sidebarState) {
+      if (setOpenProp) {
+        setOpenProp(sidebarState === "true");
+      } else {
+        _setOpen(sidebarState === "true");
+      }
+    }
+  };
+  React2.useEffect(() => {
+    getCookie();
+  }, []);
   const toggleSidebar = React2.useCallback(() => {
     return isMobile ? setOpenMobile((open2) => !open2) : setOpen((open2) => !open2);
   }, [isMobile, setOpen, setOpenMobile]);
