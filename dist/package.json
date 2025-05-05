@@ -9,10 +9,6 @@
   "publishConfig": {
     "access": "public"
   },
-  "peerDependencies": {
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0"
-  },
   "files": [
     "dist"
   ],
@@ -74,8 +70,8 @@
     "jsonwebtoken": "^9.0.2",
     "lucide-react": "^0.488.0",
     "next": "^15.3.0",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
     "sanitize-html": "^2.15.0",
     "shiki": "^3.2.2",
     "tailwind-merge": "^3.2.0",
